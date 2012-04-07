@@ -1,4 +1,4 @@
-" File: autoload/ctrlp/thefunks/vim.vim
+" File: autoload/ctrlp/funks/vim.vim
 " Description: a ctrlp.vim extension thenfunks's filter definition (vim)
 " Author: Takahiro YOSHIHARA <tacahiroy```AT```gmail.com>
 " License: the MIT License
@@ -22,7 +22,7 @@
 " out of or in connection with the software or the use or other dealings in the
 " software."}}}
 
-function! ctrlp#thefunks#vim#filter(bufnr)
+function! ctrlp#funks#vim#filter(bufnr)
   let lines = getbufline(a:bufnr, 1, '$')
   let filtered = []
   let i = 1
