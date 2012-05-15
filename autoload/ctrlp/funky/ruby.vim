@@ -1,5 +1,5 @@
-" File: autoload/ctrlp/funks/vim.vim
-" Description: a ctrlp.vim extension thenfunks's filter definition (vim)
+" File: autoload/ctrlp/funky/ruby.vim
+" Description: a ctrlp.vim extension thenfunky's filter definition (ruby)
 " Author: Takahiro YOSHIHARA <tacahiroy```AT```gmail.com>
 " License: the MIT License
 " Copyright 2012 Takahiro YOSHIHARA"{{{
@@ -22,12 +22,12 @@
 " out of or in connection with the software or the use or other dealings in the
 " software."}}}
 
-function! ctrlp#funks#vim#filter(bufnr)
+function! ctrlp#funky#ruby#filter(bufnr)
   let lines = getbufline(a:bufnr, 1, '$')
   let filtered = []
   let i = 1
   for l in lines
-    if 0 <= match(l, '\m\C^[\t ]*fu\(n\|nc\|nct\|ncti\|nctio\|nction\)\?!\?[\t ]\+\S\+')
+    if 0 <= match(l, '\m\C^[\t ]*def[\t ]\+\S\+')
       let fn = substitute(l, '\m\C^[\t ]*', '', '')
       let bn = bufname(a:bufnr)
       call add(filtered, printf('%s #%s:%d:%d', fn, '', a:bufnr, i))

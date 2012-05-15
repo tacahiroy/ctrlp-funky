@@ -1,4 +1,4 @@
-ctrlp.vim.exts
+ctrlp-funky
 ============
 
 This is a collection of ctrlp.vim extension.
