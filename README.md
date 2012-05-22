@@ -1,7 +1,11 @@
 ctrlp-funky
 ============
 
-This is a collection of ctrlp.vim extension.
+This is a ctrlp.vim extension and it abstracts functions currently being edited file.
+This supports following filetypes:
+* vim
+* ruby
+
 
 Related links
 --------------
@@ -11,4 +15,4 @@ Related links
 License
 -------
 
-Copyright (c) 2012 tacahiroy. Distributed under the MIT License.
+Copyright (C) 2012 tacahiroy. Distributed under the MIT License.
