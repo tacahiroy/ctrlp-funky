@@ -3,8 +3,9 @@ ctrlp-funky
 
 This is a ctrlp.vim extension and it abstracts functions currently being edited file.
 This supports following filetypes:
-* vim
+* python
 * ruby
+* vim
 
 
 Related links
