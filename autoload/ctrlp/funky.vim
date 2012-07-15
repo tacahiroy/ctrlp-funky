@@ -25,20 +25,14 @@ let s:filters = ctrlp#funky#default#load()
 "                      |     |     `- match first tab delimited str
 "                      |     `- match full line like file/dir path
 "                      `- match full line
-let s:funky_var = {
+call add(g:ctrlp_ext_vars, {
   \ 'init':   'ctrlp#funky#init(s:crbufnr)',
   \ 'accept': 'ctrlp#funky#accept',
   \ 'lname':  'Funky',
   \ 'sname':  'funky',
   \ 'type':   'line',
-  \ }
-
-" Append s:funky_var to g:ctrlp_ext_vars
-if exists('g:ctrlp_ext_vars')
-  let g:ctrlp_ext_vars = add(g:ctrlp_ext_vars, s:funky_var)
-else
-  let g:ctrlp_ext_vars = [s:funky_var]
-endif
+  \ 'sort': 0
+  \ })
 
 function! s:syntax()
   if !ctrlp#nosy()
