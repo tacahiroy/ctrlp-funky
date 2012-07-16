@@ -1,8 +1,8 @@
-" File: autoload/ctrlp/funky/default.vim
+" File: autoload/ctrlp/funky/_.vim
 " Description: ctrlp-funky default filters
 " Author: Takahiro YOSHIHARA <tacahiroy```AT```gmail.com>
 
-function! ctrlp#funky#default#load()
+function! ctrlp#funky#_#load()
   let filters = {}
 
   let filters.ruby = [{ 'pattern': '\m\C^[\t ]*def[\t ]\+\S\+',
@@ -20,6 +20,6 @@ function! ctrlp#funky#default#load()
                           \   'offset': -1}
   \ ]
 
-  return filters
+  return copy(filters)
 endfunction
 

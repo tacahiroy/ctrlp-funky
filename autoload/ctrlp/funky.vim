@@ -1,5 +1,6 @@
 " File: autoload/ctrlp/funky.vim
 " Description: a simple ctrlp.vim extension provides jumping to function
+" Version: 0.2.0
 " Author: Takahiro YOSHIHARA <tacahiroy```AT```gmail.com>
 
 if exists('g:loaded_ctrlp_funky') || v:version < 700 || &cp
@@ -10,7 +11,7 @@ let g:loaded_ctrlp_funky = 1
 let s:is_all_buffers = get(g:, 'ctrlp_funky_all_buffers', 0)
 let s:report_filter_error = get(g:, 'ctrlp_funky_report_filter_error', 0)
 
-let s:filters = ctrlp#funky#default#load()
+let s:filters = ctrlp#funky#_#load()
 
 
 " The main variable for this extension.
