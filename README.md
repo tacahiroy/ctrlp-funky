@@ -1,4 +1,4 @@
-ctrlp-funky.vim
+ctrlp-funky
 ============
 
 This is a ctrlp.vim extension and it abstracts functions currently being edited file(s) without ctags.  
