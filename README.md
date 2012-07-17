@@ -11,14 +11,13 @@ This supports following filetypes:
 
 INSTALL
 ----------
-If you use [Vundle](https://github.com/gmarik/vundle.git) it's very easy, you just run command `:BundleInstall tacahiroy/ctrlp-funky.vim`
-inside vim.  
+If you use [Vundle](https://github.com/gmarik/vundle.git) it's very easy, you just run command `:BundleInstall tacahiroy/ctrlp-funky.git` inside vim.  
 And also put `Bundle 'tacahiroy/ctrlp-funky.vim'` into `.vimrc`.
 
 If you use [pathogen.vim](https://github.com/tpope/vim-pathogen), you just execute following:
 
     cd ~/.vim/bundle
-    git clone git://github.com/tacahiroy/ctrlp-funky.vim
+    git clone git://github.com/tacahiroy/ctrlp-funky.git
 
 You don't use either plugin management system, copy `autoload` directory to your `.vim` directory.
 
