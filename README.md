@@ -30,8 +30,8 @@ You must available this plugin as a ctrlp.vim extension. Please add 'funky' to `
 
     let g:ctrlp_extensions = ['funky']
 
-After that, you can use `:CtrlPFunky` command.  
-And it might be useful like this mapping:
+Reboot Vim and then you can use `:CtrlPFunky` command.  
+It might be useful like this mapping:
 
     nnoremap <Space>fu :CtrlPFunky<Cr>
 
