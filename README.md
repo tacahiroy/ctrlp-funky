@@ -26,7 +26,7 @@ Windows: $HOME/vimfiles
 
 CONFIGURATION
 ----------
-You must available this plugin as a ctrlp.vim extension. Please add 'funky' to `g:ctrlp_extensions` in your `.vimrc`.
+You must available this plugin as a ctrlp.vim extension. Please add 'funky' to `g:ctrlp_extensions`.
 
     let g:ctrlp_extensions = ['funky']
 
