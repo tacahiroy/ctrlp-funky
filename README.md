@@ -19,11 +19,21 @@ If you use [pathogen.vim](https://github.com/tpope/vim-pathogen), you just execu
     cd ~/.vim/bundle
     git clone git://github.com/tacahiroy/ctrlp-funky.git
 
-You don't use either plugin management system, copy `autoload` directory to your `.vim` directory.
+You don't use either plugin management system, copy `autoload` and `plugin` directory to your `.vim` directory.
 
 \*nix: $HOME/.vim
 Windows: $HOME/vimfiles
 
+CONFIGURATION
+----------
+You must available this plugin as a ctrlp.vim extension. Please add 'funky' to `g:ctrlp_extensions` in your `.vimrc`.
+
+    let g:ctrlp_extensions = ['funky']
+
+After that, you can use `:CtrlPFunky` command.  
+And it might be useful like this mapping:
+
+    nnoremap <Space>fu :CtrlPFunky<Cr>
 
 LINK
 --------------

@@ -3,10 +3,8 @@
 " Version: 0.2.0
 " Author: Takahiro YOSHIHARA <tacahiroy```AT```gmail.com>
 
-if exists('g:loaded_ctrlp_funky') || v:version < 700 || &cp
-  finish
-endif
-let g:loaded_ctrlp_funky = 1
+let s:saved_cpo = &cpo
+set cpo&vim
 
 let s:is_all_buffers = get(g:, 'ctrlp_funky_all_buffers', 0)
 let s:report_filter_error = get(g:, 'ctrlp_funky_report_filter_error', 0)
@@ -155,5 +153,6 @@ endfunction
 " Put something like this in vimrc or plugin/funky.vim
 " com! CtrlPFunky cal ctrlp#init(ctrlp#funky#id())
 
+let &cpo = s:saved_cpo
 
 " vim:fen:fdl=0:ts=2:sw=2:sts=2
