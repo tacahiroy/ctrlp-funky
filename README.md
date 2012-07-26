@@ -5,9 +5,12 @@ This is a ctrlp.vim extension and it abstracts functions currently being edited 
 It just search function definition lines, thus some languages abstraction aren't accurate because of hard to parse.
 
 This supports following filetypes:
-* vim
-* ruby
+* c++
+* java
 * markdown
+* python
+* ruby
+* vim
 
 INSTALL
 ----------
