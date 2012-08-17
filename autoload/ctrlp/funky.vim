@@ -1,16 +1,13 @@
 " File: autoload/ctrlp/funky.vim
 " Description: a simple ctrlp.vim extension provides jumping to function
-" Version: 0.2.0
-" Author: Takahiro YOSHIHARA <tacahiroy```AT```gmail.com>
+" Version: 0.3.0
+" Author: Takahiro YOSHIHARA <tacahiroy\AT/gmail.com>
 
 let s:saved_cpo = &cpo
 set cpo&vim
 
 let s:is_all_buffers = get(g:, 'ctrlp_funky_all_buffers', 0)
 let s:report_filter_error = get(g:, 'ctrlp_funky_report_filter_error', 0)
-
-let s:filters = ctrlp#funky#_#load()
-
 
 " The main variable for this extension.
 "
@@ -66,10 +63,7 @@ function! ctrlp#funky#init(bufnr)
   for bufnr in bufs
     let ft = getbufvar(bufnr, '&l:filetype')
 
-    if s:has_easy_filter(ft)
-      " use variable
-      let candidates += ctrlp#funky#abstract(bufnr, s:filters[ft])
-    elseif s:has_filter(ft)
+    if s:has_filter(ft)
       " use function
       let candidates += ctrlp#funky#{ft}#filter(bufnr)
     elseif s:report_filter_error
@@ -91,14 +85,8 @@ function! s:has_filter(ft)
   return !empty(globpath(&runtimepath, func))
 endfunction
 
-function! s:has_easy_filter(ft)
-  return has_key(s:filters, a:ft)
-endfunction
-
-
 function! ctrlp#funky#abstract(bufnr, patterns)
   try
-    let lines = getbufline(a:bufnr, 1, '$')
     let candidates = []
     let ctrlp_winnr = bufwinnr(bufnr(''))
 
@@ -116,7 +104,7 @@ function! ctrlp#funky#abstract(bufnr, patterns)
           let candidates += split(ilist, '\n')
         else
           for l in split(ilist, '\n')
-            call add(candidates, substitute(l, c.filter[0], c.filter[1], c.filter[2]))
+            call add(candidates, substitute(l, c.filter[0].'\ze \t#', c.filter[1], c.filter[2]))
           endfor
         endif
       endif
