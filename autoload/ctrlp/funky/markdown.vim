@@ -5,11 +5,10 @@
 
 function! ctrlp#funky#markdown#filter(bufnr)
   let filter = [{ 'pattern': '\m\C^#\{1,3}[\t ]\+\S\+',
-                \ 'filter': []},
-              \ { 'pattern': '\m\C^[-=]\{3,}$',
-              \   'filter': [],
-              \   'offset': -1}
-  \ ]
+                \ 'filter': []}]
+  call add(filter, { 'pattern': '\m\C^[-=]\{3,}$',
+                    \   'filter': [],
+                    \   'offset': -1})
 
   return ctrlp#funky#abstract(a:bufnr, filter)
 endfunction
