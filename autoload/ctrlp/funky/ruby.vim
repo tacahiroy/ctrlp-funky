@@ -8,6 +8,13 @@ function! ctrlp#funky#ruby#filter(bufnr)
                 \ 'filter': ['\m\C^[\t ]*', '', '']}
   \ ]
 
+  let g:ctrlp_funky_ruby_include_rake = get(g:, 'ctrlp_funky_ruby_include_rake', 1)
+
+  if g:ctrlp_funky_ruby_include_rake
+    call extend(filter, [{ 'pattern': '\m\C^[\t ]*task[\t ]\+\S\+',
+                         \ 'filter': ['\m\C^[\t ]*', '', '']}])
+  endif
+
   return ctrlp#funky#abstract(a:bufnr, filter)
 endfunction
 
