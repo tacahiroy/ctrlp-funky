@@ -8,6 +8,7 @@ This supports following filetypes:
 * c++
 * java
 * markdown
+* nerdtree
 * python
 * ruby
 * vim
