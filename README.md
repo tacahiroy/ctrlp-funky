@@ -7,6 +7,7 @@ It just search function definition lines, thus some languages abstraction aren't
 This supports following filetypes:
 * c++
 * java
+* javascript
 * markdown
 * nerdtree
 * python
