@@ -8,19 +8,11 @@ let s:filter = [{ 'pattern': '\m\C^\s*[▸▾|~+].*\/$',
 \ ]
 
 function! ctrlp#funky#nerdtree#filter(bufnr)
+  let g:ctrlp_open_func['Funky'] = 'ctrlp#funky#goto_line'
   return ctrlp#funky#abstract(a:bufnr, s:filter)
 endfunction
 
 function! ctrlp#funky#nerdtree#get_filter()
   return s:filter
 endfunction
-
-function! ctrlp#funky#nerdtree#accept(action, line)
-  call ctrlp#exit()
-  call cursor(matchstr(a:line, '\d\+$'), 1)
-endfunction
-
-if !has_key(g:ctrlp_open_func, 'Funky')
-  let g:ctrlp_open_func['Funky'] = 'ctrlp#funky#nerdtree#accept'
-endif
 

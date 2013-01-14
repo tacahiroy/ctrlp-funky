@@ -43,6 +43,12 @@ function! s:filetypes(bufnr)
   return split(getbufvar(a:bufnr, '&l:filetype'), '\.')
 endfunction
 
+function! s:clear_open_func()
+  if has_key(g:ctrlp_open_func, 'Funky')
+    call remove(g:ctrlp_open_func, 'Funky')
+  endif
+endfunction
+
 " Provide a list of strings to search in
 "
 " Return: List
@@ -67,6 +73,7 @@ function! ctrlp#funky#init(bufnr)
   for bufnr in bufs
     for ft in s:filetypes(bufnr)
       if s:has_filter(ft)
+        call s:clear_open_func()
         " use function
         let candidates += ctrlp#funky#{ft}#filter(bufnr)
       elseif s:report_filter_error
@@ -128,10 +135,24 @@ endfunction
 "  a:str    the selected string
 function! ctrlp#funky#accept(mode, str)
   let [bufnr, lnum] = matchlist(a:str, '\m\C#.*:\(\d\+\):\(\d\+\)$')[1:2]
-  let fpath = fnamemodify(bufname(str2nr(bufnr, 10)), ':p')
-  call ctrlp#acceptfile(a:mode, fpath, lnum)
+  let bufname = bufname(str2nr(bufnr, 10))
+
+  " supports no named buffer
+  if empty(bufname)
+    call ctrlp#exit()
+    call ctrlp#funky#goto_line(a:mode, a:str)
+  else
+    let fpath = fnamemodify(bufname, ':p')
+    call ctrlp#acceptfile(a:mode, fpath, lnum)
+  endif
 endfunction
 
+function! ctrlp#funky#goto_line(action, line)
+  call ctrlp#exit()
+  let bufnum = matchstr(a:line, '\d\+\ze:\d\+$')
+  let lnum = matchstr(a:line, '\d\+$')
+  call setpos('.', [bufnum, lnum, 1, 0])
+endfunction
 
 " Give the extension an ID
 let s:id = g:ctrlp_builtins + len(g:ctrlp_ext_vars)
