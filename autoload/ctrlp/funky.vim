@@ -1,7 +1,7 @@
 " File: autoload/ctrlp/funky.vim
 " Description: a simple ctrlp.vim extension provides jumping to function
 " Version: 0.3.0
-" Author: Takahiro YOSHIHARA <tacahiroy\AT/gmail.com>
+" Author: Takahiro Yoshihara <tacahiroy\AT/gmail.com>
 
 let s:saved_cpo = &cpo
 set cpo&vim

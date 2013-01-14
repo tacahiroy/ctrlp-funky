@@ -46,5 +46,5 @@ LINK
 License
 -------
 
-Copyright (C) 2012 tacahiroy. Distributed under the MIT License.
+Copyright (C) 2012 Takahiro Yoshihara. Distributed under the MIT License.
 

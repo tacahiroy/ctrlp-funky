@@ -1,6 +1,6 @@
 " File: autoload/ctrlp/funky/markdown.vim
 " Description: adds markdown support to ctrlp's funky extension
-" Author: Takahiro YOSHIHARA
+" Author: Takahiro Yoshihara
 " License: the MIT License
 
 function! ctrlp#funky#markdown#filter(bufnr)
