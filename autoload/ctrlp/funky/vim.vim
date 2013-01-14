@@ -1,6 +1,6 @@
 " File: autoload/ctrlp/funky/vim.vim
 " Description: adds vim support to ctrlp's funky extension
-" Author: Takahiro Yoshihara
+" Author: Takahiro Yoshihara <tacahiroy\AT/gmail.com>
 " License: the MIT License
 
 function! ctrlp#funky#vim#filter(bufnr)
