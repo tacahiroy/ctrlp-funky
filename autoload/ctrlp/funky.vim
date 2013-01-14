@@ -39,9 +39,13 @@ function! s:syntax()
   endif
 endfunction
 
+function! s:filetypes(bufnr)
+  return split(getbufvar(a:bufnr, '&l:filetype'), '\.')
+endfunction
+
 " Provide a list of strings to search in
 "
-" Return: a Vim's List
+" Return: List
 function! ctrlp#funky#init(bufnr)
   let bufs = []
   if s:is_all_buffers
@@ -61,14 +65,14 @@ function! ctrlp#funky#init(bufnr)
 
   let candidates = []
   for bufnr in bufs
-    let ft = getbufvar(bufnr, '&l:filetype')
-
-    if s:has_filter(ft)
-      " use function
-      let candidates += ctrlp#funky#{ft}#filter(bufnr)
-    elseif s:report_filter_error
-      echoerr ft.': filter does not exist'
-    endif
+    for ft in s:filetypes(bufnr)
+      if s:has_filter(ft)
+        " use function
+        let candidates += ctrlp#funky#{ft}#filter(bufnr)
+      elseif s:report_filter_error
+        echoerr ft.': filter does not exist'
+      endif
+    endfor
   endfor
 
   call setpos('.', pos)
