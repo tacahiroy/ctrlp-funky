@@ -4,7 +4,7 @@
 " License: the MIT License
 
 function! ctrlp#funky#python#filter(bufnr)
-  let filter = [{ 'pattern': '\v\C^\s*def\s+\w.+:',
+  let filter = [{ 'pattern': '\v\C^\s*(def|class)\s+\w.+:',
                 \ 'filter': ['\v\C^\s*', '', '']}
   \]
 
