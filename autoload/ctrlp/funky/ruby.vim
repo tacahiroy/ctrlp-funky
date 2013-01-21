@@ -5,12 +5,25 @@
 
 function! ctrlp#funky#ruby#filter(bufnr)
   let filter = [{ 'pattern': '\m\C^[\t ]*def[\t ]\+\S\+',
-                \ 'filter': ['\m\C^[\t ]*', '', '']}
+                \ 'filter': []}
   \ ]
 
-  let g:ctrlp_funky_ruby_include_rake = get(g:, 'ctrlp_funky_ruby_include_rake', 1)
+  if get(g:, 'ctrlp_funky_ruby_requires', 1)
+    call extend(filter, [{ 'pattern': '\m\C^[\t ]*require\(_relative\)\?[\t ]\+\S\+',
+                         \ 'filter': []}])
+  endif
 
-  if g:ctrlp_funky_ruby_include_rake
+  if get(g:, 'ctrlp_funky_ruby_classes', 1)
+    call extend(filter, [{ 'pattern': '\m\C^[\t ]*class[\t ]\+\S\+',
+                         \ 'filter': []}])
+  endif
+
+  if get(g:, 'ctrlp_funky_ruby_modules', 1)
+    call extend(filter, [{ 'pattern': '\m\C^[\t ]*module[\t ]\+\S\+',
+                         \ 'filter': []}])
+  endif
+
+  if get(g:, 'ctrlp_funky_ruby_contains_rake', 1)
     call extend(filter, [{ 'pattern': '\m\C^[\t ]*task[\t ]\+\S\+',
                          \ 'filter': ['\m\C^[\t ]*', '', '']}])
   endif
@@ -18,4 +31,3 @@ function! ctrlp#funky#ruby#filter(bufnr)
   return ctrlp#funky#abstract(a:bufnr, filter)
 endfunction
 
-" vim: fen:fdm=marker
