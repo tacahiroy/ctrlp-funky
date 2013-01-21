@@ -1,0 +1,152 @@
+*ctrlp-funky.txt*  A ctrlp.vim extension - pick out functions and/or something
+Version: 0.3.0
+Author:  Takahiro Yoshihara <http://github.com/tacahiroy>
+
+
+==============================================================================
+CONTENTS					*funky-contents*
+
+|funky-intro|			Introduction
+|funky-commands|		Commands
+|funky-settings|		Settings
+|funky-thanks|			Thanks
+|funky-changelog|		changelog
+|funky-license|			License
+|funky-about|			About
+
+
+==============================================================================
+INTRODUCTION					*funky-intro*
+
+ctrl-funky is a ctrlp.vim extension.
+This supports following file types:
+
+* c++
+* java
+* javascript
+* markdown
+* nerdtree
+* python
+* ruby
+* vim
+
+
+==============================================================================
+COMMANDS					*funky-commands*
+
+This plugin provides a command |:CtrlPFunky|. You just execute it.
+
+						*funky-:CtrlPFunky*
+:CtrlPFunky
+	Abstract lines from a current editing file.
+
+Defining a mapping for this command must be useful. >
+	nnoremap <Space>fu :CtrlPFunky<Cr>
+<
+
+
+==============================================================================
+SETTINGS					*funky-settings*
+You can customise the behaviour of ctrlp-funky using these variables.
+
+
+						*funky-ruby*
+[ruby]
+				*funky-ruby-g:ctrlp_funky_ruby_requires*
+Set this to 1 (enabled) the results will include 'require' and
+'require_relative' lines.
+>
+	let g:ctrlp_funky_ruby_requires = 1
+<
+
+				*funky-ruby-g:ctrlp_funky_ruby_classes*
+Set this to 1 (enabled) the results will include class definitions.
+>
+	let g:ctrlp_funky_ruby_classes = 1
+<
+
+				*funky-ruby-g:ctrlp_funky_ruby_modules*
+Set this to 1 (enabled) the results will include module definitions.
+>
+	let g:ctrlp_funky_ruby_modules = 1
+<
+
+				*funky-ruby-g:ctrlp_funky_ruby_contains_rake*
+Set this to 1 (enabled) 'rake' filter will be absorbed.
+>
+	let g:ctrlp_funky_ruby_contains_rake = 1
+<
+
+
+==============================================================================
+THANKS						*funky-thanks*
+
+  * kien <github.com/kien> - the author of ctrlp.vim
+
+  * *pydave* <github.com/pydave>
+  * *curist* <github.com/curist>
+  * *Benoit* <github.com/saalaa>
+
+
+==============================================================================
+CHANGELOG 					*funky-changelog*
+
+21 Jan. 2013~
+
+  + New options: |g:ctrlp_funky_ruby_requires|,
+                 |g:ctrlp_funky_ruby_classes|,
+                 |g:ctrlp_funky_ruby_modules|,
+                 |g:ctrlp_funky_ruby_contains_rake|
+
+20 Jan. 2013~
+  + Add class filter for python
+    by |Benoit|
+
+14 Jan. 2013~
+  + Add javascript support
+    by |curist|
+
+6 Jun. 2012~
+  + Add python support
+  + Add cpp support
+  + Add java support
+    by |pydave|
+
+Initial release: 25 Feb. 2012~
+
+
+==============================================================================
+LICENSE						*funky-license*
+
+|ctrlp-funky| is released under the MIT License.
+
+Copyright (c) 2012-2013 Takahiro Yoshihara
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+==============================================================================
+ABOUT                                           *funky-about*
+
+The latest version is available on GitHub:
+
+https://github.com/tacahiroy/ctrlp-funky
+
+
+vim:fen:tw=78:et:ts=8:ft=help:norl:
