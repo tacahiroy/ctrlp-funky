@@ -122,10 +122,16 @@ function! ctrlp#funky#abstract(bufnr, patterns)
       endif
     endfor
 
-    return candidates
+    return sort(candidates, function('s:sort_candidates'))
   finally
     execute ctrlp_winnr . 'wincmd w'
   endtry
+endfunction
+
+function! s:sort_candidates(a, b)
+  let line1 = str2nr(matchstr(a:a, '\d\+$'), 10)
+  let line2 = str2nr(matchstr(a:b, '\d\+$'), 10)
+  return line1 == line2 ? 0 : line1 > line2 ? 1 : -1
 endfunction
 
 " The action to perform on the selected string.
