@@ -1,6 +1,5 @@
 " File: plugin/funky.vim
 " Description: a simple ctrlp.vim extension provides jumping to function
-" Version: 0.3.0
 " Author: Takahiro Yoshihara <tacahiroy\AT/gmail.com>
 " License: the MIT License
 

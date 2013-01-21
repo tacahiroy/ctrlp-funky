@@ -1,6 +1,5 @@
 " File: autoload/ctrlp/funky.vim
 " Description: a simple ctrlp.vim extension provides jumping to function
-" Version: 0.3.0
 " Author: Takahiro Yoshihara <tacahiroy\AT/gmail.com>
 " License: the MIT License
 
@@ -175,4 +174,3 @@ endfunction
 
 let &cpo = s:saved_cpo
 
-" vim:fen:fdl=0:ts=2:sw=2:sts=2

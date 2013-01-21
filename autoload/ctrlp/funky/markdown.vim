@@ -13,4 +13,3 @@ function! ctrlp#funky#markdown#filter(bufnr)
   return ctrlp#funky#abstract(a:bufnr, filter)
 endfunction
 
-" vim: fen:fdm=marker

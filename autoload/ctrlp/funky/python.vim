@@ -11,4 +11,3 @@ function! ctrlp#funky#python#filter(bufnr)
   return ctrlp#funky#abstract(a:bufnr, filter)
 endfunction
 
-" vim: fen:fdm=marker
