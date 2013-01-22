@@ -1,4 +1,4 @@
-*funky.txt* A ctrlp.vim extension - pick out functions and/or something
+*ctrlp-funky.txt* A ctrlp.vim extension - pick out functions and/or something
 Version: 0.3.0
 Author:  Takahiro Yoshihara <http://github.com/tacahiroy>
 
