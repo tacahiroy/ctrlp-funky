@@ -6,7 +6,6 @@
 let s:saved_cpo = &cpo
 set cpo&vim
 
-let s:is_all_buffers = get(g:, 'ctrlp_funky_all_buffers', 0)
 let s:report_filter_error = get(g:, 'ctrlp_funky_report_filter_error', 0)
 
 " The main variable for this extension.
@@ -53,15 +52,6 @@ endfunction
 "
 " Return: List
 function! ctrlp#funky#init(bufnr)
-  let bufs = []
-  if s:is_all_buffers
-    for bn in ctrlp#allbufs()
-      call add(bufs, bufnr(bn))
-    endfor
-  else
-    let bufs = [a:bufnr]
-  endif
-
   let saved_ei = &eventignore
   let &eventignore = 'BufLeave'
 
@@ -70,16 +60,14 @@ function! ctrlp#funky#init(bufnr)
   let pos = getpos('.')
 
   let candidates = []
-  for bufnr in bufs
-    for ft in s:filetypes(bufnr)
-      if s:has_filter(ft)
-        call s:clear_open_func()
-        " use function
-        let candidates += ctrlp#funky#{ft}#filter(bufnr)
-      elseif s:report_filter_error
-        echoerr ft.': filter does not exist'
-      endif
-    endfor
+  for ft in s:filetypes(a:bufnr)
+    if s:has_filter(ft)
+      call s:clear_open_func()
+      " use function
+      let candidates += ctrlp#funky#{ft}#filter(a:bufnr)
+    elseif s:report_filter_error
+      echoerr ft.': filter does not exist'
+    endif
   endfor
 
   call setpos('.', pos)
@@ -107,7 +95,8 @@ function! ctrlp#funky#abstract(bufnr, patterns)
       let offset = get(c, 'offset', 0)
 
       redir => ilist
-        execute 'silent! global/' . c.pattern . '/echo printf("%s \t#%s:%d:%d", getline(line(".") + offset), bufname(a:bufnr), a:bufnr, line(".") + offset)'
+        " execute 'silent! global/' . c.pattern . '/echo printf("%s \t#%s:%d:%d", getline(line(".") + offset), bufname(a:bufnr), a:bufnr, line(".") + offset)'
+        execute 'silent! global/' . c.pattern . '/echo printf("%s \t#%s:%d:%d", getline(line(".") + offset), "", a:bufnr, line(".") + offset)'
       redir END
 
       if ilist !~# '\nE486:'
