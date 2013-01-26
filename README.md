@@ -12,7 +12,9 @@ This supports following filetypes:
 * nerdtree
 * python
 * ruby
+* sh
 * vim
+* zsh
 
 INSTALL
 ----------
