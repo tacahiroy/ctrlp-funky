@@ -28,7 +28,9 @@ This supports following file types:
 * nerdtree
 * python
 * ruby
+* sh
 * vim
+* zsh
 
 
 ==============================================================================
@@ -91,6 +93,11 @@ THANKS						*funky-thanks*
 ==============================================================================
 CHANGELOG 					*funky-changelog*
 
+27 Jan. 2013~
+  + Add support for sh
+  + Add support for zsh
+  - Delete all buffer mode
+
 21 Jan. 2013~
 
   + New options: |g:ctrlp_funky_ruby_requires|,
@@ -103,13 +110,13 @@ CHANGELOG 					*funky-changelog*
     by |Benoit|
 
 14 Jan. 2013~
-  + Add javascript support
+  + Add support for javascript
     by |curist|
 
-6 Jun. 2012~
-  + Add python support
-  + Add cpp support
-  + Add java support
+06 Jun. 2012~
+  + Add support for python
+  + Add support for cpp
+  + Add support for java
     by |pydave|
 
 Initial release: 25 Feb. 2012~
