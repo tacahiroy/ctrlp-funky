@@ -25,7 +25,7 @@ call add(g:ctrlp_ext_vars, {
   \ 'init':   'ctrlp#funky#init(s:crbufnr)',
   \ 'accept': 'ctrlp#funky#accept',
   \ 'lname':  'Funky',
-  \ 'sname':  'funky',
+  \ 'sname':  'fky',
   \ 'type':   'line',
   \ 'sort': 0
   \ })
