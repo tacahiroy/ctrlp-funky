@@ -93,6 +93,10 @@ THANKS						*funky-thanks*
 ==============================================================================
 CHANGELOG 					*funky-changelog*
 
+12 Feb. 2013~
+  + Add support for objc
+    by |Benoit|
+
 27 Jan. 2013~
   + Add support for sh
   + Add support for zsh
