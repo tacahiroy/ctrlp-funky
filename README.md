@@ -15,6 +15,7 @@ This supports following filetypes:
 * sh
 * vim
 * zsh
+* objc
 
 INSTALL
 ----------
