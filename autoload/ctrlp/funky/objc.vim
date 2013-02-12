@@ -1,19 +1,20 @@
-" File: autoload/ctrlp/funky/cpp.vim
+" File: autoload/ctrlp/funky/objc.vim
 " Description: adds Objective-C support to ctrlp's funky extension
 " Author: tokorom
 " License: The MIT License
 
-function! ctrlp#funky#objc#filter(bufnr)
-  let filter = [{ 'pattern': '\m\C^\(-\|+\)\s*(\S\+)\s*.*',
+let s:filter = [{ 'pattern': '\m\C^\(-\|+\)\s*(\S\+)\s*.*',
                 \ 'filter': []}
-  \ ]
+\ ]
 
-  " Add the filter for cpp
-  let cpp_filter = [{ 'pattern': '\m^\w.*\w(.*)',
-                    \ 'filter': []}
-  \ ]
-  call extend(filter, cpp_filter)
+" Add the filter for cpp
+call extend(s:filter, ctrlp#funky#cpp#get_filter())
 
-  return ctrlp#funky#abstract(a:bufnr, filter)
+function! ctrlp#funky#objc#apply_filter(bufnr)
+  return ctrlp#funky#abstract(a:bufnr, s:filter)
+endfunction
+
+function! ctrlp#funky#objc#get_filter()
+  return s:filter
 endfunction
 

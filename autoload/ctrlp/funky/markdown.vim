@@ -3,13 +3,18 @@
 " Author: Takahiro Yoshihara <tacahiroy\AT/gmail.com>
 " License: The MIT License
 
-function! ctrlp#funky#markdown#filter(bufnr)
-  let filter = [{ 'pattern': '\m\C^#\{1,3}[\t ]\+\S\+',
-                \ 'filter': []}]
-  call add(filter, { 'pattern': '\m\C^[-=]\{3,}$',
-                    \   'filter': [],
-                    \   'offset': -1})
+let s:filter = [{ 'pattern': '\m\C^#\{1,3}[\t ]\+\S\+',
+                \ 'filter': [] },
+              \ { 'pattern': '\m\C^[-=]\{3,}$',
+              \   'filter': [],
+              \   'offset': -1 }
+\ ]
 
-  return ctrlp#funky#abstract(a:bufnr, filter)
+function! ctrlp#funky#markdown#apply_filter(bufnr)
+  return ctrlp#funky#abstract(a:bufnr, s:filter)
+endfunction
+
+function! ctrlp#funky#markdown#get_filter()
+  return s:filter
 endfunction
 

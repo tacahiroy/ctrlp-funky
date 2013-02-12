@@ -3,11 +3,15 @@
 " Author: pydave
 " License: The MIT License
 
-function! ctrlp#funky#python#filter(bufnr)
-  let filter = [{ 'pattern': '\v\C^\s*(def|class)\s+\w.+:',
+let s:filter = [{ 'pattern': '\v\C^\s*(def|class)\s+\w.+:',
                 \ 'filter': ['\v\C^\s*', '', '']}
-  \]
+\ ]
 
-  return ctrlp#funky#abstract(a:bufnr, filter)
+function! ctrlp#funky#python#apply_filter(bufnr)
+  return ctrlp#funky#abstract(a:bufnr, s:filter)
+endfunction
+
+function! ctrlp#funky#python#get_filter()
+  return s:filter
 endfunction
 

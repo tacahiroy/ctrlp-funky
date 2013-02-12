@@ -10,12 +10,12 @@ This supports following filetypes:
 * javascript
 * markdown
 * nerdtree
+* objc
 * python
 * ruby
 * sh
 * vim
 * zsh
-* objc
 
 INSTALL
 ----------

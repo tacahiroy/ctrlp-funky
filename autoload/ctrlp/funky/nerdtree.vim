@@ -3,13 +3,13 @@
 " Author: Takahiro Yoshihara <tacahiroy\AT/gmail.com>
 " License: The MIT License
 
-function! ctrlp#funky#nerdtree#filter(bufnr)
-  let g:ctrlp_open_func['Funky'] = 'ctrlp#funky#goto_line'
-  let filter = [{ 'pattern': '\m\C^\s*[▸▾|~+].*\/$',
+let s:filter = [{ 'pattern': '\m\C^\s*[▸▾|~+].*\/$',
                 \ 'filter': []}
-  \ ]
+\ ]
 
-  return filter
+function! ctrlp#funky#nerdtree#apply_filter(bufnr)
+  let g:ctrlp_open_func['Funky'] = 'ctrlp#funky#goto_line'
+  return ctrlp#funky#abstract(a:bufnr, s:filter)
 endfunction
 
 function! ctrlp#funky#nerdtree#get_filter()

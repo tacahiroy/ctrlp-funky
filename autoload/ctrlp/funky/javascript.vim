@@ -3,14 +3,17 @@
 " Author: curist
 " License: The MIT License
 
-function! ctrlp#funky#javascript#filter(bufnr)
-  let filter = [{ 'pattern': '\v\s*function\s+\w.+\s*\(',
-                \ 'filter': ['\v(^\s*)|(\s*\{.*)', '', 'g']},
-                \ { 'pattern': '\v\C\w.+\s*\=\s*function\s*\(',
-                \   'filter': ['\v(^\s*)|(\s*\{.*)', '', 'g']}
-  \]
+let s:filter = [{ 'pattern': '\v\s*function\s+\w.+\s*\(',
+              \   'filter': ['\v(^\s*)|(\s*\{.*)', '', 'g']},
+              \ { 'pattern': '\v\C\w.+\s*\=\s*function\s*\(',
+              \   'filter': ['\v(^\s*)|(\s*\{.*)', '', 'g']}
+\]
 
-  return ctrlp#funky#abstract(a:bufnr, filter)
+function! ctrlp#funky#javascript#apply_filter(bufnr)
+  return ctrlp#funky#abstract(a:bufnr, s:filter)
 endfunction
 
-" vim: fen:fdm=marker
+function! ctrlp#funky#javascript#get_filter()
+  return s:filter
+endfunction
+

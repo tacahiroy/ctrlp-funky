@@ -63,10 +63,9 @@ function! ctrlp#funky#init(bufnr)
   for ft in s:filetypes(a:bufnr)
     if s:has_filter(ft)
       call s:clear_open_func()
-      " use function
-      let candidates += ctrlp#funky#{ft}#filter(a:bufnr)
+      let candidates += ctrlp#funky#{ft}#apply_filter(a:bufnr)
     elseif s:report_filter_error
-      echoerr ft.': filter does not exist'
+      echoerr ft . ': filter does not exist'
     endif
   endfor
 

@@ -3,31 +3,35 @@
 " Author: Takahiro YOSHIHARA
 " License: The MIT License
 
-function! ctrlp#funky#ruby#filter(bufnr)
-  let filter = [{ 'pattern': '\m\C^[\t ]*def[\t ]\+\S\+',
+let s:filter = [{ 'pattern': '\m\C^[\t ]*def[\t ]\+\S\+',
                 \ 'filter': []}
-  \ ]
+\ ]
 
-  if get(g:, 'ctrlp_funky_ruby_requires', 1)
-    call extend(filter, [{ 'pattern': '\m\C^[\t ]*require\(_relative\)\?[\t ]\+\S\+',
+if get(g:, 'ctrlp_funky_ruby_requires', 1)
+  call extend(s:filter, [{ 'pattern': '\m\C^[\t ]*require\(_relative\)\?[\t ]\+\S\+',
                          \ 'filter': []}])
-  endif
+endif
 
-  if get(g:, 'ctrlp_funky_ruby_classes', 1)
-    call extend(filter, [{ 'pattern': '\m\C^[\t ]*class[\t ]\+\S\+',
+if get(g:, 'ctrlp_funky_ruby_classes', 1)
+  call extend(s:filter, [{ 'pattern': '\m\C^[\t ]*class[\t ]\+\S\+',
                          \ 'filter': []}])
-  endif
+endif
 
-  if get(g:, 'ctrlp_funky_ruby_modules', 1)
-    call extend(filter, [{ 'pattern': '\m\C^[\t ]*module[\t ]\+\S\+',
+if get(g:, 'ctrlp_funky_ruby_modules', 1)
+  call extend(s:filter, [{ 'pattern': '\m\C^[\t ]*module[\t ]\+\S\+',
                          \ 'filter': []}])
-  endif
+endif
 
-  if get(g:, 'ctrlp_funky_ruby_contains_rake', 1)
-    call extend(filter, [{ 'pattern': '\m\C^[\t ]*task[\t ]\+\S\+',
+if get(g:, 'ctrlp_funky_ruby_contains_rake', 1)
+  call extend(s:filter, [{ 'pattern': '\m\C^[\t ]*task[\t ]\+\S\+',
                          \ 'filter': ['\m\C^[\t ]*', '', '']}])
-  endif
+endif
 
-  return ctrlp#funky#abstract(a:bufnr, filter)
+function! ctrlp#funky#ruby#apply_filter(bufnr)
+  return ctrlp#funky#abstract(a:bufnr, s:filter)
+endfunction
+
+function! ctrlp#funky#ruby#get_filter()
+  return s:filter
 endfunction
 
