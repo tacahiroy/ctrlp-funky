@@ -1,7 +1,7 @@
 " File: autoload/ctrlp/funky/java.vim
 " Description: adds Java support to ctrlp's funky extension
 " Author: pydave
-" License: the MIT License
+" License: The MIT License
 
 function! ctrlp#funky#java#filter(bufnr)
   " Java has a mostly standard format and style, so assume we've got

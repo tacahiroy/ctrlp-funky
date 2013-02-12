@@ -1,7 +1,7 @@
 " File: autoload/ctrlp/funky.vim
-" Description: a simple ctrlp.vim extension provides jumping to function
+" Description: a simple ctrlp.vim extension provides jumping to a function
 " Author: Takahiro Yoshihara <tacahiroy\AT/gmail.com>
-" License: the MIT License
+" License: The MIT License
 
 let s:saved_cpo = &cpo
 set cpo&vim
@@ -26,7 +26,7 @@ call add(g:ctrlp_ext_vars, {
   \ 'lname':  'Funky',
   \ 'sname':  'fky',
   \ 'type':   'line',
-  \ 'sort': 0
+  \ 'sort':   0
   \ })
 
 function! s:syntax()
@@ -134,7 +134,6 @@ function! ctrlp#funky#accept(mode, str)
 
   " supports no named buffer
   if empty(bufname)
-    call ctrlp#exit()
     call ctrlp#funky#goto_line(a:mode, a:str)
   else
     let fpath = fnamemodify(bufname, ':p')
@@ -156,10 +155,6 @@ function! ctrlp#funky#id()
   return s:id
 endfunction
 
-" Create a command to directly call the new search type.
-"
-" Put something like this in vimrc or plugin/funky.vim
-" com! CtrlPFunky cal ctrlp#init(ctrlp#funky#id())
-
 let &cpo = s:saved_cpo
+unlet s:saved_cpo
 

@@ -1,7 +1,7 @@
 " File: autoload/ctrlp/funky/cpp.vim
 " Description: adds Objective-C support to ctrlp's funky extension
 " Author: tokorom
-" License: the MIT License
+" License: The MIT License
 
 function! ctrlp#funky#objc#filter(bufnr)
   let filter = [{ 'pattern': '\m\C^\(-\|+\)\s*(\S\+)\s*.*',

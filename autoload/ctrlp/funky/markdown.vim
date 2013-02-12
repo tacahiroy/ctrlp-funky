@@ -1,7 +1,7 @@
 " File: autoload/ctrlp/funky/markdown.vim
 " Description: adds markdown support to ctrlp's funky extension
 " Author: Takahiro Yoshihara <tacahiroy\AT/gmail.com>
-" License: the MIT License
+" License: The MIT License
 
 function! ctrlp#funky#markdown#filter(bufnr)
   let filter = [{ 'pattern': '\m\C^#\{1,3}[\t ]\+\S\+',

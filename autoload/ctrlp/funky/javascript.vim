@@ -1,7 +1,7 @@
 " File: autoload/ctrlp/funky/javascript.vim
 " Description: adds javascript support to ctrlp's funky extension
 " Author: curist
-" License: the MIT License
+" License: The MIT License
 
 function! ctrlp#funky#javascript#filter(bufnr)
   let filter = [{ 'pattern': '\v\s*function\s+\w.+\s*\(',
