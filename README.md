@@ -1,8 +1,9 @@
 ctrlp-funky
 ============
 
-This is a ctrlp.vim extension and it abstracts functions currently being edited file(s) without ctags.  
-It just search function definition lines, thus some languages abstraction aren't accurate because of hard to parse.
+This is a ctrlp.vim extension and it picks out functions currently being edited file without ctags.  
+It just searches function definition or equivalent of it, therefore some languages abstraction  
+aren't accurate because of hard to parse.
 
 This supports following filetypes:
 * c++
