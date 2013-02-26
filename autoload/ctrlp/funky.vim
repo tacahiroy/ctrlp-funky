@@ -129,8 +129,16 @@ function! ctrlp#funky#accept(mode, str)
   let [bufnr, lnum] = matchlist(a:str, '\m\C#.*:\(\d\+\):\(\d\+\)$')[1:2]
   let bufname = bufname(str2nr(bufnr, 10))
 
+  let line_mode = 0
+  for ft in s:filetypes(str2nr(bufnr, 10))
+    if exists('*ctrlp#funky#'.ft.'#line_mode')
+      let line_mode = ctrlp#funky#{ft}#line_mode()
+      break
+    endif
+  endfor
+
   " supports no named buffer
-  if empty(bufname)
+  if line_mode || empty(bufname)
     call ctrlp#funky#goto_line(a:mode, a:str)
   else
     let fpath = fnamemodify(bufname, ':p')
