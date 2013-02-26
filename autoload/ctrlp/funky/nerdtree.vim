@@ -8,7 +8,6 @@ let s:filter = [{ 'pattern': '\m\C^\s*[▸▾|~+].*\/$',
 \ ]
 
 function! ctrlp#funky#nerdtree#apply_filter(bufnr)
-  let g:ctrlp_open_func['Funky'] = 'ctrlp#funky#goto_line'
   return ctrlp#funky#abstract(a:bufnr, s:filter)
 endfunction
 

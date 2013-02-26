@@ -3,6 +3,11 @@
 " Author: Takahiro Yoshihara <tacahiroy\AT/gmail.com>
 " License: The MIT License
 
+if get(g:, 'loaded_ctrlp_funky', 0)
+  finish
+endif
+let g:loaded_ctrlp_funky = 1
+
 let s:saved_cpo = &cpo
 set cpo&vim
 
@@ -42,12 +47,6 @@ function! s:filetypes(bufnr)
   return split(getbufvar(a:bufnr, '&l:filetype'), '\.')
 endfunction
 
-function! s:clear_open_func()
-  if has_key(g:ctrlp_open_func, 'Funky')
-    call remove(g:ctrlp_open_func, 'Funky')
-  endif
-endfunction
-
 " Provide a list of strings to search in
 "
 " Return: List
@@ -62,7 +61,6 @@ function! ctrlp#funky#init(bufnr)
   let candidates = []
   for ft in s:filetypes(a:bufnr)
     if s:has_filter(ft)
-      call s:clear_open_func()
       let candidates += ctrlp#funky#{ft}#apply_filter(a:bufnr)
     elseif s:report_filter_error
       echoerr ft . ': filter does not exist'
