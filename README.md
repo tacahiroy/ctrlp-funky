@@ -18,6 +18,8 @@ This supports following filetypes:
 * vim
 * zsh
 
+![ctrlp-funky][1]
+
 INSTALL
 ----------
 If you use [Vundle](https://github.com/gmarik/vundle.git) you can install this plugin using Vim command `:BundleInstall tacahiroy/ctrlp-funky`.  
@@ -54,3 +56,4 @@ License
 
 Copyright (C) 2012-2013 Takahiro Yoshihara. Distributed under the MIT License.
 
+[1]: http://i.imgur.com/yO4PWAF.png
