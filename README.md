@@ -5,6 +5,8 @@ This is a ctrlp.vim extension and it picks out functions currently being edited 
 It just searches function definition or equivalent of it, therefore some languages abstraction  
 aren't accurate because of hard to parse.
 
+![ctrlp-funky][1]
+
 This supports following filetypes:
 * c++
 * java
@@ -17,8 +19,6 @@ This supports following filetypes:
 * sh
 * vim
 * zsh
-
-![ctrlp-funky][1]
 
 INSTALL
 ----------
