@@ -45,6 +45,8 @@ Reboot Vim and then you can use `:CtrlPFunky` command.
 It might be useful like this mapping:
 
     nnoremap <Space>fu :CtrlPFunky<Cr>
+    " narrow the list down with a word under cursor
+    nnoremap <Space>fU :execute 'CtrlPFunky '.expand('<cword>')<Cr>
 
 LINK
 --------------
