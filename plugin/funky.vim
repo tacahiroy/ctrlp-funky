@@ -3,5 +3,5 @@
 " Author: Takahiro Yoshihara <tacahiroy\AT/gmail.com>
 " License: The MIT License
 
-command! CtrlPFunky call ctrlp#init(ctrlp#funky#id())
+command! -nargs=? CtrlPFunky call ctrlp#funky#funky(<q-args>)
 

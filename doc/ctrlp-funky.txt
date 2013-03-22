@@ -40,11 +40,15 @@ COMMANDS					*funky-commands*
 This plugin provides a command |:CtrlPFunky|. You just execute it.
 
 						*funky-:CtrlPFunky*
-:CtrlPFunky
+:CtrlPFunky [WORD]
 	Abstract lines from a current editing file.
+	You can provide an argument for the command. If it's provided you can
+	get lines that contains the 'WORD'.
 
 Defining a mapping for this command must be useful. >
 	nnoremap <Space>fu :CtrlPFunky<Cr>
+	" Initialise list by a word under cursor
+	nnoremap <Space>fU :execute 'CtrlPFunky '.expand('<cword>')<Cr>
 <
 
 
@@ -94,6 +98,9 @@ THANKS						*funky-thanks*
 
 ==============================================================================
 CHANGELOG 					*funky-changelog*
+
+22 Mar. 2013~
+  + Add the command can take an argument for initialisation
 
 12 Feb. 2013~
   + Add 'get_filter' method in each filter to disclose own filter
