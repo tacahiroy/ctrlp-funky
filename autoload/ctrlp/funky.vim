@@ -62,11 +62,6 @@ function! ctrlp#funky#init(bufnr)
   for ft in s:filetypes(a:bufnr)
     if s:has_filter(ft)
       let candidates += ctrlp#funky#{ft}#apply_filter(a:bufnr)
-      if !empty(s:word)
-        " ambiguous match is not useful?
-        " let w = '.*'.join(split(s:word, '\zs'), '.*').'.*'
-        let candidates = filter(candidates, 'v:val =~? "'.s:word.'"')
-      endif
     elseif s:report_filter_error
       echoerr ft . ': filter does not exist'
     endif
@@ -82,9 +77,18 @@ function! ctrlp#funky#init(bufnr)
 endfunction
 
 function! ctrlp#funky#funky(word)
-  " taken from: https://github.com/mattn/ctrlp-google
-  let s:word = a:word
-  call ctrlp#init(ctrlp#funky#id())
+  try
+    if !empty(a:word)
+      let default_input_save = get(g:, 'ctrlp_default_input', '')
+      let g:ctrlp_default_input = a:word
+    endif
+
+    call ctrlp#init(ctrlp#funky#id())
+  finally
+    if exists('default_input_save')
+      let g:ctrlp_default_input = default_input_save
+    endif
+  endtry
 endfunction
 
 function! s:has_filter(ft)

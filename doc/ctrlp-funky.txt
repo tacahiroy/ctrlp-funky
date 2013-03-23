@@ -43,7 +43,8 @@ This plugin provides a command |:CtrlPFunky|. You just execute it.
 :CtrlPFunky [WORD]
 	Abstract lines from a current editing file.
 	You can provide an argument for the command. If it's provided you can
-	get lines that contains the 'WORD'.
+	get lines that matches the 'WORD'.
+	In fact, the argument will be inputted into the CtrlP buffer by default.
 
 Defining a mapping for this command must be useful. >
 	nnoremap <Space>fu :CtrlPFunky<Cr>
