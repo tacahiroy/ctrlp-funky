@@ -105,6 +105,9 @@ THANKS						*funky-thanks*
 ==============================================================================
 CHANGELOG 					*funky-changelog*
 
+3 Apr. 2013~
+  + Add support for vb (Visual Basic)
+
 22 Mar. 2013~
   + Add the command can take an argument for initialisation
 
