@@ -17,6 +17,7 @@ This supports following filetypes:
 * python
 * ruby
 * sh
+* vb
 * vim
 * zsh
 
