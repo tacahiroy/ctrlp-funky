@@ -30,6 +30,7 @@ This supports following file types:
 * python
 * ruby
 * sh
+* vb
 * vim
 * zsh
 
@@ -80,16 +81,20 @@ Set this to 1 (enabled) the results will include module definitions.
 <
 
 				*funky-ruby-g:ctrlp_funky_ruby_contains_rake*
+This option is no longer available. Use |g:ctrlp_funky_ruby_rake_words|
+instead. [OBSOLETE]
+
+				*funky-ruby-g:ctrlp_funky_ruby_rake_words*
 Set this to 1 (enabled) 'rake' filter will be absorbed.
 >
-	let g:ctrlp_funky_ruby_contains_rake = 1
+	let g:ctrlp_funky_ruby_rake_words = 0
 <
 
 
 ==============================================================================
 THANKS						*funky-thanks*
 
-  * kien <github.com/kien> - the author of ctrlp.vim
+  * kien <http://github.com/kien> - the author of ctrlp.vim
 
   * *pydave*  <http://github.com/pydave>
   * *curist*  <http://github.com/curist>
