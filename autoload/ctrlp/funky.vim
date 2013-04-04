@@ -36,10 +36,8 @@ call add(g:ctrlp_ext_vars, {
 
 function! s:syntax()
   if !ctrlp#nosy()
-    call ctrlp#hicheck('CtrlPBufName', 'Directory')
     call ctrlp#hicheck('CtrlPTabExtra', 'Comment')
-    syn match CtrlPBufName '\t#\zs\S\+\ze:\d\+:\d\+$'
-    syn match CtrlPTabExtra '\zs\t.*\ze$' contains=CtrlPBufName
+    syn match CtrlPTabExtra '\t#.*:\d\+:\d\+$'
   endif
 endfunction
 
