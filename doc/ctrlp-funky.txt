@@ -105,6 +105,9 @@ THANKS						*funky-thanks*
 ==============================================================================
 CHANGELOG 					*funky-changelog*
 
+11 Apr. 2013~
+  + Fix regexp pattern for sh
+
 3 Apr. 2013~
   + Add support for vb (Visual Basic)
 
