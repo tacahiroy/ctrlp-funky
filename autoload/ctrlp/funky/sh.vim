@@ -3,8 +3,8 @@
 " Author: Takahiro Yoshihara <tacahiroy\AT/gmail.com>
 " License: The MIT License
 
-let s:filter = [{ 'pattern': '\m\C^[\t ]*\(function \)\?[_a-zA-Z][_a-zA-Z0-9]\+([\t ]*)[\t ]*{',
-                \ 'filter': ['\m\C([\t ]*)[\t ]*{', '', '']}
+let s:filter = [{ 'pattern': '\m\C^[\t ]*\(function[\t ]\+\)\?[_a-zA-Z][_a-zA-Z0-9]\+[\t ]*([\t ]*)',
+                \ 'filter': []}
 \]
 
 function! ctrlp#funky#sh#apply_filter(bufnr)
