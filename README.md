@@ -3,12 +3,14 @@ ctrlp-funky
 
 This is a ctrlp.vim extension and it picks out functions currently being edited file without ctags.  
 It just searches function definition or equivalent of it, therefore some languages abstraction  
-aren't accurate because of hard to parse.
+aren't accurate because of hard to parse.  
+One of the advantages of this plugin is you needn't generate tags file.
 
 ![ctrlp-funky][1]
 
 This supports following filetypes:
 * c++
+* chef (resources)
 * java
 * javascript
 * markdown
