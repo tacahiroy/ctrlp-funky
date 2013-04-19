@@ -114,7 +114,7 @@ function! ctrlp#funky#abstract(bufnr, patterns)
           let candidates += split(ilist, '\n')
         else
           for l in split(ilist, '\n')
-            call add(candidates, substitute(l, c.filter[0].'\ze \t#', c.filter[1], c.filter[2]))
+            call add(candidates, substitute(l, c.filter[0], c.filter[1], c.filter[2]))
           endfor
         endif
       endif
