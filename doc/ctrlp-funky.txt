@@ -1,4 +1,5 @@
-*ctrlp-funky.txt* A ctrlp.vim extension - pick out functions and/or something
+*ctrlp-funky.txt*
+A ctrlp.vim extension - pick out functions and/or something
 Version: 0.4.0
 Author:  Takahiro Yoshihara <http://github.com/tacahiroy>
 
@@ -18,10 +19,11 @@ CONTENTS					*funky-contents* *ctrlp-funky*
 ==============================================================================
 INTRODUCTION					*funky-intro*
 
-ctrl-funky is a ctrlp.vim extension.
+ctrl-funky is an extension of ctrlp.vim.
 This supports following file types:
 
 * c++
+* chef (resources)
 * java
 * javascript
 * markdown
@@ -65,7 +67,7 @@ You can customise the behaviour of ctrlp-funky using these variables.
 Set this to 1 (enabled) the results will include 'require' and
 'require_relative' lines.
 >
-	let g:ctrlp_funky_ruby_requires = 1
+	let g:ctrlp_funky_ruby_requires = 0
 <
 
 				*funky-ruby-g:ctrlp_funky_ruby_classes*
@@ -90,6 +92,10 @@ Set this to 1 (enabled) 'rake' filter will be absorbed.
 	let g:ctrlp_funky_ruby_rake_words = 0
 <
 
+				*funky-ruby-g:ctrlp_funky_ruby_chef_words*
+Set this to 1 (enabled) 'chef' filter will be absorbed.
+>
+	let g:ctrlp_funky_ruby_chef_words = 0
 
 ==============================================================================
 THANKS						*funky-thanks*
@@ -104,6 +110,9 @@ THANKS						*funky-thanks*
 
 ==============================================================================
 CHANGELOG 					*funky-changelog*
+
+20 Apr. 2013~
+  + Add support for Chef recipe
 
 11 Apr. 2013~
   + Fix regexp pattern for sh

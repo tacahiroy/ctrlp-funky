@@ -27,6 +27,11 @@ if get(g:, 'ctrlp_funky_ruby_rake_words', 1)
                          \ 'filter': ['\m\C^[\t ]*', '', '']}])
 endif
 
+if get(g:, 'ctrlp_funky_ruby_chef_words', 0)
+  echom string(ctrlp#funky#chef#get_filter())
+  call extend(s:filter, ctrlp#funky#chef#get_filter())
+endif
+
 function! ctrlp#funky#ruby#apply_filter(bufnr)
   return ctrlp#funky#abstract(a:bufnr, s:filter)
 endfunction
