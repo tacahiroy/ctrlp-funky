@@ -22,7 +22,7 @@ if get(g:, 'ctrlp_funky_ruby_modules', 1)
                          \ 'filter': []}])
 endif
 
-if get(g:, 'ctrlp_funky_ruby_contains_rake', 1)
+if get(g:, 'ctrlp_funky_ruby_rake_words', 1)
   call extend(s:filter, [{ 'pattern': '\m\C^[\t ]*task[\t ]\+\S\+',
                          \ 'filter': ['\m\C^[\t ]*', '', '']}])
 endif
