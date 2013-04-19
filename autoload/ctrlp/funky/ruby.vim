@@ -1,5 +1,5 @@
-" File: autoload/ctrlp/funky/ruby.vim
 " Description: adds ruby support to ctrlp's funky extension
+" Language: Ruby
 " Author: Takahiro YOSHIHARA
 " License: The MIT License
 
@@ -7,7 +7,7 @@ let s:filter = [{ 'pattern': '\m\C^[\t ]*def[\t ]\+\S\+',
                 \ 'filter': []}
 \ ]
 
-if get(g:, 'ctrlp_funky_ruby_requires', 1)
+if get(g:, 'ctrlp_funky_ruby_requires', 0)
   call extend(s:filter, [{ 'pattern': '\m\C^[\t ]*require\(_relative\)\?[\t ]\+\S\+',
                          \ 'filter': []}])
 endif
