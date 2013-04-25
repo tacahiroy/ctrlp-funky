@@ -96,6 +96,24 @@ Set this to 1 (enabled) 'rake' filter will be absorbed.
 Set this to 1 (enabled) 'chef' filter will be absorbed.
 >
 	let g:ctrlp_funky_ruby_chef_words = 0
+<
+						*funky-chef*
+[chef]
+				*funky-chef-g:ctrlp_funky_chef_lwrp*
+Set this to 1 (enabled) the results will include LWRP.
+http://docs.opscode.com/lwrp.html#opscode-maintained
+>
+	let g:ctrlp_funky_chef_lwrp = 1
+<
+
+				*funky-chef-g:ctrlp_funky_chef_custom_resources*
+You can set Chef resources that you defined to this variable.
+The resources which are set to this variable will be picked up by |ctrlp-funky|.
+http://docs.opscode.com/resource.html#common-functionality
+>
+	let g:ctrlp_funky_chef_custom_resources = []
+<
+
 
 ==============================================================================
 THANKS						*funky-thanks*
@@ -110,6 +128,10 @@ THANKS						*funky-thanks*
 
 ==============================================================================
 CHANGELOG 					*funky-changelog*
+
+25 Apr. 2013~
+  + New options: |g:ctrlp_funky_chef_custom_resources|
+                 |g:ctrlp_funky_chef_lwrp|
 
 20 Apr. 2013~
   + Add support for Chef recipe

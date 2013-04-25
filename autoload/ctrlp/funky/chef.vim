@@ -3,7 +3,8 @@
 " Author: Takahiro YOSHIHARA
 " License: The MIT License
 
-" docs.opscode.com/resource.html
+" Chef Resources "{{{
+" http://docs.opscode.com/resource.html
 let resources = [
       \ 'apt_package',
       \ 'chef_gem',
@@ -48,7 +49,50 @@ let resources = [
       \ 'template',
       \ 'user',
       \ 'yum_package'
-\ ]
+\ ] "}}}
+
+" LWRP "{{{
+" http://docs.opscode.com/lwrp.html
+let lwrp = [
+      \ 'apt',
+      \ 'aws',
+      \ 'bluepill',
+      \ 'chef_handler',
+      \ 'daemontools',
+      \ 'djbdns',
+      \ 'dmg',
+      \ 'dynect',
+      \ 'firewall',
+      \ 'freebsd',
+      \ 'gunicorn',
+      \ 'homebrew',
+      \ 'iis',
+      \ 'maven',
+      \ 'mysql',
+      \ 'nagios',
+      \ 'pacman',
+      \ 'php',
+      \ 'powershell',
+      \ 'python',
+      \ 'rabbitmq',
+      \ 'riak',
+      \ 'samba',
+      \ 'sudo',
+      \ 'supervisor',
+      \ 'transmission',
+      \ 'users',
+      \ 'webpi',
+      \ 'windows',
+      \ 'yum',
+      \ 'zenoss'
+\ ] "}}}
+
+if get(g:, 'ctrlp_funky_chef_lwrp', 1)
+  call extend(resources, map(lwrp, 'v:val."_\\S\\+"'))
+endif
+
+" custome Resources
+call extend(resources, get(g:, 'ctrlp_funky_chef_custom_resources', []))
 
 let s:filter = [{ 'pattern': '\m\C^[\t ]*\('.join(resources, '\|').'\)[\t ]\+\S\+',
                 \ 'filter': ['\m\C^[\t ]*', '', 'g']}]
@@ -61,3 +105,4 @@ function! ctrlp#funky#chef#get_filter()
   return s:filter
 endfunction
 
+" vim: fdm=marker
