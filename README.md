@@ -16,6 +16,7 @@ This supports following filetypes:
 * markdown
 * nerdtree
 * objc
+* php
 * python
 * ruby
 * sh

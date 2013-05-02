@@ -29,6 +29,7 @@ This supports following file types:
 * markdown
 * nerdtree
 * objc
+* php
 * python
 * ruby
 * sh
@@ -120,14 +121,19 @@ THANKS						*funky-thanks*
 
   * kien <http://github.com/kien> - the author of ctrlp.vim
 
-  * *pydave*  <http://github.com/pydave>
-  * *curist*  <http://github.com/curist>
-  * *Benoit*  <http://github.com/saalaa>
-  * *tokorom* <http://github.com/tokorom>
+  * *pydave*    <http://github.com/pydave>
+  * *curist*    <http://github.com/curist>
+  * *Benoit*    <http://github.com/saalaa>
+  * *tokorom*   <http://github.com/tokorom>
+  * *robmiller* <http://github.com/robmiller>
 
 
 ==============================================================================
 CHANGELOG 					*funky-changelog*
+
+2 May. 2013~
+  + Add support for php
+    by |robmiller|
 
 25 Apr. 2013~
   + New options: |g:ctrlp_funky_chef_custom_resources|
