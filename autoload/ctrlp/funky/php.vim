@@ -4,7 +4,7 @@
 " License: The MIT License
 
 let s:filter = [{ 'pattern': '\v\s*function\s+\w.+\s*\(',
-                \ 'filter': []}
+                \ 'filter': ['\m\C^[\t ]*', '', '']}
                 \ ]
 
 function! ctrlp#funky#php#apply_filter(bufnr)
