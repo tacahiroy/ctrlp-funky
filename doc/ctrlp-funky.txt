@@ -62,6 +62,22 @@ SETTINGS					*funky-settings*
 You can customise the behaviour of ctrlp-funky using these variables.
 
 
+						*funky-php*
+[php]
+				*funky-php-g:ctrlp_funky_php_requires*
+Set this to 1 (enabled) the results will include 'require' and
+'require_once' lines.
+>
+	let g:ctrlp_funky_php_requires = 0
+<
+
+				*funky-php-g:ctrlp_funky_php_includes*
+Set this to 1 (enabled) the results will include 'include' and
+'include_once' lines.
+>
+	let g:ctrlp_funky_php_include = 0
+<
+
 						*funky-ruby*
 [ruby]
 				*funky-ruby-g:ctrlp_funky_ruby_requires*
@@ -131,7 +147,11 @@ THANKS						*funky-thanks*
 ==============================================================================
 CHANGELOG 					*funky-changelog*
 
-2 May. 2013~
+20 May 2013~
+  + New options: |g:ctrlp_funky_php_requires|,
+                 |g:ctrlp_funky_php_includes|,
+
+2 May 2013~
   + Add support for php
     by |robmiller|
 
