@@ -1,16 +1,16 @@
 ctrlp-funky
 ============
 
-This is a ctrlp.vim extension and it picks out functions currently being edited file without ctags.  
-It just searches function definition or equivalent of it, therefore some languages abstraction  
-aren't accurate because of hard to parse.  
+This is a ctrlp.vim extension and it picks out functions currently being edited file without ctags.
+It just searches function definition or equivalent of it, therefore some languages abstraction
+aren't accurate because of hard to parse.
 One of the advantages of this plugin is you needn't generate tags file.
 
 ![ctrlp-funky][1]
 
 This supports following filetypes:
 * c++
-* chef (resources)
+* chef
 * java
 * javascript
 * markdown
@@ -26,7 +26,7 @@ This supports following filetypes:
 
 INSTALL
 ----------
-If you use [Vundle](https://github.com/gmarik/vundle.git) you can install this plugin using Vim command `:BundleInstall tacahiroy/ctrlp-funky`.  
+If you use [Vundle](https://github.com/gmarik/vundle.git) you can install this plugin using Vim command `:BundleInstall tacahiroy/ctrlp-funky`.
 Don't forget put a line `Bundle 'tacahiroy/ctrlp-funky'` into `.vimrc`.
 
 If you use [pathogen.vim](https://github.com/tpope/vim-pathogen), you just execute following:
@@ -36,21 +36,23 @@ If you use [pathogen.vim](https://github.com/tpope/vim-pathogen), you just execu
 
 You don't use either plugin management system, copy `autoload` and `plugin` directory to your `.vim` directory.
 
+By default:
 \*nix: $HOME/.vim
 Windows: $HOME/vimfiles
 
 CONFIGURATION
 ----------
-You must available this plugin as a ctrlp.vim extension. Please add 'funky' to `g:ctrlp_extensions`.
+You need to make the plugin available as a ctrlp.vim extension.
+Please add 'funky' to `g:ctrlp_extensions`.
 
     let g:ctrlp_extensions = ['funky']
 
-Reboot Vim and then you can use `:CtrlPFunky` command.  
+Reboot Vim and then you can use `:CtrlPFunky` command.
 It might be useful like this mapping:
 
-    nnoremap <Space>fu :CtrlPFunky<Cr>
+    nnoremap <Leader>fu :CtrlPFunky<Cr>
     " narrow the list down with a word under cursor
-    nnoremap <Space>fU :execute 'CtrlPFunky '.expand('<cword>')<Cr>
+    nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 
 LINK
 --------------
