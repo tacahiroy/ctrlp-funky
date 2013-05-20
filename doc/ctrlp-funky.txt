@@ -51,9 +51,9 @@ This plugin provides a command |:CtrlPFunky|. You just execute it.
 	In fact, the argument will be inputted into the CtrlP buffer by default.
 
 Defining a mapping for this command must be useful. >
-	nnoremap <Space>fu :CtrlPFunky<Cr>
+	nnoremap <Leader>fu :CtrlPFunky<Cr>
 	" Initialise list by a word under cursor
-	nnoremap <Space>fU :execute 'CtrlPFunky '.expand('<cword>')<Cr>
+	nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 <
 
 
