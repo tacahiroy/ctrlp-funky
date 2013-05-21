@@ -13,7 +13,7 @@ let regex .= '\([^\)]*\)'           " method parameters
 let regex .= '%(\w|\s|\{)+$'        " postamble
 
 let s:filter = [{ 'pattern': regex,
-                \ 'filter': ['\v(^\s*)|(\s*\{.*)', '', 'g']}
+                \ 'filter': ['\v(^\s*)|(\s*\{.*\ze \t#)', '', 'g']}
 \ ]
 
 function! ctrlp#funky#java#apply_filter(bufnr)
