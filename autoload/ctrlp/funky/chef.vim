@@ -1,6 +1,5 @@
-" Description: adds chef support to ctrlp's funky extension
-" Language: Chef
-" Author: Takahiro YOSHIHARA
+" Language: Ruby (chef)
+" Author: Takahiro Yoshihara
 " License: The MIT License
 
 " Chef Resources "{{{

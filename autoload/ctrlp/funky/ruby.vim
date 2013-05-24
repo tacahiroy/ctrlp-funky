@@ -1,6 +1,5 @@
-" Description: adds ruby support to ctrlp's funky extension
-" Language: Ruby
-" Author: Takahiro YOSHIHARA
+" Language: Ruby (ruby)
+" Author: Takahiro Yoshihara
 " License: The MIT License
 
 let s:filter = [{ 'pattern': '\m\C^[\t ]*def[\t ]\+\S\+',

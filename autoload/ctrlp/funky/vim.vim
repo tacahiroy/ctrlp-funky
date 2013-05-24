@@ -1,6 +1,5 @@
-" File: autoload/ctrlp/funky/vim.vim
-" Description: adds vim support to ctrlp's funky extension
-" Author: Takahiro Yoshihara <tacahiroy\AT/gmail.com>
+" Language: Vim script (vim)
+" Author: Takahiro Yoshihara
 " License: The MIT License
 
 let s:filter = [{ 'pattern': '\m\C^[\t ]*fu\(n\|nc\|nct\|ncti\|nctio\|nction\)\?!\?[\t ]\+\S\+',

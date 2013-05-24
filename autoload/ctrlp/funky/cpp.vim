@@ -1,5 +1,4 @@
-" File: autoload/ctrlp/funky/cpp.vim
-" Description: adds C++ support to ctrlp's funky extension
+" Language: C++ (cpp)
 " Author: pydave
 " License: The MIT License
 

@@ -1,5 +1,4 @@
-" File: autoload/ctrlp/funky/python.vim
-" Description: adds python support to ctrlp's funky extension
+" Language: Python (python)
 " Author: pydave
 " License: The MIT License
 

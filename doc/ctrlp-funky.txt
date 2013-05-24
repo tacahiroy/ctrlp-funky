@@ -1,6 +1,6 @@
 *ctrlp-funky.txt*
 A ctrlp.vim extension - pick out functions and/or something
-Version: 0.4.0
+Version: 0.4.1
 Author:  Takahiro Yoshihara <http://github.com/tacahiroy>
 
 
@@ -146,6 +146,9 @@ THANKS						*funky-thanks*
 
 ==============================================================================
 CHANGELOG 					*funky-changelog*
+
+23 May 2013~
+  + Fix regex pattern for sh. No parentheses case can be detected.
 
 20 May 2013~
   + New options: |g:ctrlp_funky_php_requires|,

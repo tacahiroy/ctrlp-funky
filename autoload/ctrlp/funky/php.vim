@@ -1,5 +1,4 @@
-" File: autoload/ctrlp/funky/php.vim
-" Description: adds PHP support to ctrlp's funky extension
+" Language: PHP (php)
 " Author: robmiller
 " License: The MIT License
 

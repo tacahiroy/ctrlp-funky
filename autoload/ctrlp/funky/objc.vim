@@ -1,5 +1,4 @@
-" File: autoload/ctrlp/funky/objc.vim
-" Description: adds Objective-C support to ctrlp's funky extension
+" Language: Objective-C (objc)
 " Author: tokorom
 " License: The MIT License
 

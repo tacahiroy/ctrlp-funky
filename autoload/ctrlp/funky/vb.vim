@@ -1,4 +1,4 @@
-" Description: adds Visual Basic support to ctrlp's funky extension
+" Language: Visual Basic (vb)
 " Author: Takahiro Yoshihara
 " License: The MIT License
 

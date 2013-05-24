@@ -1,6 +1,5 @@
-" File: autoload/ctrlp/funky/zsh.vim
-" Description: adds zsh support to ctrlp's funky extension
-" Author: Takahiro Yoshihara <tacahiroy\AT/gmail.com>
+" License: shell script (zsh)
+" Author: Takahiro Yoshihara
 " License: The MIT License
 
 " The zsh is really tolerant of the function definition

@@ -1,5 +1,4 @@
-" File: autoload/ctrlp/funky/javascript.vim
-" Description: adds javascript support to ctrlp's funky extension
+" Language: JavaScript (javascript)
 " Author: curist
 " License: The MIT License
 
