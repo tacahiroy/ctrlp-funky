@@ -7,7 +7,7 @@
 " first bracket is preceeded by a word. If you put a space before your
 " functions, then you're out of luck because this eliminates most text
 " false positives.
-let s:filter = [{ 'pattern': '\m^\w.*\w(.*)',
+let s:filter = [{ 'pattern': '^\w.*\s*\w(',
                 \ 'filter': []}
                 \ ]
 
