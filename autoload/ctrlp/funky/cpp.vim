@@ -1,5 +1,6 @@
 " Language: C++ (cpp)
 " Author: pydave
+" Author: unc0
 " License: The MIT License
 
 " cpp is too hard to parse (and style varies wildly), so just look for
