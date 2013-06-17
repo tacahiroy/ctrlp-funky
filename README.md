@@ -8,7 +8,7 @@ One of the advantages of this plugin is you needn't generate tags file.
 ![ctrlp-funky][1]
 
 This supports following filetypes:
-* c++
+* c/c++
 * chef
 * java
 * javascript
