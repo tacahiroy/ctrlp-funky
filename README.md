@@ -1,9 +1,9 @@
 ctrlp-funky
 ============
 
-This is a ctrlp.vim extension and it picks out functions currently being edited file without ctags. It just searches function definition or equivalent of it, therefore some languages abstraction aren't accurate because of hard to parse.
+This is a ctrlp.vim extension and it picks out functions currently being edited file without ctags. It just searches function definitions or equivalent, therefore some languages abstraction aren't accurate because of hard to parse.
 
-One of the advantages of this plugin is you needn't generate tags file.
+One of the advantages of this plugin is you needn't to generate tags file.
 
 ![ctrlp-funky][1]
 
@@ -25,7 +25,7 @@ This supports following filetypes:
 
 INSTALL
 ----------
-If you use [Vundle](https://github.com/gmarik/vundle.git) you can install this plugin using Vim command:
+If you use [Vundle](https://github.com/gmarik/vundle.git) you can install this plugin using following Vim command:
 
     :BundleInstall tacahiroy/ctrlp-funky
 
@@ -36,7 +36,7 @@ If you use [pathogen.vim](https://github.com/tpope/vim-pathogen), you just execu
     cd ~/.vim/bundle
     git clone git://github.com/tacahiroy/ctrlp-funky.git
 
-You don't use either plugin management system, copy _autoload_ and _plugin_ directory to your _.vim_ directory.
+You don't use either plugin management systems, copy _autoload_ and _plugin_ directory to your _.vim_ directory.
 
 By default:
 - \*nix: $HOME/.vim
@@ -60,6 +60,7 @@ LINK
 --------------
 
 [kien/ctrlp.vim](https://github.com/kien/ctrlp.vim)
+[vim.org](http://www.vim.org/scripts/script.php?script_id=4592)
 
 License
 -------
