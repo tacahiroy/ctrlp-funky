@@ -59,8 +59,8 @@ It might be useful mapping like these:
 LINK
 --------------
 
-[kien/ctrlp.vim](https://github.com/kien/ctrlp.vim)
-[vim.org](http://www.vim.org/scripts/script.php?script_id=4592)
+* [kien/ctrlp.vim](https://github.com/kien/ctrlp.vim)
+* [vim.org](http://www.vim.org/scripts/script.php?script_id=4592)
 
 License
 -------
