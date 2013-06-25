@@ -20,8 +20,3 @@ function! ctrlp#funky#nerdtree#get_filter()
   return s:filter
 endfunction
 
-" prevent splitting NERDTree window
-function! ctrlp#funky#nerdtree#line_mode()
-  return 1
-endfunction
-

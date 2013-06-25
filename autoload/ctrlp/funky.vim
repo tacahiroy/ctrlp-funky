@@ -141,27 +141,13 @@ endfunction
 "           the values are 'e', 'v', 't' and 'h', respectively
 "  a:str    the selected string
 function! ctrlp#funky#accept(mode, str)
-  let [bufnr, lnum] = matchlist(a:str, '\m\C#.*:\(\d\+\):\(\d\+\)$')[1:2]
-  let bufname = bufname(str2nr(bufnr, 10))
-
-  let line_mode = 0
-  for ft in s:filetypes(str2nr(bufnr, 10))
-    if exists('*ctrlp#funky#'.ft.'#line_mode')
-      let line_mode = ctrlp#funky#{ft}#line_mode()
-      break
-    endif
-  endfor
-
   " always back to former window
-  call ctrlp#funky#close(a:mode, a:str)
-endfunction
-
-function! ctrlp#funky#close(action, line)
   call ctrlp#exit()
-  let bufnum = matchstr(a:line, '\d\+\ze:\d\+$')
-  let lnum = matchstr(a:line, '\d\+$')
+
+  let bnum = matchstr(a:str, '\d\+\ze:\d\+$')
+  let lnum = matchstr(a:str, '\d\+$')
   execute get(s:, 'winnr', 1) . 'wincmd w'
-  call setpos('.', [bufnum, lnum, 1, 0])
+  call setpos('.', [bnum, lnum, 1, 0])
 endfunction
 
 " Give the extension an ID
