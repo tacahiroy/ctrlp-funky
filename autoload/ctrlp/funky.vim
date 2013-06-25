@@ -12,6 +12,7 @@ let s:saved_cpo = &cpo
 set cpo&vim
 
 let s:report_filter_error = get(g:, 'ctrlp_funky_report_filter_error', 0)
+let s:winnr = -1
 
 " The main variable for this extension.
 "
@@ -75,6 +76,7 @@ function! ctrlp#funky#init(bufnr)
 endfunction
 
 function! ctrlp#funky#funky(word)
+  let s:winnr = winnr()
   try
     if !empty(a:word)
       let default_input_save = get(g:, 'ctrlp_default_input', '')
@@ -150,19 +152,15 @@ function! ctrlp#funky#accept(mode, str)
     endif
   endfor
 
-  " supports no named buffer
-  if line_mode || empty(bufname)
-    call ctrlp#funky#goto_line(a:mode, a:str)
-  else
-    let fpath = fnamemodify(bufname, ':p')
-    call ctrlp#acceptfile(a:mode, fpath, lnum)
-  endif
+  " always back to former window
+  call ctrlp#funky#close(a:mode, a:str)
 endfunction
 
-function! ctrlp#funky#goto_line(action, line)
+function! ctrlp#funky#close(action, line)
   call ctrlp#exit()
   let bufnum = matchstr(a:line, '\d\+\ze:\d\+$')
   let lnum = matchstr(a:line, '\d\+$')
+  execute get(s:, 'winnr', 1) . 'wincmd w'
   call setpos('.', [bufnum, lnum, 1, 0])
 endfunction
 
