@@ -29,7 +29,7 @@ let s:winnr = -1
 call add(g:ctrlp_ext_vars, {
   \ 'init':   'ctrlp#funky#init(s:crbufnr)',
   \ 'accept': 'ctrlp#funky#accept',
-  \ 'lname':  'Funky',
+  \ 'lname':  'funky',
   \ 'sname':  'fky',
   \ 'type':   'line',
   \ 'sort':   0
@@ -107,7 +107,6 @@ function! ctrlp#funky#abstract(bufnr, patterns)
       let offset = get(c, 'offset', 0)
 
       redir => ilist
-        " execute 'silent! global/' . c.pattern . '/echo printf("%s \t#%s:%d:%d", getline(line(".") + offset), bufname(a:bufnr), a:bufnr, line(".") + offset)'
         execute 'silent! global/' . c.pattern . '/echo printf("%s \t#%s:%d:%d", getline(line(".") + offset), "", a:bufnr, line(".") + offset)'
       redir END
 
