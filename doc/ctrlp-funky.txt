@@ -1,6 +1,6 @@
 *ctrlp-funky.txt*
 A ctrlp.vim extension - pick out functions and/or something
-Version: 0.4.2
+Version: 0.4.3
 Author:  Takahiro Yoshihara <http://github.com/tacahiroy>
 
 
@@ -32,10 +32,9 @@ This supports following file types:
 * php
 * python
 * ruby
-* sh
+* sh (bash, dash and zsh)
 * vb
 * vim
-* zsh
 
 
 ==============================================================================
@@ -61,6 +60,23 @@ Defining a mapping for this command must be useful. >
 SETTINGS					*funky-settings*
 You can customise the behaviour of ctrlp-funky using these variables.
 
+
+						*funky-chef*
+[chef]
+				*funky-chef-g:ctrlp_funky_chef_lwrp*
+Set this to 1 (enabled) the results will include LWRP.
+http://docs.opscode.com/lwrp.html#opscode-maintained
+>
+	let g:ctrlp_funky_chef_lwrp = 1
+<
+
+				*funky-chef-g:ctrlp_funky_chef_custom_resources*
+You can set Chef resources that you defined to this variable.
+The resources which are set to this variable will be picked up by |ctrlp-funky|.
+http://docs.opscode.com/resource.html#common-functionality
+>
+	let g:ctrlp_funky_chef_custom_resources = []
+<
 
 						*funky-php*
 [php]
@@ -114,21 +130,14 @@ Set this to 1 (enabled) 'chef' filter will be absorbed.
 >
 	let g:ctrlp_funky_ruby_chef_words = 0
 <
-						*funky-chef*
-[chef]
-				*funky-chef-g:ctrlp_funky_chef_lwrp*
-Set this to 1 (enabled) the results will include LWRP.
-http://docs.opscode.com/lwrp.html#opscode-maintained
+						*funky-sh*
+[sh]
+				*funky-sh-g:ctrlp_funky_sh_type*
+In most of the case, '/bin/sh' is an alias (symlink) of an other shell such as
+bash, ksh etc nowadays. You can specify the Funky's internal filetype for 'sh'.
+If this is set to 'dash', the Funky treats 'sh' as 'dash'.
 >
-	let g:ctrlp_funky_chef_lwrp = 1
-<
-
-				*funky-chef-g:ctrlp_funky_chef_custom_resources*
-You can set Chef resources that you defined to this variable.
-The resources which are set to this variable will be picked up by |ctrlp-funky|.
-http://docs.opscode.com/resource.html#common-functionality
->
-	let g:ctrlp_funky_chef_custom_resources = []
+	let g:ctrlp_funky_sh_type = 'bash'
 <
 
 
@@ -148,12 +157,16 @@ THANKS						*funky-thanks*
 ==============================================================================
 CHANGELOG 					*funky-changelog*
 
+9 Aug. 2013~
+  + New options: |g:ctrlp_funky_sh_type|
+
 25 Jun. 2013~
   + Fix behaviour when buffer being opened in multiple (split) windows (#11)
   + Add multi-lined function def support in Python (#12)
 
 17 Jun. 2013~
   + Add C support, improved C++ pattern.
+    by |unc0|
 
 23 May 2013~
   + Fix regex pattern for sh. No parentheses case can be detected.

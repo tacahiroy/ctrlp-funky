@@ -21,7 +21,7 @@ This supports following filetypes:
 * php
 * python
 * ruby
-* sh/zsh
+* sh (bash, dash and zsh)
 * vb
 * vim
 
