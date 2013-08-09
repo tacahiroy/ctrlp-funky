@@ -1,0 +1,54 @@
+#! /bin/dash
+# vim: ft=sh
+
+bar() {
+  echo "bar"
+}
+bar
+
+baz() { echo "baz"; }
+baz
+
+_bag() {
+  echo "_bag"
+}
+
+  bog() {
+    echo "bog"
+}
+
+	boz() {
+  echo "boz"
+}
+
+
+## INVALID BELOW
+
+function foo() {
+  echo "function foo"
+}
+foo
+
+-foo() { echo -foo }
+-foo
+
+/foo() { echo /foo }
+/foo
+
++foo() { echo +foo }
++foo
+
+0foo() { echo 0foo }
+0foo
+
+123() { echo 123 }
+123
+
++++() { echo +++ }
++++
+
+/+-() { echo /+- }
+/+-
+
+?a() { echo ?a }
+?a
