@@ -1,6 +1,6 @@
 *ctrlp-funky.txt*
 A ctrlp.vim extension - pick out functions and/or something
-Version: 0.4.3
+Version: 0.4.4
 Author:  Takahiro Yoshihara <http://github.com/tacahiroy>
 
 
@@ -26,6 +26,7 @@ This supports following file types:
 * chef (resources)
 * java
 * javascript
+* lua
 * markdown
 * nerdtree
 * objc
@@ -146,16 +147,21 @@ THANKS						*funky-thanks*
 
   * kien <http://github.com/kien> - the author of ctrlp.vim
 
-  * *pydave*    <http://github.com/pydave>
-  * *curist*    <http://github.com/curist>
-  * *Benoit*    <http://github.com/saalaa>
-  * *tokorom*   <http://github.com/tokorom>
-  * *robmiller* <http://github.com/robmiller>
-  * *unc0*      <http://github.com/unc0>
+  * *pydave*    <https://github.com/pydave>
+  * *curist*    <https://github.com/curist>
+  * *Benoit*    <https://github.com/saalaa>
+  * *tokorom*   <https://github.com/tokorom>
+  * *robmiller* <https://github.com/robmiller>
+  * *unc0*      <https://github.com/unc0>
+  * *hlissner*  <https://github.com/hlissner>
 
 
 ==============================================================================
 CHANGELOG 					*funky-changelog*
+
+15 Aug. 2013~
+  + Add support for Lua
+    by |hlissner|
 
 9 Aug. 2013~
   + New options: |g:ctrlp_funky_sh_type|
@@ -190,19 +196,19 @@ CHANGELOG 					*funky-changelog*
   + Fix regexp pattern for sh
 
 3 Apr. 2013~
-  + Add support for vb (Visual Basic)
+  + Add support for Visual Basic (vb)
 
 22 Mar. 2013~
   + Add the command can take an argument for initialisation
 
 12 Feb. 2013~
   + Add 'get_filter' method in each filter to disclose own filter
-  + Add support for objc
+  + Add support for Objective-C (objc)
     by |tokorom|
 
 27 Jan. 2013~
-  + Add support for sh
-  + Add support for zsh
+  + Add support for Shell Script (bash)
+  + Add support for Z shell (zsh)
   - Delete all buffer mode
 
 21 Jan. 2013~
@@ -222,7 +228,7 @@ CHANGELOG 					*funky-changelog*
 
 06 Jun. 2012~
   + Add support for python
-  + Add support for cpp
+  + Add support for C++ (cpp)
   + Add support for java
     by |pydave|
 
