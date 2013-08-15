@@ -15,6 +15,7 @@ This supports following filetypes:
 * chef
 * java
 * javascript
+* lua
 * markdown
 * nerdtree
 * objc
