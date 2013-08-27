@@ -110,7 +110,7 @@ function! ctrlp#funky#abstract(bufnr, patterns)
         execute 'silent! global/' . c.pattern . '/echo printf("%s \t#%s:%d:%d", getline(line(".") + offset), "", a:bufnr, line(".") + offset)'
       redir END
 
-      if ilist !~# '\nE486:'
+      if ilist !~# '\n\(E486: \)\?Pattern not found:'
         if empty(c.filter)
           let candidates += split(ilist, '\n')
         else
