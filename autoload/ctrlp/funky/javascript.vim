@@ -4,7 +4,7 @@
 
 let s:filter = [{ 'pattern': '\v\s*function\s+\w.+\s*\(',
               \   'filter': ['\v(^\s*)|(\s*\{.*\ze \t#)', '', 'g']},
-              \ { 'pattern': '\v(\w.+)\:\s*function\s*\(',
+              \ { 'pattern': '\v\w.+\:\s*function\s*\(',
               \   'filter': ['\v(^\s*)|(\s*\{.*\ze \t#)', '', 'g']},
               \ { 'pattern': '\v\C\w.+\s*\=\s*function\s*\(',
               \   'filter': ['\v(^\s*)|(\s*\{.*\ze \t#)', '', 'g']}
@@ -17,4 +17,3 @@ endfunction
 function! ctrlp#funky#javascript#get_filter()
   return s:filter
 endfunction
-
