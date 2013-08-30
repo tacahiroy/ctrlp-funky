@@ -1,6 +1,6 @@
 *ctrlp-funky.txt*
 A ctrlp.vim extension - pick out functions and/or something
-Version: 0.4.5
+Version: 0.4.6
 Author:  Takahiro Yoshihara <http://github.com/tacahiroy>
 
 
@@ -154,10 +154,15 @@ THANKS						*funky-thanks*
   * *robmiller* <https://github.com/robmiller>
   * *unc0*      <https://github.com/unc0>
   * *hlissner*  <https://github.com/hlissner>
+  * *mephux*    <https://github.com/mephux>
 
 
 ==============================================================================
 CHANGELOG 					*funky-changelog*
+
+30 Aug. 2013~
+  + Add javascript object function support. (#17)
+    by |mephux|
 
 27 Aug. 2013~
   + Fix "Pattern not found" line appears in the list
