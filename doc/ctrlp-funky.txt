@@ -1,6 +1,6 @@
 *ctrlp-funky.txt*
 A ctrlp.vim extension - pick out functions and/or something
-Version: 0.4.4
+Version: 0.5.0
 Author:  Takahiro Yoshihara <http://github.com/tacahiroy>
 
 
@@ -61,22 +61,35 @@ Defining a mapping for this command must be useful. >
 SETTINGS					*funky-settings*
 You can customise the behaviour of ctrlp-funky using these variables.
 
+						*g:ctrlp_funky_sort_by_mru*
+If this is enabled (=1) the list is sorted by MRU (most recently used).
+In short, a function definition what was used last time is appeared on top of
+the list.
+Note that the MRU feature doesn't work persistently. Therefore if you delete
+the buffer or once you quit Vim, order of the list is reset to default.
+(default: 0)
+>
+	let g:ctrlp_funky_sort_by_mru = 1 
+<
+
 
 						*funky-chef*
 [chef]
 				*funky-chef-g:ctrlp_funky_chef_lwrp*
 Set this to 1 (enabled) the results will include LWRP.
 http://docs.opscode.com/lwrp.html#opscode-maintained
+(default: 1)
 >
-	let g:ctrlp_funky_chef_lwrp = 1
+	let g:ctrlp_funky_chef_lwrp = 0
 <
 
 				*funky-chef-g:ctrlp_funky_chef_custom_resources*
 You can set Chef resources that you defined to this variable.
 The resources which are set to this variable will be picked up by |ctrlp-funky|.
 http://docs.opscode.com/resource.html#common-functionality
+(default: [])
 >
-	let g:ctrlp_funky_chef_custom_resources = []
+	let g:ctrlp_funky_chef_custom_resources = ['rabbitmq', 'nodejs']
 <
 
 						*funky-php*
@@ -84,15 +97,17 @@ http://docs.opscode.com/resource.html#common-functionality
 				*funky-php-g:ctrlp_funky_php_requires*
 Set this to 1 (enabled) the results will include 'require' and
 'require_once' lines.
+(default: 0)
 >
-	let g:ctrlp_funky_php_requires = 0
+	let g:ctrlp_funky_php_requires = 1
 <
 
 				*funky-php-g:ctrlp_funky_php_includes*
 Set this to 1 (enabled) the results will include 'include' and
 'include_once' lines.
+(default: 0)
 >
-	let g:ctrlp_funky_php_include = 0
+	let g:ctrlp_funky_php_include = 1
 <
 
 						*funky-ruby*
@@ -100,20 +115,23 @@ Set this to 1 (enabled) the results will include 'include' and
 				*funky-ruby-g:ctrlp_funky_ruby_requires*
 Set this to 1 (enabled) the results will include 'require' and
 'require_relative' lines.
+(default: 0)
 >
-	let g:ctrlp_funky_ruby_requires = 0
+	let g:ctrlp_funky_ruby_requires = 1
 <
 
 				*funky-ruby-g:ctrlp_funky_ruby_classes*
 Set this to 1 (enabled) the results will include class definitions.
+(default: 1)
 >
-	let g:ctrlp_funky_ruby_classes = 1
+	let g:ctrlp_funky_ruby_classes = 0
 <
 
 				*funky-ruby-g:ctrlp_funky_ruby_modules*
 Set this to 1 (enabled) the results will include module definitions.
+(default: 1)
 >
-	let g:ctrlp_funky_ruby_modules = 1
+	let g:ctrlp_funky_ruby_modules = 0
 <
 
 				*funky-ruby-g:ctrlp_funky_ruby_contains_rake*
@@ -122,14 +140,16 @@ instead. [OBSOLETE]
 
 				*funky-ruby-g:ctrlp_funky_ruby_rake_words*
 Set this to 1 (enabled) 'rake' filter will be absorbed.
+(default: 0)
 >
-	let g:ctrlp_funky_ruby_rake_words = 0
+	let g:ctrlp_funky_ruby_rake_words = 1
 <
 
 				*funky-ruby-g:ctrlp_funky_ruby_chef_words*
 Set this to 1 (enabled) 'chef' filter will be absorbed.
+(default: 0)
 >
-	let g:ctrlp_funky_ruby_chef_words = 0
+	let g:ctrlp_funky_ruby_chef_words = 1
 <
 						*funky-sh*
 [sh]
@@ -137,15 +157,16 @@ Set this to 1 (enabled) 'chef' filter will be absorbed.
 In most of the case, '/bin/sh' is an alias (symlink) of an other shell such as
 bash, ksh etc nowadays. You can specify the Funky's internal filetype for 'sh'.
 If this is set to 'dash', the Funky treats 'sh' as 'dash'.
+(default: 'bash')
 >
-	let g:ctrlp_funky_sh_type = 'bash'
+	let g:ctrlp_funky_sh_type = 'ksh'
 <
 
 
 ==============================================================================
 THANKS						*funky-thanks*
 
-  * kien <http://github.com/kien> - the author of ctrlp.vim
+  * *kien* <http://github.com/kien> - the author of ctrlp.vim
 
   * *pydave*    <https://github.com/pydave>
   * *curist*    <https://github.com/curist>
@@ -159,12 +180,15 @@ THANKS						*funky-thanks*
 ==============================================================================
 CHANGELOG 					*funky-changelog*
 
+7 Sep. 2013~
+  + Add MRU feature: |g:ctrlp_funky_sort_by_mru|
+
 15 Aug. 2013~
   + Add support for Lua
     by |hlissner|
 
 9 Aug. 2013~
-  + New options: |g:ctrlp_funky_sh_type|
+  + New option: |g:ctrlp_funky_sh_type|
 
 25 Jun. 2013~
   + Fix behaviour when buffer being opened in multiple (split) windows (#11)
