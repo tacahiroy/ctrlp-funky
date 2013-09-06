@@ -1,6 +1,6 @@
 *ctrlp-funky.txt*
 A ctrlp.vim extension - pick out functions and/or something
-Version: 0.4.6
+Version: 0.4.7
 Author:  Takahiro Yoshihara <http://github.com/tacahiroy>
 
 
@@ -34,6 +34,7 @@ This supports following file types:
 * python
 * ruby
 * sh (bash, dash and zsh)
+* yaml
 * vb
 * vim
 
@@ -155,10 +156,15 @@ THANKS						*funky-thanks*
   * *unc0*      <https://github.com/unc0>
   * *hlissner*  <https://github.com/hlissner>
   * *mephux*    <https://github.com/mephux>
+  * *dusans*    <https://github.com/dusans>
 
 
 ==============================================================================
 CHANGELOG 					*funky-changelog*
+
+7 Sep. 2013~
+  + Add YAML support. (#20)
+    by |dusans|
 
 30 Aug. 2013~
   + Add javascript object function support. (#17)

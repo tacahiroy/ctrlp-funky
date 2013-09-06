@@ -23,6 +23,7 @@ This supports following filetypes:
 * python
 * ruby
 * sh (bash, dash and zsh)
+* yaml
 * vb
 * vim
 
