@@ -2,25 +2,25 @@
 " Author: robmiller
 " License: The MIT License
 
-let s:filter = [{ 'pattern': '\v\s*function\s+\w.+\s*\(',
-                \ 'filter': ['\m\C^[\t ]*', '', '']}
-                \ ]
+function! ctrlp#funky#php#filters()
+  let filters = [
+        \ { 'pattern': '\v\s*function\s+\w.+\s*\(',
+        \   'formatter': ['\m\C^[\t ]*', '', ''] }
+  \ ]
 
-if get(g:, 'ctrlp_funky_php_requires', 0)
-  call extend(s:filter, [{ 'pattern': '\m\C\<require\(_once\)\?\([\t ]\+[''"]\|[\t ]*(\)',
-                         \ 'filter': []}])
-endif
+  if get(g:, 'ctrlp_funky_php_requires', 0)
+    call extend(filters, [
+          \ { 'pattern': '\m\C\<require\(_once\)\?\([\t ]\+[''"]\|[\t ]*(\)',
+          \   'formatter': [] }]
+    \ )
+  endif
 
-if get(g:, 'ctrlp_funky_php_includes', 0)
-  call extend(s:filter, [{ 'pattern': '\m\C\<include\(_once\)\?\([\t ]\+[''"]\|[\t ]*(\)',
-                         \ 'filter': []}])
-endif
+  if get(g:, 'ctrlp_funky_php_includes', 0)
+    call extend(filters, [
+          \ { 'pattern': '\m\C\<include\(_once\)\?\([\t ]\+[''"]\|[\t ]*(\)',
+          \   'formatter': [] }]
+    \ )
+  endif
 
-function! ctrlp#funky#php#apply_filter(bufnr)
-  return ctrlp#funky#abstract(a:bufnr, s:filter)
+  return filters
 endfunction
-
-function! ctrlp#funky#php#get_filter()
-  return s:filter
-endfunction
-

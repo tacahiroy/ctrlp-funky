@@ -2,21 +2,15 @@
 " Author: Takahiro Yoshihara
 " License: The MIT License
 
-let shtype = get(g:, 'ctrlp_funky_sh_type', 'bash')
+function! ctrlp#funky#sh#filters()
+  let shtype = get(g:, 'ctrlp_funky_sh_type', 'bash')
 
-execute 'runtime! ctrlp/funky/' . shtype . '.vim'
+  " note: like this code is very slow: runtime! ctrlp/funky/{shtype}.vim
+  execute 'runtime! ctrlp/funky/' . shtype . '.vim'
 
-if exists('*ctrlp#funky#' . shtype . '#get_filter')
-  let s:filter = ctrlp#funky#{shtype}#get_filter()
-else
-  let s:filter = ctrlp#funky#bash#get_filter()
-endif
-
-function! ctrlp#funky#sh#apply_filter(bufnr)
-  return ctrlp#funky#abstract(a:bufnr, s:filter)
+  if exists('*ctrlp#funky#' . shtype . '#filters')
+    return ctrlp#funky#{shtype}#filters()
+  else
+    return ctrlp#funky#bash#filters()
+  endif
 endfunction
-
-function! ctrlp#funky#sh#get_filter()
-  return s:filter
-endfunction
-

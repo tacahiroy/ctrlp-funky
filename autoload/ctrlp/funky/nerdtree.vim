@@ -2,21 +2,19 @@
 " Author: Takahiro Yoshihara
 " License: The MIT License
 
-let s:filter = [{ 'pattern': '\m\C^\s*[▸▾|~+].*\/$',
-                \ 'filter': []}
-\ ]
+function! ctrlp#funky#nerdtree#filters()
+  let filters = [
+        \ { 'pattern': '\m\C^\s*[▸▾|~+].*\/$',
+        \   'formatter': [] }
+  \ ]
 
-" useful?
-if get(g:, 'ctrlp_funky_nerdtree_include_files', 0)
-  call add(s:filter, { 'pattern': '\m\C^\s\+.\+$',
-                     \ 'filter': []})
-endif
+  " useful?
+  if get(g:, 'ctrlp_funky_nerdtree_include_files', 0)
+    call add(filters,
+          \ { 'pattern': '\m\C^\s\+.\+$',
+          \   'formatter': [] }
+    \ )
+  endif
 
-function! ctrlp#funky#nerdtree#apply_filter(bufnr)
-  return ctrlp#funky#abstract(a:bufnr, s:filter)
+  return filters
 endfunction
-
-function! ctrlp#funky#nerdtree#get_filter()
-  return s:filter
-endfunction
-

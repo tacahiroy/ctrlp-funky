@@ -2,18 +2,14 @@
 " Author: tokorom
 " License: The MIT License
 
-let s:filter = [{ 'pattern': '\m\C^\(-\|+\)\s*(\S\+)\s*.*',
-                \ 'filter': []}
-\ ]
+function! ctrlp#funky#objc#filters()
+  let filters = [
+        \ { 'pattern': '\m\C^\(-\|+\)\s*(\S\+)\s*.*',
+        \   'formatter': [] }
+  \ ]
 
-" Add the filter for cpp
-call extend(s:filter, ctrlp#funky#cpp#get_filter())
+  " Add the cpp filters
+  call extend(filters, ctrlp#funky#cpp#filters())
 
-function! ctrlp#funky#objc#apply_filter(bufnr)
-  return ctrlp#funky#abstract(a:bufnr, s:filter)
+  return filters
 endfunction
-
-function! ctrlp#funky#objc#get_filter()
-  return s:filter
-endfunction
-

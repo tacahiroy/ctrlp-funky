@@ -2,18 +2,13 @@
 " Author: Takahiro Yoshihara
 " License: The MIT License
 
-let s:filter = [{ 'pattern': '\m\C^#\{1,3}[\t ]\+\S\+',
-                \ 'filter': [] },
-              \ { 'pattern': '\m\C^[-=]\{3,}$',
-              \   'filter': [],
-              \   'offset': -1 }
-\ ]
-
-function! ctrlp#funky#markdown#apply_filter(bufnr)
-  return ctrlp#funky#abstract(a:bufnr, s:filter)
+function! ctrlp#funky#markdown#filters()
+  let filters = [
+        \ { 'pattern': '\m\C^#\{1,3}[\t ]\+\S\+',
+        \   'formatter': [] },
+        \ { 'pattern': '\m\C^[-=]\{3,}$',
+        \   'formatter': [],
+        \   'offset': -1 }
+  \ ]
+  return filters
 endfunction
-
-function! ctrlp#funky#markdown#get_filter()
-  return s:filter
-endfunction
-
