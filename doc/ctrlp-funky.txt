@@ -1,15 +1,16 @@
-*ctrlp-funky.txt*
+*ctrlp-funky.txt* *ctrlp-funky*
 A ctrlp.vim extension - pick out functions and/or something
-Version: 0.5.0
-Author:  Takahiro Yoshihara <http://github.com/tacahiroy>
+Version: 0.6.0
+Author:  Takahiro Yoshihara <https://github.com/tacahiroy>
 
 
 ==============================================================================
-CONTENTS					*funky-contents* *ctrlp-funky*
+CONTENTS					*ctrlp-funky-contents*
 
 |funky-intro|			Introduction
 |funky-commands|		Commands
 |funky-settings|		Settings
+|funky-filter-guide|		Filter Implementation Guide
 |funky-thanks|			Thanks
 |funky-changelog|		changelog
 |funky-license|			License
@@ -17,7 +18,7 @@ CONTENTS					*funky-contents* *ctrlp-funky*
 
 
 ==============================================================================
-INTRODUCTION					*funky-intro*
+INTRODUCTION					*ctrlp-funky-intro*
 
 ctrl-funky is an extension of ctrlp.vim.
 This supports following file types:
@@ -40,11 +41,11 @@ This supports following file types:
 
 
 ==============================================================================
-COMMANDS					*funky-commands*
+COMMANDS					*ctrlp-funky-commands*
 
 This plugin provides a command |:CtrlPFunky|. You just execute it.
 
-						*funky-:CtrlPFunky*
+						*ctrlp-funky-:CtrlPFunky*
 :CtrlPFunky [WORD]
 	Abstract lines from a current editing file.
 	You can provide an argument for the command. If it's provided you can
@@ -59,7 +60,7 @@ Defining a mapping for this command must be useful. >
 
 
 ==============================================================================
-SETTINGS					*funky-settings*
+SETTINGS					*ctrlp-funky-settings*
 You can customise the behaviour of ctrlp-funky using these variables.
 
 						*g:ctrlp_funky_sort_by_mru*
@@ -74,9 +75,8 @@ the buffer or once you quit Vim, order of the list is reset to default.
 <
 
 
-						*funky-chef*
-[chef]
-				*funky-chef-g:ctrlp_funky_chef_lwrp*
+[chef]					*ctrlp-funky-chef*
+					*'g:ctrlp_funky_chef_lwrp'*
 Set this to 1 (enabled) the results will include LWRP.
 http://docs.opscode.com/lwrp.html#opscode-maintained
 (default: 1)
@@ -84,7 +84,7 @@ http://docs.opscode.com/lwrp.html#opscode-maintained
 	let g:ctrlp_funky_chef_lwrp = 0
 <
 
-				*funky-chef-g:ctrlp_funky_chef_custom_resources*
+					*'g:ctrlp_funky_chef_custom_resources'*
 You can set Chef resources that you defined to this variable.
 The resources which are set to this variable will be picked up by |ctrlp-funky|.
 http://docs.opscode.com/resource.html#common-functionality
@@ -93,9 +93,8 @@ http://docs.opscode.com/resource.html#common-functionality
 	let g:ctrlp_funky_chef_custom_resources = ['rabbitmq', 'nodejs']
 <
 
-						*funky-php*
-[php]
-				*funky-php-g:ctrlp_funky_php_requires*
+[php]					*ctrlp-funky-php*
+					*'g:ctrlp_funky_php_requires'*
 Set this to 1 (enabled) the results will include 'require' and
 'require_once' lines.
 (default: 0)
@@ -103,7 +102,7 @@ Set this to 1 (enabled) the results will include 'require' and
 	let g:ctrlp_funky_php_requires = 1
 <
 
-				*funky-php-g:ctrlp_funky_php_includes*
+					*'g:ctrlp_funky_php_includes'*
 Set this to 1 (enabled) the results will include 'include' and
 'include_once' lines.
 (default: 0)
@@ -111,9 +110,8 @@ Set this to 1 (enabled) the results will include 'include' and
 	let g:ctrlp_funky_php_include = 1
 <
 
-						*funky-ruby*
-[ruby]
-				*funky-ruby-g:ctrlp_funky_ruby_requires*
+[ruby]					*ctrlp-funky-ruby*
+					*'g:ctrlp_funky_ruby_requires'*
 Set this to 1 (enabled) the results will include 'require' and
 'require_relative' lines.
 (default: 0)
@@ -121,40 +119,39 @@ Set this to 1 (enabled) the results will include 'require' and
 	let g:ctrlp_funky_ruby_requires = 1
 <
 
-				*funky-ruby-g:ctrlp_funky_ruby_classes*
+					*'g:ctrlp_funky_ruby_classes'*
 Set this to 1 (enabled) the results will include class definitions.
 (default: 1)
 >
 	let g:ctrlp_funky_ruby_classes = 0
 <
 
-				*funky-ruby-g:ctrlp_funky_ruby_modules*
+					*'g:ctrlp_funky_ruby_modules'*
 Set this to 1 (enabled) the results will include module definitions.
 (default: 1)
 >
 	let g:ctrlp_funky_ruby_modules = 0
 <
 
-				*funky-ruby-g:ctrlp_funky_ruby_contains_rake*
+					*'g:ctrlp_funky_ruby_contains_rake'*
 This option is no longer available. Use |g:ctrlp_funky_ruby_rake_words|
 instead. [OBSOLETE]
 
-				*funky-ruby-g:ctrlp_funky_ruby_rake_words*
+					*'g:ctrlp_funky_ruby_rake_words*
 Set this to 1 (enabled) 'rake' filter will be absorbed.
 (default: 0)
 >
 	let g:ctrlp_funky_ruby_rake_words = 1
 <
 
-				*funky-ruby-g:ctrlp_funky_ruby_chef_words*
+					*'g:ctrlp_funky_ruby_chef_words'*
 Set this to 1 (enabled) 'chef' filter will be absorbed.
 (default: 0)
 >
 	let g:ctrlp_funky_ruby_chef_words = 1
 <
-						*funky-sh*
-[sh]
-				*funky-sh-g:ctrlp_funky_sh_type*
+[sh]					*ctrlp-funky-sh*
+					*'g:ctrlp_funky_sh_type*
 In most of the case, '/bin/sh' is an alias (symlink) of an other shell such as
 bash, ksh etc nowadays. You can specify the Funky's internal filetype for 'sh'.
 If this is set to 'dash', the Funky treats 'sh' as 'dash'.
@@ -164,8 +161,39 @@ If this is set to 'dash', the Funky treats 'sh' as 'dash'.
 <
 
 
+FILTER IMPLEMENTATION GUIDE			*ctrlp-funky-filter-guide*
+This section describes how to implement your own filter.
+The internal API has been changed since |ctrlp-funky| version 0.6.0.
+Therefore, if the filter uses old API you would see a warning message.
+
+							*ctrlp-funky-api-v0.6.0*
+The filtype filter must have an |autoload| function named 'filters'.
+This 'filters' function must return a |List| which contains |Dictionaries|.
+And each |Dictionary| must have 'pattern' and 'formatter' as keys.
+
+This is a filter for filetype 'vim'.
+>
+  function! ctrlp#funky#vim#filters()
+    let filters = [
+          \ { 'pattern': '\m\C^[\t ]*function!\?[\t ]\+\S\+',
+          \   'formatter': ['\m\C^[\t ]*', '', ''] }
+    \ ]
+    return filters
+  endfunction
+<
+[Meaning of the filter's keys]
+String	pattern~
+  This is a regexp to extract function definitions.
+
+List	formatter~
+  |ctrlp-funky| formats each line that extracted from current buffer using
+  values of this item. Actually, these items are simply assigned as arguments
+  for |substitute()| function.
+  The sample function above removes leading whitespaces.
+
+
 ==============================================================================
-THANKS						*funky-thanks*
+THANKS						*ctrlp-funky-thanks*
 
   * *kien* <http://github.com/kien> - the author of ctrlp.vim
 
@@ -181,32 +209,35 @@ THANKS						*funky-thanks*
 
 
 ==============================================================================
-CHANGELOG 					*funky-changelog*
+CHANGELOG 					*ctrlp-funky-changelog*
 
-7 Sep. 2013~
+4 Oct 2013~
+  + Change internal API, though the old API still supported.
+
+7 Sept 2013~
   + Add MRU feature: |g:ctrlp_funky_sort_by_mru|
   + Add YAML support. (#20)
     by |dusans|
 
-30 Aug. 2013~
+30 Aug 2013~
   + Add javascript object function support. (#17)
     by |mephux|
 
-27 Aug. 2013~
+27 Aug 2013~
   + Fix "Pattern not found" line appears in the list
 
-15 Aug. 2013~
+15 Aug 2013~
   + Add support for Lua
     by |hlissner|
 
-9 Aug. 2013~
+9 Aug 2013~
   + New option: |g:ctrlp_funky_sh_type|
 
-25 Jun. 2013~
+25 Jun 2013~
   + Fix behaviour when buffer being opened in multiple (split) windows (#11)
   + Add multi-lined function def support in Python (#12)
 
-17 Jun. 2013~
+17 Jun 2013~
   + Add C support, improved C++ pattern.
     by |unc0|
 
@@ -221,58 +252,58 @@ CHANGELOG 					*funky-changelog*
   + Add support for php
     by |robmiller|
 
-25 Apr. 2013~
+25 Apr 2013~
   + New options: |g:ctrlp_funky_chef_custom_resources|
                  |g:ctrlp_funky_chef_lwrp|
 
-20 Apr. 2013~
+20 Apr 2013~
   + Add support for Chef recipe
 
-11 Apr. 2013~
+11 Apr 2013~
   + Fix regexp pattern for sh
 
-3 Apr. 2013~
+3 Apr 2013~
   + Add support for Visual Basic (vb)
 
-22 Mar. 2013~
+22 Mar 2013~
   + Add the command can take an argument for initialisation
 
-12 Feb. 2013~
+12 Feb 2013~
   + Add 'get_filter' method in each filter to disclose own filter
   + Add support for Objective-C (objc)
     by |tokorom|
 
-27 Jan. 2013~
+27 Jan 2013~
   + Add support for Shell Script (bash)
   + Add support for Z shell (zsh)
   - Delete all buffer mode
 
-21 Jan. 2013~
+21 Jan 2013~
 
   + New options: |g:ctrlp_funky_ruby_requires|,
                  |g:ctrlp_funky_ruby_classes|,
                  |g:ctrlp_funky_ruby_modules|,
                  |g:ctrlp_funky_ruby_contains_rake|
 
-20 Jan. 2013~
+20 Jan 2013~
   + Add class filter for python
     by |Benoit|
 
-14 Jan. 2013~
+14 Jan 2013~
   + Add support for javascript
     by |curist|
 
-06 Jun. 2012~
+06 Jun 2012~
   + Add support for python
   + Add support for C++ (cpp)
   + Add support for java
     by |pydave|
 
-Initial release: 25 Feb. 2012~
+Initial release: 25 Feb 2012~
 
 
 ==============================================================================
-LICENSE						*funky-license*
+LICENSE						*ctrlp-funky-license*
 
 |ctrlp-funky| is released under the MIT License.
 
@@ -298,7 +329,7 @@ SOFTWARE.
 
 
 ==============================================================================
-ABOUT                                           *funky-about*
+ABOUT                                           *ctrlp-funky-about*
 
 The latest version is available on GitHub:
 
