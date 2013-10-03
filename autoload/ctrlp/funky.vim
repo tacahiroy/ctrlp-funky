@@ -19,9 +19,6 @@ let s:sort_by_mru = get(g:, 'ctrlp_funky_sort_by_mru', 0)
 let s:mru = {}
 let s:mru.buffers = {}
 
-" cache
-let s:filters = {}
-
 function! s:mru.index(bufnr, def)
   return index(self.buffers[a:bufnr], a:def)
 endfunction
@@ -34,6 +31,25 @@ function! s:mru.prioritise(bufnr, def)
   call insert(self.buffers[a:bufnr], a:def, 0)
 endfunction
 " }}}
+
+" Object: s:cache {{{
+let s:cache = {}
+let s:cache.filetypes = {}
+
+function! s:cache.is_cached(ft)
+  return has_key(self.filetypes, a:ft)
+endfunction
+
+function! s:cache.get(ft)
+  return self.filetypes[a:ft]
+endfunction
+
+function! s:cache.save(ft, filters)
+  let self.filetypes[a:ft] = a:filters
+endfunction
+" }}}
+
+let s:errmsg = ''
 
 " The main variable for this extension.
 "
@@ -53,6 +69,7 @@ call add(g:ctrlp_ext_vars, {
   \ 'lname':  'funky',
   \ 'sname':  'fky',
   \ 'type':   'line',
+  \ 'exit':  'ctrlp#funky#exit()',
   \ 'sort':   0
   \ })
 
@@ -77,6 +94,29 @@ function! s:has_filter(ft)
   return !empty(globpath(&runtimepath, func))
 endfunction
 
+function! s:filters_by_filetype(ft, bufnr)
+  let filters = []
+
+  try
+    if s:cache.is_cached(a:ft)
+      return s:cache.get(a:ft)
+    else
+      " NOTE: new API since v0.6.0
+      let filters = ctrlp#funky#{a:ft}#filters()
+    endif
+  catch /^Vim\%((\a\+)\)\=:E117/ " E117: Unknown function
+    let s:errmsg = v:exception . ':' .
+          \ 'Since ctrlp-funky v0.6.0 the internal API has been changed. ' .
+          \ 'See :h funky-api'
+    " NOTE: old API will be supported until v0.7.0
+    let filters = ctrlp#funky#{a:ft}#get_filter()
+  endtry
+
+  call s:cache.save(a:ft, filters)
+
+  return filters
+endfunction
+
 " Provide a list of strings to search in
 "
 " Return: List
@@ -92,19 +132,8 @@ function! ctrlp#funky#init(bufnr)
     let candidates = []
     for ft in s:filetypes(a:bufnr)
       if s:has_filter(ft)
-        try
-          if has_key(s:filters, ft)
-            let filters = s:filters[ft]
-          else
-            let filters = ctrlp#funky#{ft}#filters()
-            let s:filters[ft] = filters
-          endif
-        catch /^Vim\%((\a\+)\)\=:E117/ " E117: Unknown function
-          echoerr v:exception . ':'
-                \ 'Since ctrlp-funky v0.6.0 the internal API has been changed. '
-                \ 'See :h funky-api'
-        endtry
-        let candidates += ctrlp#funky#abstract(a:bufnr, filters)
+        let filters = s:filters_by_filetype(ft, a:bufnr)
+        let candidates += ctrlp#funky#extract(a:bufnr, filters)
       elseif s:report_filter_error
         echoerr printf('%s: filters not exist', ft)
       endif
@@ -138,7 +167,7 @@ function! ctrlp#funky#funky(word)
 endfunction
 
 " todo: needs to improved. 'if s:sort_by_mru' too much
-function! ctrlp#funky#abstract(bufnr, patterns)
+function! ctrlp#funky#extract(bufnr, patterns)
   try
     let candidates = []
     let ctrlp_winnr = bufwinnr(bufnr(''))
@@ -161,7 +190,9 @@ function! ctrlp#funky#abstract(bufnr, patterns)
 
       if ilist !~# '\n\(E486: \)\?Pattern not found:'
         for l in split(ilist, '\n')
-          let [pat, str, flags] = [get(c.formatter, 0, ''), get(c.formatter, 1, ''), get(c.formatter, 2, '')]
+          " NOTE: until v0.7.0 both old and new API will be supported
+          let formatter = has_key(c, 'formatter') ? c.formatter : c.filter
+          let [pat, str, flags] = [get(formatter, 0, ''), get(formatter, 1, ''), get(formatter, 2, '')]
           let filtered = substitute(l, pat, str, flags)
 
           if s:sort_by_mru
@@ -185,6 +216,11 @@ function! ctrlp#funky#abstract(bufnr, patterns)
   finally
     execute ctrlp_winnr . 'wincmd w'
   endtry
+endfunction
+
+" OLD API: this will be supported until v0.7.0
+function! ctrlp#funky#abstract(bufnr, patterns)
+  return ctrlp#funky#extract(a:bufnr, a:patterns)
 endfunction
 
 function! s:definition(line)
@@ -221,6 +257,10 @@ function! ctrlp#funky#accept(mode, str)
   if !s:sort_by_mru | return | endif
 
   call s:mru.prioritise(bufnr, s:definition(a:str))
+endfunction
+
+function!ctrlp#funky#exit()
+  if !empty(s:errmsg) | call s:error(s:errmsg) | endif
 endfunction
 
 " Give the extension an ID
