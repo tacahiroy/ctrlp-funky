@@ -1,6 +1,6 @@
 *ctrlp-funky.txt* *ctrlp-funky*
 A ctrlp.vim extension - pick out functions and/or something
-Version: 0.6.1
+Version: 0.6.2
 Author:  Takahiro Yoshihara <https://github.com/tacahiroy>
 
 
@@ -32,6 +32,7 @@ This supports following file types:
 * markdown
 * nerdtree
 * objc
+* perl
 * php
 * python
 * ruby
@@ -214,6 +215,7 @@ CHANGELOG 					*ctrlp-funky-changelog*
 
 8 Oct 2013~
   + Add Go support
+  + Add Perl support
 
 4 Oct 2013~
   + Change internal API, though the old API still supported.

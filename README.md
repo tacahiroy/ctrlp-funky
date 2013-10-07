@@ -20,6 +20,7 @@ This supports following filetypes:
 * markdown
 * nerdtree
 * objc
+* perl
 * php
 * python
 * ruby
