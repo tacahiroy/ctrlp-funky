@@ -11,7 +11,7 @@ class Funky(Vim, CtrlP):
     def funk():
         print "funk"
 
-    def sturday(night, fever):
+    def saturday(night, fever):
         print "dancing"
 
     def sleeping(on,
