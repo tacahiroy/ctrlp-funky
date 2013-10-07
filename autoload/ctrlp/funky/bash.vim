@@ -9,3 +9,7 @@ function! ctrlp#funky#bash#filters()
   \ ]
   return filters
 endfunction
+
+function! ctrlp#funky#bash#is_kinda_sh()
+  return 1
+endfunction

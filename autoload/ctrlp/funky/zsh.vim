@@ -13,3 +13,7 @@ function! ctrlp#funky#zsh#filters()
 
   return filters
 endfunction
+
+function! ctrlp#funky#zsh#is_kinda_sh()
+  return 1
+endfunction
