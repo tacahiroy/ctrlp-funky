@@ -1,20 +1,20 @@
 *ctrlp-funky.txt* *ctrlp-funky*
 A ctrlp.vim extension - pick out functions and/or something
-Version: 0.6.0
+Version: 0.6.1
 Author:  Takahiro Yoshihara <https://github.com/tacahiroy>
 
 
 ==============================================================================
 CONTENTS					*ctrlp-funky-contents*
 
-|funky-intro|			Introduction
-|funky-commands|		Commands
-|funky-settings|		Settings
-|funky-filter-guide|		Filter Implementation Guide
-|funky-thanks|			Thanks
-|funky-changelog|		changelog
-|funky-license|			License
-|funky-about|			About
+|ctrlp-funky-intro|		Introduction
+|ctrlp-funky-commands|		Commands
+|ctrlp-funky-settings|		Settings
+|ctrlp-funky-filter-guide|	Filter Implementation Guide
+|ctrlp-funky-thanks|		Thanks
+|ctrlp-funky-changelog|		changelog
+|ctrlp-funky-license|		License
+|ctrlp-funky-about|		About
 
 
 ==============================================================================
@@ -25,6 +25,7 @@ This supports following file types:
 
 * c/c++
 * chef (resources)
+* go
 * java
 * javascript
 * lua
@@ -210,6 +211,9 @@ THANKS						*ctrlp-funky-thanks*
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+8 Oct 2013~
+  + Add Go support
 
 4 Oct 2013~
   + Change internal API, though the old API still supported.
