@@ -1,6 +1,6 @@
 *ctrlp-funky.txt* *ctrlp-funky*
 A ctrlp.vim extension - pick out functions and/or something
-Version: 0.6.2
+Version: 0.6.3
 Author:  Takahiro Yoshihara <https://github.com/tacahiroy>
 
 
@@ -212,6 +212,9 @@ THANKS						*ctrlp-funky-thanks*
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+15 Oct 2013~
+  + Fix javascript: 1 character function name isn't detected problem
 
 8 Oct 2013~
   + Add Go support
