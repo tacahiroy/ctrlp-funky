@@ -70,6 +70,7 @@ call add(g:ctrlp_ext_vars, {
   \ 'sname':  'fky',
   \ 'type':   'line',
   \ 'exit':  'ctrlp#funky#exit()',
+  \ 'nolim':  1,
   \ 'sort':   0
   \ })
 
