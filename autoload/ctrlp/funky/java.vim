@@ -18,3 +18,7 @@ function! ctrlp#funky#java#filters()
   \ ]
   return filters
 endfunction
+
+function! ctrlp#funky#java#post_extract_hook(list)
+  call filter(a:list, "v:val !~# '^[\\t ]*else[\\t ]\\+if'")
+endfunction
