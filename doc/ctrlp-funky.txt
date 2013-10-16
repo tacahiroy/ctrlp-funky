@@ -1,6 +1,6 @@
 *ctrlp-funky.txt* *ctrlp-funky*
 A ctrlp.vim extension - pick out functions and/or something
-Version: 0.6.3
+Version: 0.6.4
 Author:  Takahiro Yoshihara <https://github.com/tacahiroy>
 
 
@@ -212,6 +212,10 @@ THANKS						*ctrlp-funky-thanks*
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+16 Oct 2013~
+  + Add post_extract_hook support
+  + Fix java: remove 'else if' from the list
 
 15 Oct 2013~
   + Fix javascript: 1 character function name isn't detected problem
