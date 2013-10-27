@@ -261,6 +261,9 @@ function! ctrlp#funky#accept(mode, str)
   let lnum = matchstr(a:str, '\d\+$')
   execute get(s:, 'winnr', 1) . 'wincmd w'
   call setpos('.', [bufnr, lnum, 1, 0])
+  if &foldenable && &foldmethod == 'syntax' && &foldlevel == 0
+    normal zxzz
+  endif
 
   if !s:sort_by_mru | return | endif
 
