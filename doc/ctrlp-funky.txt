@@ -161,6 +161,32 @@ If this is set to 'dash', the Funky treats 'sh' as 'dash'.
 >
 	let g:ctrlp_funky_sh_type = 'ksh'
 <
+					*'g:ctrlp_funky_after_jump'*
+After cursor jumped to your wanted function line, what did you frequently tap
+before getting into real work? 'zo', 'zx', 'zxzt', or 'zvzz' etc.
+The valid action string consist of two part: 
+    The first part can be one of  'zx', 'zv', 'zo', 'zO' for setting fold
+    view. If 'foldenable' if off, then this part has no effect.  The second
+    part can be one of 'zt', 'zz' for scrolling screen.
+Both of they can be '', which means nothing will be done.
+The |g:ctrlp_funky_after_jump| can be a single sting:
+>
+       let g:ctrlp_funky_after_jump = 'zxzt'
+<
+which affects all filetypes, or it can be a dictionary as follows:
+>
+       let g:ctrlp_funky_after_jump = {
+            \ 'default' : 'zxzz',
+            \ 'python'  : 'zO',
+            \ 'cpp'     : 'zxzt',
+            \ 'go'      : 'zz',
+            \ 'vim'     : '',
+       \ }
+<
+
+(default: 'zxzz')
+>
+	let g:ctrlp_funky_ruby_modules = 0
 
 
 FILTER IMPLEMENTATION GUIDE			*ctrlp-funky-filter-guide*
