@@ -262,28 +262,24 @@ function! ctrlp#funky#accept(mode, str)
   execute get(s:, 'winnr', 1) . 'wincmd w'
   call setpos('.', [bufnr, lnum, 1, 0])
 
-  call s:after_jump()
+  call ctrlp#funky#after_jump()
 
   if !s:sort_by_mru | return | endif
 
   call s:mru.prioritise(bufnr, s:definition(a:str))
 endfunction
 
-function! s:after_jump()
-  let fold_pat = 'z[xoOv]'
-  let scroll_pat = '[-]\?\(\d\{1,2}\)[%]\?'
-  let pattern = '^\m\C' .
-        \ '\(' . fold_pat . '\)\?' .
-        \ '\(' . scroll_pat . '\)\?'
-  let after_jump = get(g:, 'ctrlp_funky_after_jump', 'zx50%')
+function! ctrlp#funky#after_jump()
+  let pattern = '^\m\C\(z[xoOv]\)\?\(z[zt]\)\?$'
+  let after_jump = get(g:, 'ctrlp_funky_after_jump', 'zxzz')
 
-  " get setting.
+  " parse setting.
   if empty(after_jump)
     return
   elseif type(after_jump) == type('')
-    let action = after_jump
+    let to_normal = after_jump
   elseif type(after_jump) == type({})
-    let action = get(after_jump, &filetype,
+    let to_normal = get(after_jump, &filetype,
           \ get(after_jump, 'default', 'zxzz')
           \ )
   else
@@ -291,37 +287,22 @@ function! s:after_jump()
     return
   endif
 
-  if empty(action) | return | endif
+  if empty(to_normal) | return | endif
 
   " verify action string pattern.
-  if action !~ pattern
-    echoerr 'Invalid content in g:ctrlp_funcky_after_jump, need "z[xov][0~99]%"'
+  if to_normal !~ pattern
+    echoerr 'Invalid content in g:ctrlp_funcky_after_jump, need "z[xov]z[zt]"'
     return
   else
-    let [fold, scroll, digit] = matchlist(action, pattern)[1:3]
+    let matched = matchlist(to_normal, pattern)
+    let [foldview, scrolling] = matched[:1]
   endif
 
-  " adjust fold if necessary.
-  if !empty(fold) && (&foldenable) && foldlevel(line('.')) != 0
-    execute 'normal! ' . fold . '0'
+  if !&foldenable || foldlevel(line('.')) == 0
+    let to_normal = scrolling
   endif
 
-  " adjust cursorline's screen position.
-  if empty(scroll) | return | endif
-
-  let height = winheight(0)
-
-  if scroll[-1:-1] == '%'
-    let cnt = scroll[:-2]
-    let cnt = float2nr(height * (0.01 * digit))
-  else
-    let cnt = scroll
-  endif
-
-  let cnt = (height + cnt) % height
-
-  normal! zt
-  silent! execute 'normal! ' . cnt . "\<C-Y>"
+  silent! execute 'normal! ' . to_normal . '0'
 endfunction
 
 function!ctrlp#funky#exit()
