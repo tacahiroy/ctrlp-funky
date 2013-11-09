@@ -13,6 +13,7 @@ One of the advantages of this plugin is you needn't to generate tags file to jum
 This supports following filetypes:
 * c/c++
 * chef
+* coffee-script
 * go
 * java
 * javascript
