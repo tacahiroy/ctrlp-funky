@@ -1,6 +1,6 @@
 *ctrlp-funky.txt* *ctrlp-funky*
 A ctrlp.vim extension - pick out functions and/or something
-Version: 0.6.4
+Version: 0.6.5
 Author:  Takahiro Yoshihara <https://github.com/tacahiroy>
 
 
@@ -208,10 +208,15 @@ THANKS						*ctrlp-funky-thanks*
   * *hlissner*  <https://github.com/hlissner>
   * *mephux*    <https://github.com/mephux>
   * *dusans*    <https://github.com/dusans>
+  * *kirstein*  <https://github.com/kirstein>
 
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+9 Nov 2013~
+  + Add coffee-script support. (#23)
+    by |kirstein|
 
 16 Oct 2013~
   + Add post_extract_hook support
