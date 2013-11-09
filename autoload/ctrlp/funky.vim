@@ -279,7 +279,6 @@ function! s:after_jump()
 
   " get setting.
   if empty(after_jump)
-    echoerr 'Oops, empty'
     return
   elseif type(after_jump) == type('')
     let action = after_jump
@@ -300,7 +299,6 @@ function! s:after_jump()
     return
   else
     let [fold, scroll, digit] = matchlist(action, pattern)[1:3]
-    echo [fold, scroll, digit]
   endif
 
   " adjust fold if necessary.
