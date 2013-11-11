@@ -262,14 +262,14 @@ function! ctrlp#funky#accept(mode, str)
   execute get(s:, 'winnr', 1) . 'wincmd w'
   call setpos('.', [bufnr, lnum, 1, 0])
 
-  call ctrlp#funky#after_jump()
+  call s:after_jump()
 
   if !s:sort_by_mru | return | endif
 
   call s:mru.prioritise(bufnr, s:definition(a:str))
 endfunction
 
-function! ctrlp#funky#after_jump()
+function! s:after_jump()
   let pattern = '^\m\C\(z[xoOv]\)\?\(z[zt]\)\?$'
   let after_jump = get(g:, 'ctrlp_funky_after_jump', 'zxzz')
 
@@ -277,9 +277,9 @@ function! ctrlp#funky#after_jump()
   if empty(after_jump)
     return
   elseif type(after_jump) == type('')
-    let to_normal = after_jump
+    let action = after_jump
   elseif type(after_jump) == type({})
-    let to_normal = get(after_jump, &filetype,
+    let action = get(after_jump, &filetype,
           \ get(after_jump, 'default', 'zxzz')
           \ )
   else
