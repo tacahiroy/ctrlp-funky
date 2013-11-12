@@ -287,22 +287,22 @@ function! s:after_jump()
     return
   endif
 
-  if empty(to_normal) | return | endif
+  if empty(action) | return | endif
 
   " verify action string pattern.
-  if to_normal !~ pattern
+  if action !~ pattern
     echoerr 'Invalid content in g:ctrlp_funcky_after_jump, need "z[xov]z[zt]"'
     return
   else
-    let matched = matchlist(to_normal, pattern)
+    let matched = matchlist(action, pattern)
     let [foldview, scrolling] = matched[:1]
   endif
 
   if !&foldenable || foldlevel(line('.')) == 0
-    let to_normal = scrolling
+    let action = scrolling
   endif
 
-  silent! execute 'normal! ' . to_normal . '0'
+  silent! execute 'normal! ' . action . '0'
 endfunction
 
 function!ctrlp#funky#exit()
