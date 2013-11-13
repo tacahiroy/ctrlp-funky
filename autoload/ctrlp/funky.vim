@@ -295,7 +295,7 @@ function! s:after_jump()
     return
   else
     let matched = matchlist(action, pattern)
-    let [foldview, scrolling] = matched[:1]
+    let [foldview, scrolling] = matched[1:2]
   endif
 
   if !&foldenable || foldlevel(line('.')) == 0
