@@ -262,9 +262,47 @@ function! ctrlp#funky#accept(mode, str)
   execute get(s:, 'winnr', 1) . 'wincmd w'
   call setpos('.', [bufnr, lnum, 1, 0])
 
+  call s:after_jump()
+
   if !s:sort_by_mru | return | endif
 
   call s:mru.prioritise(bufnr, s:definition(a:str))
+endfunction
+
+function! s:after_jump()
+  let pattern = '^\m\C\(z[xoOv]\)\?\(z[zt]\)\?$'
+  let after_jump = get(g:, 'ctrlp_funky_after_jump', 'zxzz')
+
+  " parse setting.
+  if empty(after_jump)
+    return
+  elseif type(after_jump) == type('')
+    let action = after_jump
+  elseif type(after_jump) == type({})
+    let action = get(after_jump, &filetype,
+          \ get(after_jump, 'default', 'zxzz')
+          \ )
+  else
+    echoerr 'Invalid type for g:ctrlp_funky_after_jump, need a string or dict'
+    return
+  endif
+
+  if empty(action) | return | endif
+
+  " verify action string pattern.
+  if action !~ pattern
+    echoerr 'Invalid content in g:ctrlp_funcky_after_jump, need "z[xov]z[zt]"'
+    return
+  else
+    let matched = matchlist(action, pattern)
+    let [foldview, scrolling] = matched[1:2]
+  endif
+
+  if !&foldenable || foldlevel(line('.')) == 0
+    let action = scrolling
+  endif
+
+  silent! execute 'normal! ' . action . '0'
 endfunction
 
 function!ctrlp#funky#exit()
