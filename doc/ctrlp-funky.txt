@@ -1,6 +1,6 @@
 *ctrlp-funky.txt* *ctrlp-funky*
 A ctrlp.vim extension - pick out functions and/or something
-Version: 0.6.5
+Version: 0.7.0
 Author:  Takahiro Yoshihara <https://github.com/tacahiroy>
 
 
@@ -75,6 +75,31 @@ the buffer or once you quit Vim, order of the list is reset to default.
 >
 	let g:ctrlp_funky_sort_by_mru = 1
 <
+
+					*'g:ctrlp_funky_after_jump'*
+After cursor jumped to your wanted function line, what did you frequently tap
+before getting into real work? '|zo|', '|zx|', '|zx||zt|', or '|zv||zz|' etc.
+The valid action string consists of two part:
+    The first part can be one of  '|zx|', '|zv|', '|zo|' or '|zO|' for setting fold
+    view. If |foldenable| if off, then this part has no effect.  The second
+    part can be one of '|zt|', '|zz|' for scrolling screen.
+Both of they can be '', which means nothing will be done.
+The |g:ctrlp_funky_after_jump| can be a single string:
+(default: 'zxzz')
+>
+       let g:ctrlp_funky_after_jump = 'zxzt'
+<
+which affects all filetypes, or it can be a dictionary as follows:
+>
+       let g:ctrlp_funky_after_jump = {
+            \ 'default' : 'zxzz',
+            \ 'python'  : 'zO',
+            \ 'cpp'     : 'zxzt',
+            \ 'go'      : 'zz',
+            \ 'vim'     : '',
+       \ }
+<
+If you want to leave some 'margin' after 'z[tb]', see |scrolloff| .
 
 
 [chef]					*ctrlp-funky-chef*
@@ -161,31 +186,6 @@ If this is set to 'dash', the Funky treats 'sh' as 'dash'.
 >
 	let g:ctrlp_funky_sh_type = 'ksh'
 <
-					*'g:ctrlp_funky_after_jump'*
-After cursor jumped to your wanted function line, what did you frequently tap
-before getting into real work? 'zo', 'zx', 'zxzt', or 'zvzz' etc.
-The valid action string consist of two part:
-    The first part can be one of  'zx', 'zv', 'zo', 'zO' for setting fold
-    view. If 'foldenable' if off, then this part has no effect.  The second
-    part can be one of 'zt', 'zz' for scrolling screen.
-Both of they can be '', which means nothing will be done.
-The |g:ctrlp_funky_after_jump| can be a single sting:
->
-       let g:ctrlp_funky_after_jump = 'zxzt'
-<
-which affects all filetypes, or it can be a dictionary as follows:
->
-       let g:ctrlp_funky_after_jump = {
-            \ 'default' : 'zxzz',
-            \ 'python'  : 'zO',
-            \ 'cpp'     : 'zxzt',
-            \ 'go'      : 'zz',
-            \ 'vim'     : '',
-       \ }
-<
-if you want to leave some 'margin' after 'z[tb]', see *'scrolloff'* .
-(default: 'zxzz')
-
 
 FILTER IMPLEMENTATION GUIDE			*ctrlp-funky-filter-guide*
 This section describes how to implement your own filter.
