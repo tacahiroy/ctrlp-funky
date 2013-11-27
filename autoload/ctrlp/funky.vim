@@ -102,20 +102,12 @@ endfunction
 function! s:filters_by_filetype(ft, bufnr)
   let filters = []
 
-  try
-    if s:cache.is_cached(a:ft)
-      return s:cache.get(a:ft)
-    else
-      " NOTE: new API since v0.6.0
-      let filters = ctrlp#funky#{a:ft}#filters()
-    endif
-  catch /^Vim\%((\a\+)\)\=:E117/ " E117: Unknown function
-    let s:errmsg = v:exception . ':' .
-          \ 'Since ctrlp-funky v0.6.0 the internal API has been changed. ' .
-          \ 'See :h funky-api'
-    " NOTE: old API will be supported until v0.7.0
-    let filters = ctrlp#funky#{a:ft}#get_filter()
-  endtry
+  if s:cache.is_cached(a:ft)
+    return s:cache.get(a:ft)
+  else
+    " NOTE: new API since v0.6.0
+    let filters = ctrlp#funky#{a:ft}#filters()
+  endif
 
   call s:cache.save(a:ft, filters)
 
@@ -198,8 +190,7 @@ function! ctrlp#funky#extract(bufnr, patterns)
 
       if ilist !~# '\n\(E486: \)\?Pattern not found:'
         for l in split(ilist, '\n')
-          " NOTE: until v0.7.0 both old and new API will be supported
-          let formatter = has_key(c, 'formatter') ? c.formatter : c.filter
+          let formatter = c.formatter
           let [pat, str, flags] = [get(formatter, 0, ''), get(formatter, 1, ''), get(formatter, 2, '')]
           let filtered = substitute(l, pat, str, flags)
 
@@ -224,11 +215,6 @@ function! ctrlp#funky#extract(bufnr, patterns)
   finally
     execute ctrlp_winnr . 'wincmd w'
   endtry
-endfunction
-
-" OLD API: this will be supported until v0.7.0
-function! ctrlp#funky#abstract(bufnr, patterns)
-  return ctrlp#funky#extract(a:bufnr, a:patterns)
 endfunction
 
 function! s:definition(line)

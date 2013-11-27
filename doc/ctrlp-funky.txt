@@ -1,6 +1,6 @@
 *ctrlp-funky.txt* *ctrlp-funky*
-A ctrlp.vim extension - pick out functions and/or something
-Version: 0.7.0
+A ctrlp.vim extension - navigate and jump to function defs
+Version: 0.7.1
 Author:  Takahiro Yoshihara <https://github.com/tacahiroy>
 
 
@@ -190,7 +190,7 @@ If this is set to 'dash', the Funky treats 'sh' as 'dash'.
 FILTER IMPLEMENTATION GUIDE			*ctrlp-funky-filter-guide*
 This section describes how to implement your own filter.
 The internal API has been changed since |ctrlp-funky| version 0.6.0.
-Therefore, if the filter uses old API you would see a warning message.
+Therefore, if the filter uses old API you may get an error.
 
 							*ctrlp-funky-api-v0.6.0*
 The filtype filter must have an |autoload| function named 'filters'.
@@ -238,8 +238,11 @@ THANKS						*ctrlp-funky-thanks*
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
 
+27 Nov 2013~
+  + 0.7.1: Remove the old API
+
 9 Nov 2013~
-  + Add coffee-script support. (#23)
+  + 0.7.0: Add coffee-script support. (#23)
     by |kirstein|
 
 16 Oct 2013~
