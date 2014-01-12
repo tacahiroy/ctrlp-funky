@@ -10,7 +10,7 @@ One of the advantages of this plugin is you needn't to generate tags file to jum
 
 ![ctrlp-funky][1]
 
-This supports following filetypes:
+Currently, following filetypes are supported:
 * c/c++
 * chef
 * coffee-script
@@ -39,22 +39,20 @@ Otherwise, you need to install it before start installing this plugin.
 
 INSTALLATION
 ----------
-If you use [Vundle](https://github.com/gmarik/vundle.git) you can install this plugin using following Vim command:
+### [Vundle](https://github.com/gmarik/vundle.git)
 
     :BundleInstall tacahiroy/ctrlp-funky
 
 In addition, don't forget put a line `Bundle 'tacahiroy/ctrlp-funky'` into your _.vimrc_.
 
-If you use [pathogen.vim](https://github.com/tpope/vim-pathogen), you just execute following to install the plugin:
+### [pathogen.vim](https://github.com/tpope/vim-pathogen)
 
-    cd ~/.vim/bundle
-    git clone git://github.com/tacahiroy/ctrlp-funky.git
+    $ cd ~/.vim/bundle
+    $ git clone git://github.com/tacahiroy/ctrlp-funky.git
 
-You don't use either plugin management systems, copy _autoload_ and _plugin_ directory to your _.vim_ directory.
-
-By default:
-- \*nix: $HOME/.vim
-- Windows: $HOME/vimfiles
+### Manually
+If you don't use either plugin management systems, copy _autoload_ and _plugin_ directory to your _.vim_ directory.
+On Windows, _vimfiles_ directory is used instead of _.vim_ directory.
 
 
 CONFIGURATION
