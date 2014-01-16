@@ -120,6 +120,14 @@ http://docs.opscode.com/resource.html#common-functionality
 	let g:ctrlp_funky_chef_custom_resources = ['rabbitmq', 'nodejs']
 <
 
+[nerdtree]					*ctrlp-funky-nerdtree*
+					*'g:ctrlp_funky_nerdtree_include_files'*
+Set this to 1 (enabled) the results will include files.
+(default: 0)
+>
+	let g:ctrlp_funky_nerdtree_include_files = 1
+<
+
 [php]					*ctrlp-funky-php*
 					*'g:ctrlp_funky_php_requires'*
 Set this to 1 (enabled) the results will include 'require' and
