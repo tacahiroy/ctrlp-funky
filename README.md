@@ -43,7 +43,9 @@ INSTALLATION
 
     :BundleInstall tacahiroy/ctrlp-funky
 
-In addition, don't forget put a line `Bundle 'tacahiroy/ctrlp-funky'` into your _.vimrc_.
+In addition, don't forget put a line below into your _.vimrc_.
+
+    Bundle 'tacahiroy/ctrlp-funky'
 
 ### [pathogen.vim](https://github.com/tpope/vim-pathogen)
 
@@ -63,7 +65,7 @@ You need to make the plugin available as a ctrlp.vim extension. Please add *funk
 
 Reboot Vim and then you can use `:CtrlPFunky` command.
 
-It might be useful mapping like these:
+It might be useful mapping like:
 
     nnoremap <Leader>fu :CtrlPFunky<Cr>
     " narrow the list down with a word under cursor
@@ -80,7 +82,7 @@ LINK
 LICENSE
 -------
 
-Copyright (C) 2012-2013 Takahiro Yoshihara. Distributed under the MIT License.
+Copyright (C) 2012-2014 Takahiro Yoshihara. Distributed under the MIT License.
 
 [1]: http://i.imgur.com/yO4PWAF.png
 
