@@ -29,6 +29,14 @@ function! ctrlp#funky#ruby#filters()
     \ )
   endif
 
+  if get(g:, 'ctrlp_funky_ruby_access', 1)
+    call extend(filters, [
+          \ { 'pattern': '\m\C^[\t ]*\(private\|protected\|public\)[\t ]*$',
+          \   'formatter': ['\S\+', '&', ''] }]
+    \ )
+    call ctrlp#funky#highlight('[^\t ]*\(private\|protected\|public\)', 'CtrlPFunkyRubyAccess', 'String')
+  endif
+
   if get(g:, 'ctrlp_funky_ruby_rake_words', 1)
     call extend(filters, [
           \ { 'pattern': '\m\C^[\t ]*task[\t ]\+\S\+',
