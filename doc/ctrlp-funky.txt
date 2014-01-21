@@ -223,8 +223,8 @@ This is a filter for filetype 'vim'.
     \ ]
 
     " You can highlight whatever in the ctrlp.vim window if you want
-    call ctrlp#funky#syntax('^[\t ]*function[\t ]',
-                          \ 'CtrlPFunkyVimFunc', 'Function')
+    call ctrlp#funky#highlight('^[\t ]*function[\t ]',
+                             \ 'CtrlPFunkyVimFunc', 'Function')
 
     return filters
   endfunction
