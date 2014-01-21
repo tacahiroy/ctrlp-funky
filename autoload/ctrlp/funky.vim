@@ -15,6 +15,8 @@ let s:report_filter_error = get(g:, 'ctrlp_funky_report_filter_error', 0)
 let s:winnr = -1
 let s:sort_by_mru = get(g:, 'ctrlp_funky_sort_by_mru', 0)
 
+let s:custom_hl_list = {}
+
 " Object: s:mru {{{
 let s:mru = {}
 let s:mru.buffers = {}
@@ -78,6 +80,11 @@ function! s:syntax()
   if !ctrlp#nosy()
     call ctrlp#hicheck('CtrlPTabExtra', 'Comment')
     syn match CtrlPTabExtra '\t#.*:\d\+:\d\+$'
+
+    for [k,v] in items(s:custom_hl_list)
+      call ctrlp#hicheck(k, v.to_group)
+      execute printf('syn match %s "%s"', k, v.pat)
+    endfor
   endif
 endfunction
 
@@ -300,6 +307,10 @@ let s:id = g:ctrlp_builtins + len(g:ctrlp_ext_vars)
 " Allow it to be called later
 function! ctrlp#funky#id()
   return s:id
+endfunction
+
+function ctrlp#funky#highlight(pat, from_group, to_group)
+  let s:custom_hl_list[a:from_group] = { 'pat': a:pat, 'to_group': a:to_group }
 endfunction
 
 let &cpo = s:saved_cpo
