@@ -1,6 +1,6 @@
 *ctrlp-funky.txt* *ctrlp-funky*
 A ctrlp.vim extension - navigate and jump to function defs
-Version: 0.7.1
+Version: 0.8.0
 Author:  Takahiro Yoshihara <https://github.com/tacahiroy>
 
 
@@ -185,6 +185,14 @@ Set this to 1 (enabled) 'chef' filter will be absorbed.
 >
 	let g:ctrlp_funky_ruby_chef_words = 1
 <
+
+					*'g:ctrlp_funky_ruby_access'*
+Set this to 1 (enabled) the result will be included access modifiers such as
+private, protected and public.
+(default: 1)
+>
+	let g:ctrlp_funky_ruby_chef_words = 1
+<
 [sh]					*ctrlp-funky-sh*
 					*'g:ctrlp_funky_sh_type*
 In most of the case, '/bin/sh' is an alias (symlink) of an other shell such as
@@ -200,7 +208,8 @@ This section describes how to implement your own filter.
 The internal API has been changed since |ctrlp-funky| version 0.6.0.
 Therefore, if the filter uses old API you may get an error.
 
-							*ctrlp-funky-api-v0.6.0*
+						*ctrlp-funky-api-v0.6.0*
+						*ctrlp-funky-create-own-filter*
 The filtype filter must have an |autoload| function named 'filters'.
 This 'filters' function must return a |List| which contains |Dictionaries|.
 And each |Dictionary| must have 'pattern' and 'formatter' as keys.
@@ -212,6 +221,11 @@ This is a filter for filetype 'vim'.
           \ { 'pattern': '\m\C^[\t ]*function!\?[\t ]\+\S\+',
           \   'formatter': ['\m\C^[\t ]*', '', ''] }
     \ ]
+
+    " You can highlight whatever in the ctrlp.vim window if you want
+    call ctrlp#funky#syntax('^[\t ]*function[\t ]',
+                          \ 'CtrlPFunkyVimFunc', 'Function')
+
     return filters
   endfunction
 <
@@ -245,6 +259,9 @@ THANKS						*ctrlp-funky-thanks*
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+22 Jan 2014~
+  + 0.8.0: Add ability to custom highlight
 
 27 Nov 2013~
   + 0.7.1: Remove the old API
