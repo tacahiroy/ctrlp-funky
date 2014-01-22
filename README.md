@@ -1,6 +1,6 @@
 ctrlp-funky
 ============
-
+Very simple function nativator for ctrlp.vim.
 
 SYNOPSIS
 ----------
