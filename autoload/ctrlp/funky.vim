@@ -253,6 +253,7 @@ function! ctrlp#funky#accept(mode, str)
   let bufnr = matchstr(a:str, '\d\+\ze:\d\+$')
   let lnum = matchstr(a:str, '\d\+$')
   execute get(s:, 'winnr', 1) . 'wincmd w'
+  normal! m`
   call setpos('.', [bufnr, lnum, 1, 0])
 
   call s:after_jump()
