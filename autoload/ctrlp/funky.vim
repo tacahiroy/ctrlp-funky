@@ -14,6 +14,8 @@ set cpo&vim
 let s:report_filter_error = get(g:, 'ctrlp_funky_report_filter_error', 0)
 let s:winnr = -1
 let s:sort_by_mru = get(g:, 'ctrlp_funky_sort_by_mru', 0)
+" 1: set the same filetype as source buffer
+let s:syntax_highlight = get(g:, 'ctrlp_funky_syntax_highlight', 0)
 
 let s:custom_hl_list = {}
 
@@ -76,7 +78,7 @@ call add(g:ctrlp_ext_vars, {
   \ 'sort':   0
   \ })
 
-function! s:syntax()
+function! s:syntax(filetype)
   if !ctrlp#nosy()
     call ctrlp#hicheck('CtrlPTabExtra', 'Comment')
     syn match CtrlPTabExtra '\t#.*:\d\+:\d\+$'
@@ -85,6 +87,8 @@ function! s:syntax()
       call ctrlp#hicheck(k, v.to_group)
       execute printf('syn match %s "%s"', k, v.pat)
     endfor
+
+    if s:syntax_highlight | let &filetype = a:filetype | endif
   endif
 endfunction
 
@@ -93,8 +97,8 @@ function! s:error(msg)
     let v:errmsg  = a:msg
 endfunction
 
-function! s:filetypes(bufnr)
-  return split(getbufvar(a:bufnr, '&l:filetype'), '\.')
+function! s:filetype(bufnr)
+  return getbufvar(a:bufnr, '&l:filetype')
 endfunction
 
 function! s:has_filter(ft)
@@ -132,9 +136,10 @@ function! ctrlp#funky#init(bufnr)
     let ctrlp_winnr = bufwinnr(bufnr(''))
     execute bufwinnr(a:bufnr) . 'wincmd w'
     let pos = getpos('.')
+    let filetype = s:filetype(a:bufnr)
 
     let candidates = []
-    for ft in s:filetypes(a:bufnr)
+    for ft in split(filetype, '\.')
       if s:has_filter(ft)
         let filters = s:filters_by_filetype(ft, a:bufnr)
         let candidates += ctrlp#funky#extract(a:bufnr, filters)
@@ -149,7 +154,7 @@ function! ctrlp#funky#init(bufnr)
     call setpos('.', pos)
 
     execute ctrlp_winnr . 'wincmd w'
-    call s:syntax()
+    call s:syntax(filetype)
 
     return candidates
   finally

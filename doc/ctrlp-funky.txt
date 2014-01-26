@@ -1,20 +1,21 @@
 *ctrlp-funky.txt* *ctrlp-funky*
 A ctrlp.vim extension - navigate and jump to function defs
-Version: 0.8.0
+Version: 0.8.1
 Author:  Takahiro Yoshihara <https://github.com/tacahiroy>
 
 
 ==============================================================================
 CONTENTS					*ctrlp-funky-contents*
 
-|ctrlp-funky-intro|		Introduction
-|ctrlp-funky-commands|		Commands
-|ctrlp-funky-settings|		Settings
-|ctrlp-funky-filter-guide|	Filter Implementation Guide
-|ctrlp-funky-thanks|		Thanks
-|ctrlp-funky-changelog|		changelog
-|ctrlp-funky-license|		License
-|ctrlp-funky-about|		About
+Introduction			|ctrlp-funky-intro|
+Commands			|ctrlp-funky-commands|
+Settings			|ctrlp-funky-settings|
+  Filetype Settings		|ctrlp-funky-filtype-settings|
+Filter Implementation Guide	|ctrlp-funky-filter-guide|
+Thanks				|ctrlp-funky-thanks|
+changelog			|ctrlp-funky-changelog|
+License				|ctrlp-funky-license|
+About				|ctrlp-funky-about|
 
 
 ==============================================================================
@@ -63,18 +64,7 @@ Defining a mapping for this command must be useful. >
 
 ==============================================================================
 SETTINGS					*ctrlp-funky-settings*
-You can customise the behaviour of ctrlp-funky using these variables.
-
-						*g:ctrlp_funky_sort_by_mru*
-If this is enabled (=1) the list is sorted by MRU (most recently used).
-In short, a function definition what was used last time is appeared on top of
-the list.
-Note that the MRU feature doesn't work persistently. Therefore if you delete
-the buffer or once you quit Vim, order of the list is reset to default.
-(default: 0)
->
-	let g:ctrlp_funky_sort_by_mru = 1
-<
+You can customise behaviour of ctrlp-funky using these variables.
 
 					*'g:ctrlp_funky_after_jump'*
 After cursor jumped to your wanted function line, what did you frequently tap
@@ -99,7 +89,31 @@ which affects all filetypes, or it can be a dictionary as follows:
             \ 'vim'     : '',
        \ }
 <
-If you want to leave some 'margin' after 'z[tb]', see |scrolloff| .
+If you want to leave some 'margin' after 'z[tb]', see |scrolloff|.
+
+
+					*'g:ctrlp_funky_sort_by_mru'*
+If this is enabled (=1) the list is sorted by MRU (most recently used).
+In short, a function definition what was used last time is appeared on top of
+the list.
+Note that the MRU feature doesn't work persistently. Therefore if you delete
+the buffer or once you quit Vim, order of the list is reset to default.
+(default: 0)
+>
+	let g:ctrlp_funky_sort_by_mru = 1
+<
+
+
+					*'g:ctrlp_funky_syntax_highlight'*
+If this is enabled (=1) |syntax-highlighting| feature is enabled in the CtrlP-
+buffer. It just sets |filetype| to CtrlP buffer same as the current buffer.
+(default: 0)
+>
+	let g:ctrlp_funky_syntax_highlight = 1
+<
+
+FILETYPE SETTINGS			*ctrlp-funky-filetype-settings*
+This section describes ctrlp-funky configuration for each filetype.
 
 
 [chef]					*ctrlp-funky-chef*
@@ -120,7 +134,7 @@ http://docs.opscode.com/resource.html#common-functionality
 	let g:ctrlp_funky_chef_custom_resources = ['rabbitmq', 'nodejs']
 <
 
-[nerdtree]					*ctrlp-funky-nerdtree*
+[nerdtree]				*ctrlp-funky-nerdtree*
 					*'g:ctrlp_funky_nerdtree_include_files'*
 Set this to 1 (enabled) the results will include files.
 (default: 0)
@@ -259,6 +273,11 @@ THANKS						*ctrlp-funky-thanks*
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+26 Jan 2014~
+  + 0.8.1: Add syntax highlight option: |g:ctrlp_funky_syntax_highlight|
+           An idea from issue #25.
+
 
 22 Jan 2014~
   + 0.8.0: Add ability to custom highlight
