@@ -14,6 +14,8 @@ set cpo&vim
 let s:report_filter_error = get(g:, 'ctrlp_funky_report_filter_error', 0)
 let s:winnr = -1
 let s:sort_by_mru = get(g:, 'ctrlp_funky_sort_by_mru', 0)
+" after jump action
+let s:after_jump = get(g:, 'ctrlp_funky_after_jump', 'zxzz')
 " 1: set the same filetype as source buffer
 let s:syntax_highlight = get(g:, 'ctrlp_funky_syntax_highlight', 0)
 
@@ -124,6 +126,45 @@ function! s:filters_by_filetype(ft, bufnr)
 
   return filters
 endfunction
+
+" It does an action after jump to a definition such as 'zxzz'
+" In most of cases, this is used for opening folds.
+"
+function! s:after_jump()
+  let pattern = '^\m\C\(z[xoOv]\)\?\(z[zt]\)\?$'
+
+  " parse setting.
+  if empty(s:after_jump)
+    return
+  elseif type(s:after_jump) == type('')
+    let action = s:after_jump
+  elseif type(s:after_jump) == type({})
+    let action = get(s:after_jump, &filetype,
+                                 \ get(s:after_jump, 'default', 'zxzz')
+    \ )
+  else
+    echoerr 'Invalid type for g:ctrlp_funky_after_jump, need a string or dict'
+    return
+  endif
+
+  if empty(action) | return | endif
+
+  " verify action string pattern.
+  if action !~ pattern
+    echoerr 'Invalid content in g:ctrlp_funcky_after_jump, need "z[xov]z[zt]"'
+    return
+  else
+    let matched = matchlist(action, pattern)
+    let [foldview, scrolling] = matched[1:2]
+  endif
+
+  if !&foldenable || foldlevel(line('.')) == 0
+    let action = scrolling
+  endif
+
+  silent! execute 'normal! ' . action . '0'
+endfunction
+
 
 " Provide a list of strings to search in
 "
@@ -265,42 +306,6 @@ function! ctrlp#funky#accept(mode, str)
   if !s:sort_by_mru | return | endif
 
   call s:mru.prioritise(bufnr, s:definition(a:str))
-endfunction
-
-function! s:after_jump()
-  let pattern = '^\m\C\(z[xoOv]\)\?\(z[zt]\)\?$'
-  let after_jump = get(g:, 'ctrlp_funky_after_jump', 'zxzz')
-
-  " parse setting.
-  if empty(after_jump)
-    return
-  elseif type(after_jump) == type('')
-    let action = after_jump
-  elseif type(after_jump) == type({})
-    let action = get(after_jump, &filetype,
-          \ get(after_jump, 'default', 'zxzz')
-          \ )
-  else
-    echoerr 'Invalid type for g:ctrlp_funky_after_jump, need a string or dict'
-    return
-  endif
-
-  if empty(action) | return | endif
-
-  " verify action string pattern.
-  if action !~ pattern
-    echoerr 'Invalid content in g:ctrlp_funcky_after_jump, need "z[xov]z[zt]"'
-    return
-  else
-    let matched = matchlist(action, pattern)
-    let [foldview, scrolling] = matched[1:2]
-  endif
-
-  if !&foldenable || foldlevel(line('.')) == 0
-    let action = scrolling
-  endif
-
-  silent! execute 'normal! ' . action . '0'
 endfunction
 
 function!ctrlp#funky#exit()
