@@ -59,7 +59,7 @@ On Windows, _vimfiles_ directory is used instead of _.vim_ directory.
 
 
 CONFIGURATION
-----------
+--------------
 You need to make the plugin available as a ctrlp.vim extension. Please add *funky* to a variable `g:ctrlp_extensions`.
 
     let g:ctrlp_extensions = ['funky']
@@ -73,8 +73,23 @@ It might be useful mapping like:
     nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 
 
+SYNTAX HIGHLIGHT (experimental)
+-------
+I'd like to introduce one of ctrlp-funky options.
+Do you want to make ctrlp-funky more funky? Okay - you can do it just 1 line config.
+```vim
+let g:ctrlp_funky_syntax_highlight = 1
+```
+![funky-syntax][2]
+
+Note that this feature doesn't work perfectly, because ctrlp-funky just sets
+filetype to the funky buffer and the buffer contains '>' in the first column.
+In some filetypes, this sign has special meaning such as HTML tag, so it breaks
+syntax highlighting.
+
+
 LINK
---------------
+-------
 
 * [kien/ctrlp.vim](https://github.com/kien/ctrlp.vim)
 * [vim.org/ctrlp-funky](http://www.vim.org/scripts/script.php?script_id=4592)
@@ -86,4 +101,4 @@ LICENSE
 Copyright (C) 2012-2014 Takahiro Yoshihara. Distributed under the MIT License.
 
 [1]: http://i.imgur.com/yO4PWAF.png
-
+[2]: http://i.imgur.com/CnKui5H.png
