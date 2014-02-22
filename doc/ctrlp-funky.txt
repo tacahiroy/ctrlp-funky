@@ -399,7 +399,7 @@ Initial release: 25 Feb 2012~
 ==============================================================================
 LICENSE						*ctrlp-funky-license*
 
-|ctrlp-funky| is released under the MIT License.
+|ctrlp-funky| is distributed under the MIT License.
 
 Copyright (c) 2012-2014 Takahiro Yoshihara
 
