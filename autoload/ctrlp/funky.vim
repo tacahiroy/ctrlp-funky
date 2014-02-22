@@ -319,7 +319,7 @@ function! ctrlp#funky#id()
   return s:id
 endfunction
 
-function ctrlp#funky#highlight(pat, from_group, to_group)
+function! ctrlp#funky#highlight(pat, from_group, to_group)
   let s:custom_hl_list[a:from_group] = { 'pat': a:pat, 'to_group': a:to_group }
 endfunction
 
