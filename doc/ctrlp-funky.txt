@@ -1,6 +1,6 @@
 *ctrlp-funky.txt* *ctrlp-funky*
 A ctrlp.vim extension - navigate and jump to function defs
-Version: 0.8.1
+Version: 0.8.2
 Author:  Takahiro Yoshihara <https://github.com/tacahiroy>
 
 
@@ -24,22 +24,23 @@ INTRODUCTION					*ctrlp-funky-intro*
 ctrl-funky is an extension of ctrlp.vim.
 This supports following file types:
 
-* c/c++
+* c/cpp (C and C++)
 * chef (resources)
 * go
+* html/xhtml
 * java
 * javascript
 * lua
 * markdown
 * nerdtree
-* objc
+* objc (Objective-C)
 * perl
 * php
 * python
 * ruby
 * sh (bash, dash and zsh)
 * yaml
-* vb
+* vb (Visual Basic)
 * vim
 
 
@@ -269,15 +270,19 @@ THANKS						*ctrlp-funky-thanks*
   * *mephux*    <https://github.com/mephux>
   * *dusans*    <https://github.com/dusans>
   * *kirstein*  <https://github.com/kirstein>
+  * *mmazer*    <https://github.com/mmazer>
 
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
 
+22 Feb 2014~
+  + 0.8.2: Add html and xhtml support. (#28)
+    by |mmazer|
+
 26 Jan 2014~
   + 0.8.1: Add syntax highlight option: |g:ctrlp_funky_syntax_highlight|
            An idea from issue #25.
-
 
 22 Jan 2014~
   + 0.8.0: Add ability to custom highlight

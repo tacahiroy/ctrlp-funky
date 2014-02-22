@@ -11,23 +11,24 @@ One of the advantages of this plugin is you needn't to generate tags file to jum
 ![ctrlp-funky][1]
 
 Currently, following filetypes are supported:
-* c/c++
+* c/cpp (C/C++)
 * chef
 * coffee-script
 * go
+* html/xhtml
 * java
 * javascript
 * lua
 * markdown
 * nerdtree
-* objc
+* objc (Objective-C)
 * perl
 * php
 * python
 * ruby
 * sh (bash, dash and zsh)
 * yaml
-* vb
+* vb (Visual Basic)
 * vim
 
 
