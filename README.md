@@ -73,7 +73,7 @@ It might be useful mapping like:
     nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 
 
-SYNTAX HIGHLIGHT (experimental)
+SYNTAX HIGHLIGHTING (experimental)
 -------
 I'd like to introduce one of ctrlp-funky options.
 Do you want to make ctrlp-funky more funky? Okay - you can do it just 1 line config.
