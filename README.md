@@ -18,6 +18,7 @@ Currently, following filetypes are supported:
 * html/xhtml
 * java
 * javascript
+* jinja
 * lua
 * markdown
 * nerdtree

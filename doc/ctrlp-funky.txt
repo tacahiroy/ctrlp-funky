@@ -30,6 +30,7 @@ This supports following file types:
 * html/xhtml
 * java
 * javascript
+* jinja
 * lua
 * markdown
 * nerdtree
