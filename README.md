@@ -77,7 +77,7 @@ It might be useful mapping like:
 SYNTAX HIGHLIGHTING (experimental)
 -------
 I'd like to introduce one of ctrlp-funky options.
-Do you want to make ctrlp-funky more funky? Okay - you can do it just 1 line config.
+Do you want to make ctrlp-funky funkier? Okay - you can do it just 1 line config.
 ```vim
 let g:ctrlp_funky_syntax_highlight = 1
 ```
