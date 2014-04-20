@@ -1,6 +1,6 @@
 *ctrlp-funky.txt* *ctrlp-funky*
 A ctrlp.vim extension - navigate and jump to function defs
-Version: 0.8.2
+Version: 0.8.4
 Author:  Takahiro Yoshihara <https://github.com/tacahiroy>
 
 
@@ -272,10 +272,19 @@ THANKS						*ctrlp-funky-thanks*
   * *dusans*    <https://github.com/dusans>
   * *kirstein*  <https://github.com/kirstein>
   * *mmazer*    <https://github.com/mmazer>
+  * *vitalk*    <https://github.com/vitalk>
 
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+20 Apr 2014~
+  + 0.8.4: Fix performance issue for python (#30)
+    by |dusans|
+
+10 Mar 2014~
+  + 0.8.3: Add Jinja template support. (#29)
+    by |vitalk|
 
 22 Feb 2014~
   + 0.8.2: Add html and xhtml support. (#28)
