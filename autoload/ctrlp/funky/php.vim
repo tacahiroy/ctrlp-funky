@@ -4,7 +4,7 @@
 
 function! ctrlp#funky#php#filters()
   let filters = [
-        \ { 'pattern': '\v\s*function\s+\w.+\s*\(',
+        \ { 'pattern': '\v^\s*\w*\s*function\s+[&]*\w+\s*\(',
         \   'formatter': ['\m\C^[\t ]*', '', ''] }
   \ ]
 
