@@ -1,5 +1,6 @@
 " Language: Python (python)
 " Author: pydave
+" Contributor: dusans
 " License: The MIT License
 
 function! ctrlp#funky#python#filters()
