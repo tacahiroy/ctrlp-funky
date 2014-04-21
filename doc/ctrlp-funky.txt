@@ -261,22 +261,28 @@ THANKS						*ctrlp-funky-thanks*
 
   * *kien* <http://github.com/kien> - the author of ctrlp.vim
 
-  * *pydave*    <https://github.com/pydave>
-  * *curist*    <https://github.com/curist>
-  * *Benoit*    <https://github.com/saalaa>
-  * *tokorom*   <https://github.com/tokorom>
-  * *robmiller* <https://github.com/robmiller>
-  * *unc0*      <https://github.com/unc0>
-  * *hlissner*  <https://github.com/hlissner>
-  * *mephux*    <https://github.com/mephux>
-  * *dusans*    <https://github.com/dusans>
-  * *kirstein*  <https://github.com/kirstein>
-  * *mmazer*    <https://github.com/mmazer>
-  * *vitalk*    <https://github.com/vitalk>
+  * *pydave*      <https://github.com/pydave>
+  * *curist*      <https://github.com/curist>
+  * *Benoit*      <https://github.com/saalaa>
+  * *tokorom*     <https://github.com/tokorom>
+  * *robmiller*   <https://github.com/robmiller>
+  * *unc0*        <https://github.com/unc0>
+  * *hlissner*    <https://github.com/hlissner>
+  * *mephux*      <https://github.com/mephux>
+  * *dusans*      <https://github.com/dusans>
+  * *kirstein*    <https://github.com/kirstein>
+  * *mmazer*      <https://github.com/mmazer>
+  * *vitalk*      <https://github.com/vitalk>
+  * *dingmingxin* <https://github.com/dingmingxin>
 
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+
+22 Apr 2014~
+  + Add support for returning by reference function for PHP (#31)
+    by |dingmingxin|
 
 20 Apr 2014~
   + 0.8.4: Fix performance issue for python (#30)
