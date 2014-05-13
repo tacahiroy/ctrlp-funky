@@ -243,9 +243,10 @@ function! ctrlp#funky#extract(bufnr, patterns)
 
       if ilist !~# '\n\(E486: \)\?Pattern not found:'
         for l in split(ilist, '\n')
+          let [left, right] = split(l, '\ze \t#:\d\+:\d\+')
           let formatter = c.formatter
           let [pat, str, flags] = [get(formatter, 0, ''), get(formatter, 1, ''), get(formatter, 2, '')]
-          let filtered = substitute(l, pat, str, flags)
+          let filtered = substitute(left, pat, str, flags) . right
 
           if s:sort_by_mru
             let pos = s:mru.index(a:bufnr, s:definition(filtered))
