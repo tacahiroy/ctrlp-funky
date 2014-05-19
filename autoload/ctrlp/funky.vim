@@ -29,6 +29,7 @@ let s:mru = {}
 let s:mru.buffers = {}
 
 function! s:mru.index(bufnr, def)
+  if !has_key(self.buffers, a:bufnr) | return -1 | endif
   return index(self.buffers[a:bufnr], a:def)
 endfunction
 
@@ -157,6 +158,7 @@ call add(g:ctrlp_ext_vars, {
   \ 'sort':   0
   \ })
 
+" script funcs {{{
 function! s:syntax(filetype)
   if !ctrlp#nosy()
     call ctrlp#hicheck('CtrlPTabExtra', 'Comment')
@@ -177,7 +179,7 @@ function! s:error(msg)
 endfunction
 
 function! s:debug(msg)
-  if s:debug | echom string(a:msg) | endif
+  if s:debug | echomsg '[DEBUG]' . string(a:msg) | endif
 endfunction
 
 function! s:filetype(bufnr)
@@ -246,6 +248,10 @@ function! s:after_jump()
   silent! execute 'normal! ' . action . '0'
 endfunction
 
+function! s:esc_regex(r)
+  return escape(a:r, '[]')
+endfunction
+" }}}
 
 " Provide a list of strings to search in
 "
@@ -308,16 +314,29 @@ function! ctrlp#funky#extract(bufnr, patterns)
     let candidates = []
     let ctrlp_winnr = bufwinnr(bufnr(''))
 
-    " the file hasn't been changed since cached
-    if s:cache.is_same_file(a:bufnr)
-      return s:cache.load(a:bufnr)
-    endif
-
-    execute bufwinnr(a:bufnr) . 'wincmd w'
-
     if s:sort_by_mru && !has_key(s:mru.buffers, a:bufnr)
       let s:mru.buffers[a:bufnr] = []
     endif
+
+    " the file hasn't been changed since cached
+    if s:cache.is_same_file(a:bufnr)
+      let ca = s:cache.load(a:bufnr)
+      if s:sort_by_mru
+        let prior = []
+        for v in s:mru.buffers[a:bufnr]
+          let pos = match(ca, '\m' . s:esc_regex(v) . '\t#')
+          if pos >= 0
+            call add(prior, get(ca, pos, []))
+            call remove(ca, pos)
+          endif
+        endfor
+        let ca = prior + ca
+        call s:cache.save(a:bufnr, ca)
+      endif
+      return ca
+    endif
+
+    execute bufwinnr(a:bufnr) . 'wincmd w'
 
     let mru = []
 
@@ -363,6 +382,10 @@ endfunction
 
 function! s:definition(line)
   return matchstr(a:line, '^.*\ze\t#')
+endfunction
+
+function! s:buflnum(line)
+  return matchstr(a:line, '\zs\t#.\+$')
 endfunction
 
 function! s:sort_candidates(a, b)
