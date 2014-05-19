@@ -18,6 +18,9 @@ let s:sort_by_mru = get(g:, 'ctrlp_funky_sort_by_mru', 0)
 let s:after_jump = get(g:, 'ctrlp_funky_after_jump', 'zxzz')
 " 1: set the same filetype as source buffer
 let s:syntax_highlight = get(g:, 'ctrlp_funky_syntax_highlight', 0)
+let s:cache_dir = get(g:, 'ctrlp_funky_cache_dir', expand('$HOME/.cache/ctrlp-funky'))
+
+let s:debug = get(g:, 'ctrlp_funky_debug', 0)
 
 let s:custom_hl_list = {}
 
@@ -38,20 +41,94 @@ function! s:mru.prioritise(bufnr, def)
 endfunction
 " }}}
 
-" Object: s:cache {{{
-let s:cache = {}
-let s:cache.filetypes = {}
+" Object: s:filters {{{
+let s:filters = {}
+let s:filters.filetypes = {}
 
-function! s:cache.is_cached(ft)
+function! s:filters.is_cached(ft)
   return has_key(self.filetypes, a:ft)
 endfunction
 
-function! s:cache.get(ft)
+function! s:filters.load(ft)
   return self.filetypes[a:ft]
 endfunction
 
-function! s:cache.save(ft, filters)
+function! s:filters.save(ft, filters)
   let self.filetypes[a:ft] = a:filters
+endfunction
+" }}}
+
+" FIXME: to be configurable
+if !isdirectory(s:cache_dir)
+  try
+    call mkdir(s:cache_dir, 'p')
+  catch /^Vim\%((\a\+)\)\=:E739/
+    echoerr 'ERR: cannot create a directory - ' . s:cache_dir
+    finish
+  endtry
+endif
+
+" Object: s:cache {{{
+let s:cache = {}
+let s:cache.list = {}
+
+function! s:cache.fname(bufnr, ...)
+  let path = fnamemodify(bufname(a:bufnr), ':p')
+  if a:0
+    if a:1 == 'f'
+      " file name only
+      return fnamemodify(path, ':p:t')
+    elseif a:1 == 'd'
+      " dir name only
+      return fnamemodify(path, ':p:h')
+    endif
+  endif
+  return path
+endfunction
+
+function! s:cache.save(bufnr, defs)
+  let h = sha256(string(getbufline(bufname(a:bufnr), 1, '$')))
+  let fname = self.fname(a:bufnr)
+  " save function defs
+  let self.list[fname] = extend([h], a:defs)
+  call writefile(self.list[fname], s:cache_dir . '/' . self.conv_name(fname))
+endfunction
+
+function! s:cache.conv_name(name)
+  return substitute(a:name, '[\/]', '%', 'g')
+endfunction
+
+function! s:cache.load(bufnr)
+  call self.read(a:bufnr)
+  " first line is hash value
+  return self.list[self.fname(a:bufnr)][1:-1]
+endfunction
+
+function! s:cache.path(fname)
+  return s:cache_dir . '/' . self.conv_name(a:fname)
+endfunction
+
+function! s:cache.read(bufnr)
+  let fname = self.fname(a:bufnr)
+  let cache_file = self.path(fname)
+  if empty(get(self.list, fname, {}))
+    let self.list[fname] = []
+    if filereadable(cache_file)
+      let self.list[fname] = readfile(cache_file)
+    endif
+  endif
+endfunction
+
+function! s:cache.is_same_file(bufnr)
+  let prev_hash = self.hash(a:bufnr)
+  let cur_hash = sha256(string(getbufline(bufname(a:bufnr), 1, '$')))
+  return prev_hash == cur_hash
+endfunction
+
+function! s:cache.hash(bufnr)
+  call self.read(a:bufnr)
+  let fname = self.fname(a:bufnr)
+  return get(get(self.list, fname, []), 0, '')
 endfunction
 " }}}
 
@@ -99,6 +176,10 @@ function! s:error(msg)
     let v:errmsg  = a:msg
 endfunction
 
+function! s:debug(msg)
+  if s:debug | echom string(a:msg) | endif
+endfunction
+
 function! s:filetype(bufnr)
   return getbufvar(a:bufnr, '&l:filetype')
 endfunction
@@ -115,14 +196,14 @@ endfunction
 function! s:filters_by_filetype(ft, bufnr)
   let filters = []
 
-  if s:cache.is_cached(a:ft)
-    return s:cache.get(a:ft)
+  if s:filters.is_cached(a:ft)
+    return s:filters.load(a:ft)
   else
     " NOTE: new API since v0.6.0
     let filters = ctrlp#funky#{a:ft}#filters()
   endif
 
-  call s:cache.save(a:ft, filters)
+  call s:filters.save(a:ft, filters)
 
   return filters
 endfunction
@@ -183,7 +264,9 @@ function! ctrlp#funky#init(bufnr)
     for ft in split(filetype, '\.')
       if s:has_filter(ft)
         let filters = s:filters_by_filetype(ft, a:bufnr)
+        let st = reltime()
         let candidates += ctrlp#funky#extract(a:bufnr, filters)
+        call s:debug('Extract: ' . reltimestr(reltime(st)))
         if s:has_post_extract_hook(ft)
           call ctrlp#funky#{ft}#post_extract_hook(candidates)
         endif
@@ -225,6 +308,11 @@ function! ctrlp#funky#extract(bufnr, patterns)
     let candidates = []
     let ctrlp_winnr = bufwinnr(bufnr(''))
 
+    " the file hasn't been changed since cached
+    if s:cache.is_same_file(a:bufnr)
+      return s:cache.load(a:bufnr)
+    endif
+
     execute bufwinnr(a:bufnr) . 'wincmd w'
 
     if s:sort_by_mru && !has_key(s:mru.buffers, a:bufnr)
@@ -264,6 +352,8 @@ function! ctrlp#funky#extract(bufnr, patterns)
 
     let sorted = sort(candidates, function('s:sort_candidates'))
     let prior = map(sort(mru, function('s:sort_mru')), 'v:val[0]')
+
+    call s:cache.save(a:bufnr, prior + sorted)
 
     return prior + sorted
   finally
