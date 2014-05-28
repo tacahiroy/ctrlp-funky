@@ -4,7 +4,7 @@
 
 function! ctrlp#funky#markdown#filters()
   let filters = [
-        \ { 'pattern': '\m\C^#\{1,3}[\t ]\+\S\+',
+        \ { 'pattern': '\m\C^#\{1,6}[\t ]\+\S\+',
         \   'formatter': [] },
         \ { 'pattern': '\m\C^[-=]\{3,}$',
         \   'formatter': [],
