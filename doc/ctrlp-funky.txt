@@ -1,6 +1,6 @@
 *ctrlp-funky.txt* *ctrlp-funky*
 A ctrlp.vim extension - navigate and jump to function defs
-Version: 0.8.4
+Version: 0.8.5
 Author:  Takahiro Yoshihara <https://github.com/tacahiroy>
 
 
@@ -274,11 +274,21 @@ THANKS						*ctrlp-funky-thanks*
   * *mmazer*      <https://github.com/mmazer>
   * *vitalk*      <https://github.com/vitalk>
   * *dingmingxin* <https://github.com/dingmingxin>
+  * *dictav*      <https://github.com/dictav>
+  * *axehead*     <https://github.com/axehead>
 
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
 
+30 May 2014~
+  + 0.8.5: php - Add support for extra keywords, final, static etc. (#35)
+    by |axehead|
+
+28 May 2014~
+  + Fix error a markdown file contains YAML Front matter (#36)
+    reported by |dictav|
+  + markdown: Add h4 to h6 support
 
 22 Apr 2014~
   + Add support for returning by reference function for PHP (#31)
