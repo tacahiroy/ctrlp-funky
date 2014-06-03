@@ -73,23 +73,9 @@ endif
 let s:cache = {}
 let s:cache.list = {}
 
-function! s:cache.fname(bufnr, ...)
-  let path = fnamemodify(bufname(a:bufnr), ':p')
-  if a:0
-    if a:1 == 'f'
-      " file name only
-      return fnamemodify(path, ':p:t')
-    elseif a:1 == 'd'
-      " dir name only
-      return fnamemodify(path, ':p:h')
-    endif
-  endif
-  return path
-endfunction
-
 function! s:cache.save(bufnr, defs)
   let h = s:timesize(a:bufnr)
-  let fname = self.fname(a:bufnr)
+  let fname = s:fname(a:bufnr)
   " save function defs
   let self.list[fname] = extend([h], a:defs)
   call writefile(self.list[fname], s:cache_dir . '/' . self.conv_name(fname))
@@ -102,7 +88,7 @@ endfunction
 function! s:cache.load(bufnr)
   call self.read(a:bufnr)
   " first line is hash value
-  return self.list[self.fname(a:bufnr)][1:-1]
+  return self.list[s:fname(a:bufnr)][1:-1]
 endfunction
 
 function! s:cache.path(fname)
@@ -110,7 +96,7 @@ function! s:cache.path(fname)
 endfunction
 
 function! s:cache.read(bufnr)
-  let fname = self.fname(a:bufnr)
+  let fname = s:fname(a:bufnr)
   let cache_file = self.path(fname)
   if empty(get(self.list, fname, {}))
     let self.list[fname] = []
@@ -129,7 +115,7 @@ endfunction
 
 function! s:cache.timesize(bufnr)
   call self.read(a:bufnr)
-  let fname = self.fname(a:bufnr)
+  let fname = s:fname(a:bufnr)
   return get(get(self.list, fname, []), 0, '')
 endfunction
 " }}}
@@ -253,12 +239,26 @@ function! s:esc_regex(r)
   return escape(a:r, '[]')
 endfunction
 
+function! s:fname(bufnr, ...)
+  let path = fnamemodify(bufname(a:bufnr), ':p')
+  if a:0
+    if a:1 == 'f'
+      " file name only
+      return fnamemodify(path, ':p:t')
+    elseif a:1 == 'd'
+      " dir name only
+      return fnamemodify(path, ':p:h')
+    endif
+  endif
+  return path
+endfunction
+
 function! s:ftime(bufnr)
-  return getftime(fnamemodify(bufname(a:bufnr), ':p'))
+  return getftime(s:fname(a:bufnr))
 endfunction
 
 function! s:fsize(bufnr)
-  return getfsize(fnamemodify(bufname(a:bufnr), ':p'))
+  return getfsize(s:fname(a:bufnr))
 endfunction
 
 function! s:timesize(bufnr)
