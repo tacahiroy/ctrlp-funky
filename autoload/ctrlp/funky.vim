@@ -88,7 +88,7 @@ function! s:cache.fname(bufnr, ...)
 endfunction
 
 function! s:cache.save(bufnr, defs)
-  let h = sha256(string(getbufline(bufname(a:bufnr), 1, '$')))
+  let h = s:timesize(a:bufnr)
   let fname = self.fname(a:bufnr)
   " save function defs
   let self.list[fname] = extend([h], a:defs)
@@ -121,12 +121,13 @@ function! s:cache.read(bufnr)
 endfunction
 
 function! s:cache.is_same_file(bufnr)
-  let prev_hash = self.hash(a:bufnr)
-  let cur_hash = sha256(string(getbufline(bufname(a:bufnr), 1, '$')))
-  return prev_hash == cur_hash
+  let prev = self.timesize(a:bufnr)
+  let cur = s:timesize(a:bufnr)
+  call s:debug(prev . ' = ' . cur)
+  return prev == cur
 endfunction
 
-function! s:cache.hash(bufnr)
+function! s:cache.timesize(bufnr)
   call self.read(a:bufnr)
   let fname = self.fname(a:bufnr)
   return get(get(self.list, fname, []), 0, '')
@@ -250,6 +251,18 @@ endfunction
 
 function! s:esc_regex(r)
   return escape(a:r, '[]')
+endfunction
+
+function! s:ftime(bufnr)
+  return getftime(fnamemodify(bufname(a:bufnr), ':p'))
+endfunction
+
+function! s:fsize(bufnr)
+  return getfsize(fnamemodify(bufname(a:bufnr), ':p'))
+endfunction
+
+function! s:timesize(bufnr)
+  return string(s:ftime(a:bufnr)) . string(s:fsize(a:bufnr))
 endfunction
 " }}}
 
