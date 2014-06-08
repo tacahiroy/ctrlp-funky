@@ -11,18 +11,28 @@ let g:loaded_ctrlp_funky = 1
 let s:saved_cpo = &cpo
 set cpo&vim
 
-let s:report_filter_error = get(g:, 'ctrlp_funky_report_filter_error', 0)
-let s:winnr = -1
-let s:sort_by_mru = get(g:, 'ctrlp_funky_sort_by_mru', 0)
-" after jump action
-let s:after_jump = get(g:, 'ctrlp_funky_after_jump', 'zxzz')
-" 1: set the same filetype as source buffer
-let s:syntax_highlight = get(g:, 'ctrlp_funky_syntax_highlight', 0)
-let s:cache_dir = get(g:, 'ctrlp_funky_cache_dir', expand('$HOME/.cache/ctrlp-funky'))
-
-let s:debug = get(g:, 'ctrlp_funky_debug', 0)
-
-let s:custom_hl_list = {}
+" The main variable for this extension.
+"
+" The values are:
+" + the name of the input function (including the brackets and any argument)
+" + the name of the action function (only the name)
+" + the long and short names to use for the statusline
+" + the matching type: line, path, tabs, tabe
+"                      |     |     |     |
+"                      |     |     |     `- match last tab delimited str
+"                      |     |     `- match first tab delimited str
+"                      |     `- match full line like file/dir path
+"                      `- match full line
+call add(g:ctrlp_ext_vars, {
+  \ 'init':   'ctrlp#funky#init(s:crbufnr)',
+  \ 'accept': 'ctrlp#funky#accept',
+  \ 'lname':  'funky',
+  \ 'sname':  'fky',
+  \ 'type':   'line',
+  \ 'exit':  'ctrlp#funky#exit()',
+  \ 'nolim':  1,
+  \ 'sort':   0
+  \ })
 
 " Object: s:mru {{{
 let s:mru = {}
@@ -59,16 +69,6 @@ function! s:filters.save(ft, filters)
 endfunction
 " }}}
 
-" FIXME: to be configurable
-if !isdirectory(s:cache_dir)
-  try
-    call mkdir(s:cache_dir, 'p')
-  catch /^Vim\%((\a\+)\)\=:E739/
-    echoerr 'ERR: cannot create a directory - ' . s:cache_dir
-    finish
-  endtry
-endif
-
 " Object: s:cache {{{
 let s:cache = {}
 let s:cache.list = {}
@@ -78,11 +78,7 @@ function! s:cache.save(bufnr, defs)
   let fname = s:fname(a:bufnr)
   " save function defs
   let self.list[fname] = extend([h], a:defs)
-  call writefile(self.list[fname], s:cache_dir . '/' . self.conv_name(fname))
-endfunction
-
-function! s:cache.conv_name(name)
-  return substitute(a:name, '[\/]', '%', 'g')
+  call writefile(self.list[fname], s:build_path(s:cache_dir, s:conv_sp(fname)))
 endfunction
 
 function! s:cache.load(bufnr)
@@ -92,7 +88,7 @@ function! s:cache.load(bufnr)
 endfunction
 
 function! s:cache.path(fname)
-  return s:cache_dir . '/' . self.conv_name(a:fname)
+  return s:build_path(s:cache_dir, s:conv_sp(a:fname))
 endfunction
 
 function! s:cache.read(bufnr)
@@ -109,7 +105,7 @@ endfunction
 function! s:cache.is_same_file(bufnr)
   let prev = self.timesize(a:bufnr)
   let cur = s:timesize(a:bufnr)
-  call s:debug(prev . ' = ' . cur)
+  call s:debug(prev . ' = ' . cur . ': ' . (prev == cur ? 'same' : 'diff'))
   return prev == cur
 endfunction
 
@@ -120,32 +116,8 @@ function! s:cache.timesize(bufnr)
 endfunction
 " }}}
 
-let s:errmsg = ''
-
-" The main variable for this extension.
-"
-" The values are:
-" + the name of the input function (including the brackets and any argument)
-" + the name of the action function (only the name)
-" + the long and short names to use for the statusline
-" + the matching type: line, path, tabs, tabe
-"                      |     |     |     |
-"                      |     |     |     `- match last tab delimited str
-"                      |     |     `- match first tab delimited str
-"                      |     `- match full line like file/dir path
-"                      `- match full line
-call add(g:ctrlp_ext_vars, {
-  \ 'init':   'ctrlp#funky#init(s:crbufnr)',
-  \ 'accept': 'ctrlp#funky#accept',
-  \ 'lname':  'funky',
-  \ 'sname':  'fky',
-  \ 'type':   'line',
-  \ 'exit':  'ctrlp#funky#exit()',
-  \ 'nolim':  1,
-  \ 'sort':   0
-  \ })
-
 " script funcs {{{
+" TODO: some functions should be defined under ctrlp#funky#utils namespace
 function! s:syntax(filetype)
   if !ctrlp#nosy()
     call ctrlp#hicheck('CtrlPTabExtra', 'Comment')
@@ -235,10 +207,6 @@ function! s:after_jump()
   silent! execute 'normal! ' . action . '0'
 endfunction
 
-function! s:esc_regex(r)
-  return escape(a:r, '[]')
-endfunction
-
 function! s:fname(bufnr, ...)
   let path = fnamemodify(bufname(a:bufnr), ':p')
   if a:0
@@ -263,6 +231,25 @@ endfunction
 
 function! s:timesize(bufnr)
   return string(s:ftime(a:bufnr)) . string(s:fsize(a:bufnr))
+endfunction
+
+function! s:is_windows()
+  return has('win32') || has('win64')
+endfunction
+
+function! s:build_path(...)
+  if a:0 == 0 | return '' | endif
+  let sp = '/'
+  if s:is_windows()
+    if exists('+shellslash')
+      let sp = (&shellslash ? '/' : '\')
+    endif
+  endif
+  return join(a:000, sp)
+endfunction
+
+function! s:conv_sp(name)
+  return substitute(a:name, '[\/]', '%', 'g')
 endfunction
 " }}}
 
@@ -332,12 +319,12 @@ function! ctrlp#funky#extract(bufnr, patterns)
     endif
 
     " the file hasn't been changed since cached
-    if s:cache.is_same_file(a:bufnr)
+    if s:use_cache && s:cache.is_same_file(a:bufnr)
       let ca = s:cache.load(a:bufnr)
       if s:sort_by_mru
         let prior = []
         for v in s:mru.buffers[a:bufnr]
-          let pos = match(ca, '\m' . s:esc_regex(v) . '\t#')
+          let pos = match(ca, '\m' . escape(v, '[]') . '\t#')
           if pos >= 0
             call add(prior, get(ca, pos, []))
             call remove(ca, pos)
@@ -385,7 +372,9 @@ function! ctrlp#funky#extract(bufnr, patterns)
     let sorted = sort(candidates, function('s:sort_candidates'))
     let prior = map(sort(mru, function('s:sort_mru')), 'v:val[0]')
 
-    call s:cache.save(a:bufnr, prior + sorted)
+    if s:use_cache
+      call s:cache.save(a:bufnr, prior + sorted)
+    endif
 
     return prior + sorted
   finally
@@ -449,6 +438,44 @@ endfunction
 function! ctrlp#funky#highlight(pat, from_group, to_group)
   let s:custom_hl_list[a:from_group] = { 'pat': a:pat, 'to_group': a:to_group }
 endfunction
+
+""
+" Configuration
+"
+
+let s:errmsg = ''
+
+let s:report_filter_error = get(g:, 'ctrlp_funky_report_filter_error', 0)
+let s:winnr = -1
+let s:sort_by_mru = get(g:, 'ctrlp_funky_sort_by_mru', 0)
+" after jump action
+let s:after_jump = get(g:, 'ctrlp_funky_after_jump', 'zxzz')
+" 1: set the same filetype as source buffer
+let s:syntax_highlight = get(g:, 'ctrlp_funky_syntax_highlight', 0)
+
+let s:use_cache = get(g:, 'ctrlp_funky_use_cache', 0)
+if s:use_cache
+  let s:cache_dir = get(g:, 'ctrlp_funky_cache_dir', s:build_path(expand($HOME), '.cache', 'ctrlp-funky'))
+else
+  let s:cache_dir = ''
+endif
+
+let s:debug = get(g:, 'ctrlp_funky_debug', 0)
+
+let s:custom_hl_list = {}
+
+if s:use_cache
+  call s:debug('INFO: cache dir: ' . s:cache_dir)
+  if !isdirectory(s:cache_dir)
+    try
+      call mkdir(s:cache_dir, 'p')
+    catch /^Vim\%((\a\+)\)\=:E739/
+      echoerr 'ERR: cannot create a directory - ' . s:cache_dir
+      finish
+    endtry
+  endif
+endif
+call s:debug('INFO: use_cache? ' . (s:use_cache ? 'TRUE' : 'FALSE'))
 
 let &cpo = s:saved_cpo
 unlet s:saved_cpo
