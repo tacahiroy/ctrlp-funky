@@ -249,7 +249,7 @@ function! s:build_path(...)
 endfunction
 
 function! s:conv_sp(name)
-  return substitute(a:name, '[\/]', '%', 'g')
+  return substitute(a:name, '[\/:]', '%', 'g')
 endfunction
 " }}}
 
