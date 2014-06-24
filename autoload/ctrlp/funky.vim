@@ -103,6 +103,7 @@ function! s:cache.read(bufnr)
 endfunction
 
 function! s:cache.is_maybe_unchanged(bufnr)
+  if !s:is_real_file(a:bufnr) | return 0 | endif
   let prev = self.timesize(a:bufnr)
   let cur = s:timesize(a:bufnr)
   call s:debug(prev . ' = ' . cur . ': ' . (prev == cur ? 'same' : 'diff'))
@@ -135,6 +136,13 @@ endfunction
 function! s:error(msg)
     echohl ErrorMsg | echomsg a:msg | echohl NONE
     let v:errmsg  = a:msg
+endfunction
+
+function! s:is_real_file(bufnr)
+  if &buftype =~# '\v^(nofile|quickfix|help)$' | return 0 | endif
+  let path = fnamemodify(bufname(a:bufnr), ':p')
+  call s:debug(path . ': ' . filereadable(path))
+  return filereadable(path)
 endfunction
 
 function! s:debug(msg)
@@ -319,7 +327,7 @@ function! ctrlp#funky#extract(bufnr, patterns)
     endif
 
     " the file hasn't been changed since cached
-    if s:use_cache && s:cache.is_maybe_unchanged(a:bufnr)
+    if s:use_cache && s:is_real_file(a:bufnr) && s:cache.is_maybe_unchanged(a:bufnr)
       let ca = s:cache.load(a:bufnr)
       if s:sort_by_mru
         let prior = []
@@ -372,7 +380,7 @@ function! ctrlp#funky#extract(bufnr, patterns)
     let sorted = sort(candidates, function('s:sort_candidates'))
     let prior = map(sort(mru, function('s:sort_mru')), 'v:val[0]')
 
-    if s:use_cache
+    if s:use_cache && s:is_real_file(a:bufnr)
       call s:cache.save(a:bufnr, prior + sorted)
     endif
 
