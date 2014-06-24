@@ -102,7 +102,7 @@ function! s:cache.read(bufnr)
   endif
 endfunction
 
-function! s:cache.is_same_file(bufnr)
+function! s:cache.is_maybe_unchanged(bufnr)
   let prev = self.timesize(a:bufnr)
   let cur = s:timesize(a:bufnr)
   call s:debug(prev . ' = ' . cur . ': ' . (prev == cur ? 'same' : 'diff'))
@@ -319,7 +319,7 @@ function! ctrlp#funky#extract(bufnr, patterns)
     endif
 
     " the file hasn't been changed since cached
-    if s:use_cache && s:cache.is_same_file(a:bufnr)
+    if s:use_cache && s:cache.is_maybe_unchanged(a:bufnr)
       let ca = s:cache.load(a:bufnr)
       if s:sort_by_mru
         let prior = []
