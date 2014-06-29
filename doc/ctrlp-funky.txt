@@ -1,6 +1,6 @@
 *ctrlp-funky.txt* *ctrlp-funky*
 A ctrlp.vim extension - navigate and jump to function defs
-Version: 0.8.5
+Version: 0.9.0
 Author:  Takahiro Yoshihara <https://github.com/tacahiroy>
 
 
@@ -112,7 +112,14 @@ buffer. It just sets |filetype| to CtrlP buffer same as the current buffer.
 (default: 0)
 >
 	let g:ctrlp_funky_syntax_highlight = 1
+and the file wasn't changed the funky loads function definitions from cache,
+so this makes the funky faster.
+Note that the funky detects file changed by timestamp and file size.
+(default: 0)
+>
+	let g:ctrlp_funky_use_cache = 1
 <
+
 
 FILETYPE SETTINGS			*ctrlp-funky-filetype-settings*
 This section describes ctrlp-funky configuration for each filetype.
@@ -281,6 +288,10 @@ THANKS						*ctrlp-funky-thanks*
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
 
+24 June 2014~
+  + 0.9.0: Add cache feature (#27).
+    ideas from |dusans|
+
 30 May 2014~
   + 0.8.5: php - Add support for extra keywords, final, static etc. (#35)
     by |axehead|
@@ -354,6 +365,10 @@ CHANGELOG 					*ctrlp-funky-changelog*
   + New option: |g:ctrlp_funky_sh_type|
 
 25 Jun 2013~
+  + Fix behaviour when buffer being opened in multiple (split) windows (#11)
+  + Add multi-lined function def support in Python (#12)
+
+17 Jun 2013~
   + Fix behaviour when buffer being opened in multiple (split) windows (#11)
   + Add multi-lined function def support in Python (#12)
 
