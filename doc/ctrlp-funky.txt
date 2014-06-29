@@ -1,6 +1,6 @@
 *ctrlp-funky.txt* *ctrlp-funky*
 A ctrlp.vim extension - navigate and jump to function defs
-Version: 0.8.4
+Version: 0.9.0
 Author:  Takahiro Yoshihara <https://github.com/tacahiroy>
 
 
@@ -112,7 +112,14 @@ buffer. It just sets |filetype| to CtrlP buffer same as the current buffer.
 (default: 0)
 >
 	let g:ctrlp_funky_syntax_highlight = 1
+and the file wasn't changed the funky loads function definitions from cache,
+so this makes the funky faster.
+Note that the funky detects file changed by timestamp and file size.
+(default: 0)
+>
+	let g:ctrlp_funky_use_cache = 1
 <
+
 
 FILETYPE SETTINGS			*ctrlp-funky-filetype-settings*
 This section describes ctrlp-funky configuration for each filetype.
@@ -279,6 +286,9 @@ THANKS						*ctrlp-funky-thanks*
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
 
+24 June 2014~
+  + Add cache feature (#27).
+    ideas from |dusans|
 
 22 Apr 2014~
   + Add support for returning by reference function for PHP (#31)
@@ -344,6 +354,23 @@ CHANGELOG 					*ctrlp-funky-changelog*
   + New option: |g:ctrlp_funky_sh_type|
 
 25 Jun 2013~
+  + Fix behaviour when buffer being opened in multiple (split) windows (#11)
+  + Add multi-lined function def support in Python (#12)
+
+17 Jun 2013~
+  + Add C support, improved C++ pattern.
+    by |unc0|
+
+23 May 2013~
+  + Fix regex pattern for sh. No parentheses case can be detected.
+
+20 May 2013~
+  + New options: |g:ctrlp_funky_php_requires|,
+                 |g:ctrlp_funky_php_includes|,
+
+2 May 2013~
+  + Add support for php
+    by |robmiller|
   + Fix behaviour when buffer being opened in multiple (split) windows (#11)
   + Add multi-lined function def support in Python (#12)
 
