@@ -67,7 +67,7 @@ You need to make the plugin available as a ctrlp.vim extension. Please add *funk
 
 Reboot Vim and then you can use `:CtrlPFunky` command.
 
-It might be useful mapping like:
+It might be useful key mappings like:
 
     nnoremap <Leader>fu :CtrlPFunky<Cr>
     " narrow the list down with a word under cursor
