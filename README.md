@@ -55,8 +55,8 @@ In addition, don't forget put a line below into your _.vimrc_.
     $ git clone git://github.com/tacahiroy/ctrlp-funky.git
 
 ### Manually
-If you don't use either plugin management systems, copy _autoload_ and _plugin_ directory to your _.vim_ directory.
-On Windows, _vimfiles_ directory is used instead of _.vim_ directory.
+If you don't use either plugin management systems, copy _autoload_ and _plugin_ directories to your _.vim_ directory.
+On Windows, basically, _vimfiles_ directory is used instead of _.vim_ directory.
 
 
 CONFIGURATION
