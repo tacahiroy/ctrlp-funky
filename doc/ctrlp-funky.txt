@@ -39,6 +39,7 @@ This supports following file types:
 * php
 * python
 * ruby
+* scala
 * sh (bash, dash and zsh)
 * yaml
 * vb (Visual Basic)
@@ -287,6 +288,10 @@ THANKS						*ctrlp-funky-thanks*
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+
+12 July 2014~
+  + Add very basic Scala support
 
 24 June 2014~
   + 0.9.0: Add cache feature (#27).
