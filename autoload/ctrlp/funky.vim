@@ -106,7 +106,7 @@ function! s:cache.is_maybe_unchanged(bufnr)
   if !s:is_real_file(a:bufnr) | return 0 | endif
   let prev = self.timesize(a:bufnr)
   let cur = s:timesize(a:bufnr)
-  call s:debug(prev . ' = ' . cur . ': ' . (prev == cur ? 'same' : 'diff'))
+  call s:debug(prev . ' = ' . cur . ': ' . (prev == cur ? 'unchanged' : 'changed'))
   return prev == cur
 endfunction
 
@@ -141,12 +141,14 @@ endfunction
 function! s:is_real_file(bufnr)
   if &buftype =~# '\v^(nofile|quickfix|help)$' | return 0 | endif
   let path = fnamemodify(bufname(a:bufnr), ':p')
-  call s:debug(path . ': ' . filereadable(path))
+  silent call s:debug(path . ': ' . filereadable(path))
   return filereadable(path)
 endfunction
 
-function! s:debug(msg)
-  if s:debug | echomsg '[DEBUG]' . string(a:msg) | endif
+function! s:debug(...)
+  if a:0 == 0 | return | endif
+  if !s:debug | return | endif
+  echomsg '[DEBUG]' . join(a:000, '')
 endfunction
 
 function! s:filetype(bufnr)
