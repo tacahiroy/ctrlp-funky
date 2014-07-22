@@ -18,7 +18,7 @@ Currently, following filetypes are supported:
 * html/xhtml
 * java
 * javascript
-* jinja
+* jinja (template engine for Python)
 * lua
 * markdown
 * nerdtree
