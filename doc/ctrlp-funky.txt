@@ -269,32 +269,37 @@ THANKS						*ctrlp-funky-thanks*
 
   * *kien* <http://github.com/kien> - the author of ctrlp.vim
 
-  * *pydave*      <https://github.com/pydave>
-  * *curist*      <https://github.com/curist>
-  * *Benoit*      <https://github.com/saalaa>
-  * *tokorom*     <https://github.com/tokorom>
-  * *robmiller*   <https://github.com/robmiller>
-  * *unc0*        <https://github.com/unc0>
-  * *hlissner*    <https://github.com/hlissner>
-  * *mephux*      <https://github.com/mephux>
-  * *dusans*      <https://github.com/dusans>
-  * *kirstein*    <https://github.com/kirstein>
-  * *mmazer*      <https://github.com/mmazer>
-  * *vitalk*      <https://github.com/vitalk>
-  * *dingmingxin* <https://github.com/dingmingxin>
-  * *dictav*      <https://github.com/dictav>
-  * *axehead*     <https://github.com/axehead>
+  * *pydave*         <https://github.com/pydave>
+  * *curist*         <https://github.com/curist>
+  * *Benoit*         <https://github.com/saalaa>
+  * *tokorom*        <https://github.com/tokorom>
+  * *robmiller*      <https://github.com/robmiller>
+  * *unc0*           <https://github.com/unc0>
+  * *hlissner*       <https://github.com/hlissner>
+  * *mephux*         <https://github.com/mephux>
+  * *dusans*         <https://github.com/dusans>
+  * *kirstein*       <https://github.com/kirstein>
+  * *mmazer*         <https://github.com/mmazer>
+  * *vitalk*         <https://github.com/vitalk>
+  * *dingmingxin*    <https://github.com/dingmingxin>
+  * *dictav*         <https://github.com/dictav>
+  * *axehead*        <https://github.com/axehead>
+  * *walkingsparrow* <https://github.com/walkingsparrow>
 
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
 
 
+27 July 2014~
+  + Improve Scala support (#40)
+    reported by |walkingsparrow|
+
 12 July 2014~
   + Add very basic Scala support
 
 24 June 2014~
-  + 0.9.0: Add cache feature (#27).
+  + 0.9.0: Add cache feature (#27)
     ideas from |dusans|
 
 30 May 2014~

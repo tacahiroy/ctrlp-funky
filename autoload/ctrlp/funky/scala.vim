@@ -4,7 +4,7 @@
 
 function! ctrlp#funky#scala#filters()
   let filters = [
-        \ { 'pattern': '\m\C^[\t ]*\(\w\+\)\?[\t ]*def[\t ]\+\S\+',
+        \ { 'pattern': '\m\C^[\t ]*\(\w\+\)\?\(\[\w\+\]\)\?[\t ]*def[\t ]\+\S\+',
         \   'formatter': ['[:(].*$', '', ''] }
   \ ]
 
