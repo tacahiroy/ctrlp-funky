@@ -35,7 +35,7 @@ Currently, following filetypes are supported:
 
 PREMISE
 ----------
-First of all, I believe you're a user of a great Vim plugin called [ctrlp.vim](https://github.com/kien/ctrlp.vim).
+First of all, I believe you're a user of a great Vim plugin called [ctrlp.vim](https://github.com/ctrlpvim/ctrlp.vim).
 Otherwise, you need to install it before start installing this plugin.
 
 
@@ -92,7 +92,7 @@ syntax highlighting.
 LINK
 -------
 
-* [kien/ctrlp.vim](https://github.com/kien/ctrlp.vim)
+* [ctrlpvim/ctrlp.vim](https://github.com/ctrlpvim/ctrlp.vim)
 * [vim.org/ctrlp-funky](http://www.vim.org/scripts/script.php?script_id=4592)
 
 
