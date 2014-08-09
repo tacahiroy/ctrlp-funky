@@ -43,11 +43,11 @@ INSTALLATION
 ----------
 ### [Vundle](https://github.com/gmarik/vundle.git)
 
-    :BundleInstall tacahiroy/ctrlp-funky
+    :PluginInstall tacahiroy/ctrlp-funky
 
 In addition, don't forget put a line below into your _.vimrc_.
 
-    Bundle 'tacahiroy/ctrlp-funky'
+    Plugin 'tacahiroy/ctrlp-funky'
 
 ### [pathogen.vim](https://github.com/tpope/vim-pathogen)
 
