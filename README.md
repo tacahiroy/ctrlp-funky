@@ -14,6 +14,7 @@ Currently, following filetypes are supported:
 * c/cpp (C/C++)
 * chef
 * coffee-script
+* elixir
 * go
 * html/xhtml
 * java
@@ -27,6 +28,7 @@ Currently, following filetypes are supported:
 * php
 * python
 * ruby
+* scala
 * sh (bash, dash and zsh)
 * yaml
 * vb (Visual Basic)

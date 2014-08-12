@@ -26,7 +26,8 @@ This supports following file types:
 
 * c/cpp (C and C++)
 * chef (resources)
-* go
+* elixir
+* go (golang)
 * html/xhtml
 * java
 * javascript
@@ -290,6 +291,9 @@ THANKS						*ctrlp-funky-thanks*
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
 
+
+12 Aug 2014~
+  + Add basic Elixir support
 
 27 July 2014~
   + Improve Scala support (#40)
