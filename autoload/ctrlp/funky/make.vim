@@ -7,7 +7,7 @@
 "A:B  or  $(A):B or A $(B) : B
 function! ctrlp#funky#make#filters()
   let filters = [
-        \ { 'pattern': '\m^\(\w\|\/\|\s\|\$([^)]\+)\)\+:\(\w\|\/\|\s\|\$([^)]\+)\)*\ze\\\?\n\(\t\|\n\)',
+        \ { 'pattern': '\m^\(\w\|\/\|\s\|\$([^)]\+)\)\+:\(\w\||\|\/\|\s\|\$([^)]\+)\)*\ze\\\?\n\(\t\|\n\)',
         \   'formatter': [] }
   \ ]
   return filters
