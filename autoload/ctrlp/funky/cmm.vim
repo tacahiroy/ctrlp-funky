@@ -4,7 +4,7 @@
 
 function! ctrlp#funky#cmm#filters()
   let filters = [
-        \ { 'pattern': '\m^\w\+:',
+        \ { 'pattern': '\m^\w\+:$',
         \   'formatter': []}
   \ ]
   return filters
