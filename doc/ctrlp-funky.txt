@@ -295,6 +295,10 @@ THANKS						*ctrlp-funky-thanks*
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
 
+14 Aug 2014~
+  + Improve cmm and make support (#46)
+  + Fix multi-lined function support for C and Java (#47)
+    by |huaihuaiVV|
 
 13 Aug 2014~
   + Add TRACE32 (cmm) and Makefile (make) support (#44)
