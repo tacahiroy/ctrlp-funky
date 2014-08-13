@@ -7,7 +7,7 @@
 "A:B  or  $(A):B or A $(B) : B
 function! ctrlp#funky#make#filters()
   let filters = [
-        \ { 'pattern': '\m^[^:\t#"]\+:=\@![^:\t]*\ze\n\|^\s*define\s\+',
+        \ { 'pattern': '\m^[^:\t#''"]\+:=\@![^:\t]*\ze\n\|^\s*define\s\+',
         \   'formatter': [] }
   \ ]
   return filters
