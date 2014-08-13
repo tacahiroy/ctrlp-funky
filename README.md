@@ -13,6 +13,7 @@ One of the advantages of this plugin is you needn't to generate tags file to jum
 Currently, following filetypes are supported:
 * c/cpp (C/C++)
 * chef
+* cmm (TRACE32)
 * coffee-script
 * elixir
 * go
@@ -21,6 +22,7 @@ Currently, following filetypes are supported:
 * javascript
 * jinja (template engine for Python)
 * lua
+* make (Makefile)
 * markdown
 * nerdtree
 * objc (Objective-C)

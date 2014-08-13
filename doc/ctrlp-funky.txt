@@ -24,15 +24,18 @@ INTRODUCTION					*ctrlp-funky-intro*
 ctrl-funky is an extension of ctrlp.vim.
 This supports following file types:
 
-* c/cpp (C and C++)
-* chef (resources)
+* c/cpp (C/C++)
+* chef (Resources)
+* cmm (TRACE32)
+* coffee-script
 * elixir
 * go (golang)
 * html/xhtml
 * java
 * javascript
-* jinja
+* jinja (template engine for Python)
 * lua
+* make (Makefile)
 * markdown
 * nerdtree
 * objc (Objective-C)
@@ -286,11 +289,16 @@ THANKS						*ctrlp-funky-thanks*
   * *dictav*         <https://github.com/dictav>
   * *axehead*        <https://github.com/axehead>
   * *walkingsparrow* <https://github.com/walkingsparrow>
+  * *huaihuaiVV*     <https://github.com/huaihuaiVV>
 
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
 
+
+13 Aug 2014~
+  + Add TRACE32 (cmm) and Makefile (make) support (#44)
+    by |huaihuaiVV|
 
 12 Aug 2014~
   + Add basic Elixir support
