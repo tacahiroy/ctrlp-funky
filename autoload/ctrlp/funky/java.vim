@@ -10,7 +10,7 @@ function! ctrlp#funky#java#filters()
   let regex .= '%(\w|[<>[\]])+\s+'    " return type
   let regex .= '\w+\s*'               " method name
   let regex .= '\(\_[^\)]*\)'         " method parameters
-  let regex .= '%(\w|\s|\{)+$'        " postamble
+  let regex .= '%(\w|\s?|\{)+$'        " postamble
 
   let filters = [
         \ { 'pattern': regex,
