@@ -290,10 +290,15 @@ THANKS						*ctrlp-funky-thanks*
   * *axehead*        <https://github.com/axehead>
   * *walkingsparrow* <https://github.com/walkingsparrow>
   * *huaihuaiVV*     <https://github.com/huaihuaiVV>
+  * *rendon*         <https://github.com/rendon>
 
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+27 Aug 2014~
+  + Improve java support (#48)
+    by |rendon|
 
 14 Aug 2014~
   + Improve cmm and make support (#46)
