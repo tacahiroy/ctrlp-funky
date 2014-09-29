@@ -106,6 +106,7 @@ the list.
 Note that the MRU feature doesn't work persistently. Therefore if you delete
 the buffer or once you quit Vim, order of the list is reset to default.
 (default: 0)
+(value: 0 or 1)
 >
 	let g:ctrlp_funky_sort_by_mru = 1
 <
@@ -121,10 +122,23 @@ and the file wasn't changed the funky loads function definitions from cache,
 so this makes the funky faster.
 Note that the funky detects file changed by timestamp and file size.
 (default: 0)
+(value: 0 or 1)
 >
 	let g:ctrlp_funky_use_cache = 1
 <
 
+					*'g:ctrlp_funky_matchtype'*
+This changes matching algorithm used inside ctrlp.vim. If you want to have
+highlight matched chars feature, you may set this option to 'path'.
+Note that this option changes matching algorithm, so possibly filtered result
+is affected, I guess it's not big affection though.
+Also this option can be taken 'tabs' and 'tabe', however, I don't think it's
+useful setting these values.
+(default: 'line')
+(value: 'line', 'path', 'tabs', 'tabe')
+>
+	let g:ctrlp_funky_matchtype = 'line'
+<
 
 FILETYPE SETTINGS			*ctrlp-funky-filetype-settings*
 This section describes ctrlp-funky configuration for each filetype.
@@ -135,6 +149,7 @@ This section describes ctrlp-funky configuration for each filetype.
 Set this to 1 (enabled) the results will include LWRP.
 http://docs.opscode.com/lwrp.html#opscode-maintained
 (default: 1)
+(value: 0 or 1)
 >
 	let g:ctrlp_funky_chef_lwrp = 0
 <
@@ -152,6 +167,7 @@ http://docs.opscode.com/resource.html#common-functionality
 					*'g:ctrlp_funky_nerdtree_include_files'*
 Set this to 1 (enabled) the results will include files.
 (default: 0)
+(value: 0 or 1)
 >
 	let g:ctrlp_funky_nerdtree_include_files = 1
 <
@@ -161,6 +177,7 @@ Set this to 1 (enabled) the results will include files.
 Set this to 1 (enabled) the results will include 'require' and
 'require_once' lines.
 (default: 0)
+(value: 0 or 1)
 >
 	let g:ctrlp_funky_php_requires = 1
 <
@@ -178,6 +195,7 @@ Set this to 1 (enabled) the results will include 'include' and
 Set this to 1 (enabled) the results will include 'require' and
 'require_relative' lines.
 (default: 0)
+(value: 0 or 1)
 >
 	let g:ctrlp_funky_ruby_requires = 1
 <
@@ -185,6 +203,7 @@ Set this to 1 (enabled) the results will include 'require' and
 					*'g:ctrlp_funky_ruby_classes'*
 Set this to 1 (enabled) the results will include class definitions.
 (default: 1)
+(value: 0 or 1)
 >
 	let g:ctrlp_funky_ruby_classes = 0
 <
@@ -192,6 +211,7 @@ Set this to 1 (enabled) the results will include class definitions.
 					*'g:ctrlp_funky_ruby_modules'*
 Set this to 1 (enabled) the results will include module definitions.
 (default: 1)
+(value: 0 or 1)
 >
 	let g:ctrlp_funky_ruby_modules = 0
 <
@@ -203,6 +223,7 @@ instead. [OBSOLETE]
 					*'g:ctrlp_funky_ruby_rake_words*
 Set this to 1 (enabled) 'rake' filter will be absorbed.
 (default: 0)
+(value: 0 or 1)
 >
 	let g:ctrlp_funky_ruby_rake_words = 1
 <
@@ -210,6 +231,7 @@ Set this to 1 (enabled) 'rake' filter will be absorbed.
 					*'g:ctrlp_funky_ruby_chef_words'*
 Set this to 1 (enabled) 'chef' filter will be absorbed.
 (default: 0)
+(value: 0 or 1)
 >
 	let g:ctrlp_funky_ruby_chef_words = 1
 <
@@ -218,6 +240,7 @@ Set this to 1 (enabled) 'chef' filter will be absorbed.
 Set this to 1 (enabled) the result will be included access modifiers such as
 private, protected and public.
 (default: 1)
+(value: 0 or 1)
 >
 	let g:ctrlp_funky_ruby_chef_words = 1
 <
@@ -295,6 +318,9 @@ THANKS						*ctrlp-funky-thanks*
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+30 Sep 2014~
+  + Add 'g:ctrlp_funky_matchtype' (#13, #50)
 
 27 Aug 2014~
   + Improve java support (#48)

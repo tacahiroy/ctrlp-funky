@@ -11,29 +11,6 @@ let g:loaded_ctrlp_funky = 1
 let s:saved_cpo = &cpo
 set cpo&vim
 
-" The main variable for this extension.
-"
-" The values are:
-" + the name of the input function (including the brackets and any argument)
-" + the name of the action function (only the name)
-" + the long and short names to use for the statusline
-" + the matching type: line, path, tabs, tabe
-"                      |     |     |     |
-"                      |     |     |     `- match last tab delimited str
-"                      |     |     `- match first tab delimited str
-"                      |     `- match full line like file/dir path
-"                      `- match full line
-call add(g:ctrlp_ext_vars, {
-  \ 'init':   'ctrlp#funky#init(s:crbufnr)',
-  \ 'accept': 'ctrlp#funky#accept',
-  \ 'lname':  'funky',
-  \ 'sname':  'fky',
-  \ 'type':   'line',
-  \ 'exit':  'ctrlp#funky#exit()',
-  \ 'nolim':  1,
-  \ 'sort':   0
-  \ })
-
 " Object: s:mru {{{
 let s:mru = {}
 let s:mru.buffers = {}
@@ -441,8 +418,6 @@ function!ctrlp#funky#exit()
   if !empty(s:errmsg) | call s:error(s:errmsg) | endif
 endfunction
 
-" Give the extension an ID
-let s:id = g:ctrlp_builtins + len(g:ctrlp_ext_vars)
 " Allow it to be called later
 function! ctrlp#funky#id()
   return s:id
@@ -455,27 +430,30 @@ endfunction
 ""
 " Configuration
 "
-
 let s:errmsg = ''
-
-let s:report_filter_error = get(g:, 'ctrlp_funky_report_filter_error', 0)
 let s:winnr = -1
+let s:custom_hl_list = {}
+
+let s:debug = get(g:, 'ctrlp_funky_debug', 0)
+let s:report_filter_error = get(g:, 'ctrlp_funky_report_filter_error', 0)
 let s:sort_by_mru = get(g:, 'ctrlp_funky_sort_by_mru', 0)
 " after jump action
 let s:after_jump = get(g:, 'ctrlp_funky_after_jump', 'zxzz')
 " 1: set the same filetype as source buffer
 let s:syntax_highlight = get(g:, 'ctrlp_funky_syntax_highlight', 0)
+let s:matchtype = get(g:, 'ctrlp_funky_matchtype', 'line')
+if index(['line', 'path', 'tabs', 'tabe'], s:matchtype) < 0
+  echoerr 'WRN: value "' . s:matchtype . '" not allowed for g:ctrlp_funky_matchtype.'
+  let s:matchtype = 'line'
+endif
 
+" cache
 let s:use_cache = get(g:, 'ctrlp_funky_use_cache', 0)
 if s:use_cache
   let s:cache_dir = get(g:, 'ctrlp_funky_cache_dir', s:build_path(expand($HOME), '.cache', 'ctrlp-funky'))
 else
   let s:cache_dir = ''
 endif
-
-let s:debug = get(g:, 'ctrlp_funky_debug', 0)
-
-let s:custom_hl_list = {}
 
 if s:use_cache
   call s:debug('INFO: cache dir: ' . s:cache_dir)
@@ -489,6 +467,32 @@ if s:use_cache
   endif
 endif
 call s:debug('INFO: use_cache? ' . (s:use_cache ? 'TRUE' : 'FALSE'))
+
+" The main variable for this extension.
+"
+" The values are:
+" + the name of the input function (including the brackets and any argument)
+" + the name of the action function (only the name)
+" + the long and short names to use for the statusline
+" + the matching type: line, path, tabs, tabe
+"                      |     |     |     |
+"                      |     |     |     `- match last tab delimited str
+"                      |     |     `- match first tab delimited str
+"                      |     `- match full line like file/dir path
+"                      `- match full line
+call add(g:ctrlp_ext_vars, {
+  \ 'init':   'ctrlp#funky#init(s:crbufnr)',
+  \ 'accept': 'ctrlp#funky#accept',
+  \ 'lname':  'funky',
+  \ 'sname':  'fky',
+  \ 'type':   s:matchtype,
+  \ 'exit':  'ctrlp#funky#exit()',
+  \ 'nolim':  1,
+  \ 'sort':   0
+  \ })
+
+" Give the extension an ID
+let s:id = g:ctrlp_builtins + len(g:ctrlp_ext_vars)
 
 let &cpo = s:saved_cpo
 unlet s:saved_cpo
