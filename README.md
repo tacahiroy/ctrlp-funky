@@ -87,6 +87,8 @@ let g:ctrlp_funky_matchtype = 'path'
 ```
 See `:h g:ctrlp_funky_matchtype` for more details and notes.
 
+![funky-matched-chars-highlighting][3]
+
 
 ### SYNTAX HIGHLIGHTING
 I'd like to introduce one of ctrlp-funky options.
@@ -116,3 +118,4 @@ Copyright (C) 2012-2014 Takahiro Yoshihara. Distributed under the MIT License.
 
 [1]: http://i.imgur.com/yO4PWAF.png
 [2]: http://i.imgur.com/CnKui5H.png
+[3]: http://i.imgur.com/B3hBycd.png
