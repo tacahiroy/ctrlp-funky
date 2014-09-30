@@ -130,7 +130,7 @@ Note that the funky detects file changed by timestamp and file size.
 					*'g:ctrlp_funky_matchtype'*
 This changes matching algorithm used inside ctrlp.vim. If you want to have
 highlight matched chars feature, you may set this option to 'path'.
-Note that this option changes matching algorithm, so possibly filtered result
+Note that this option changes matching algorithm, so perhaps filtered result
 is affected, I guess it's not big affection though.
 Also this option can be taken 'tabs' and 'tabe', however, I don't think it's
 useful setting these values.

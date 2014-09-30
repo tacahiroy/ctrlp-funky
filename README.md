@@ -78,8 +78,17 @@ It might be useful key mappings like:
     nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 
 
-SYNTAX HIGHLIGHTING (experimental)
--------
+EXPERIMENTAL
+------------
+### MATCHED CHARS HIGHLIGHTING
+If you want to have this highlight feature, you may configure like this:
+```vim
+let g:ctrlp_funky_matchtype = 'path'
+```
+See `:h g:ctrlp_funky_matchtype` for more details and notes.
+
+
+### SYNTAX HIGHLIGHTING
 I'd like to introduce one of ctrlp-funky options.
 Do you want to make ctrlp-funky funkier? Okay - you can do it just 1 line config.
 ```vim
