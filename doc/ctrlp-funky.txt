@@ -314,10 +314,15 @@ THANKS						*ctrlp-funky-thanks*
   * *walkingsparrow* <https://github.com/walkingsparrow>
   * *huaihuaiVV*     <https://github.com/huaihuaiVV>
   * *rendon*         <https://github.com/rendon>
+  * *kshenoy*        <https://github.com/kshenoy>
 
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+3 Oct 2014~
+  + Fix regexp for C++ to support scope resolution operator (#51)
+  reported by |kshenoy|
 
 30 Sep 2014~
   + Add 'g:ctrlp_funky_matchtype' (#13, #50)

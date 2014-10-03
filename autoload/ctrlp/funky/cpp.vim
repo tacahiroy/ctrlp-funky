@@ -9,7 +9,7 @@ function! ctrlp#funky#cpp#filters()
   " functions, then you're out of luck because this eliminates most text
   " false positives.
   let filters = [
-        \ { 'pattern': '^\w.*\s*\w[\t ]*(',
+        \ { 'pattern': '\v^%(\w|:).*\s*%(\w|:)\_[\t ]*\(',
         \   'formatter': [] }
   \ ]
   return filters
