@@ -299,7 +299,6 @@ function! ctrlp#funky#init(bufnr)
 endfunction
 
 function! ctrlp#funky#funky(word)
-  let s:winnr = winnr()
   try
     if !empty(a:word)
       let default_input_save = get(g:, 'ctrlp_default_input', '')
@@ -421,10 +420,10 @@ function! ctrlp#funky#accept(mode, str)
   " always back to former window
   call ctrlp#exit()
 
+  " should be current window = former window
   let bufnr = matchstr(a:str, '\d\+\ze:\d\+$')
   let lnum = matchstr(a:str, '\d\+$')
-  execute get(s:, 'winnr', 1) . 'wincmd w'
-  call setpos('.', [bufnr, lnum, 1, 0])
+  call cursor(lnum, 1)
 
   call s:after_jump()
 
@@ -450,7 +449,6 @@ endfunction
 " Configuration
 "
 let s:errmsg = ''
-let s:winnr = -1
 let s:custom_hl_list = {}
 
 let s:debug = get(g:, 'ctrlp_funky_debug', 0)
