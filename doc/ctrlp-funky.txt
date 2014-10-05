@@ -296,29 +296,34 @@ THANKS						*ctrlp-funky-thanks*
 
   * *kien* <http://github.com/kien> - the author of ctrlp.vim
 
-  * *pydave*         <https://github.com/pydave>
-  * *curist*         <https://github.com/curist>
-  * *Benoit*         <https://github.com/saalaa>
-  * *tokorom*        <https://github.com/tokorom>
-  * *robmiller*      <https://github.com/robmiller>
-  * *unc0*           <https://github.com/unc0>
-  * *hlissner*       <https://github.com/hlissner>
-  * *mephux*         <https://github.com/mephux>
-  * *dusans*         <https://github.com/dusans>
-  * *kirstein*       <https://github.com/kirstein>
-  * *mmazer*         <https://github.com/mmazer>
-  * *vitalk*         <https://github.com/vitalk>
-  * *dingmingxin*    <https://github.com/dingmingxin>
-  * *dictav*         <https://github.com/dictav>
-  * *axehead*        <https://github.com/axehead>
-  * *walkingsparrow* <https://github.com/walkingsparrow>
-  * *huaihuaiVV*     <https://github.com/huaihuaiVV>
-  * *rendon*         <https://github.com/rendon>
-  * *kshenoy*        <https://github.com/kshenoy>
+  * *pydave*          <https://github.com/pydave>
+  * *curist*          <https://github.com/curist>
+  * *Benoit*          <https://github.com/saalaa>
+  * *tokorom*         <https://github.com/tokorom>
+  * *robmiller*       <https://github.com/robmiller>
+  * *unc0*            <https://github.com/unc0>
+  * *hlissner*        <https://github.com/hlissner>
+  * *mephux*          <https://github.com/mephux>
+  * *dusans*          <https://github.com/dusans>
+  * *kirstein*        <https://github.com/kirstein>
+  * *mmazer*          <https://github.com/mmazer>
+  * *vitalk*          <https://github.com/vitalk>
+  * *dingmingxin*     <https://github.com/dingmingxin>
+  * *dictav*          <https://github.com/dictav>
+  * *axehead*         <https://github.com/axehead>
+  * *walkingsparrow*  <https://github.com/walkingsparrow>
+  * *huaihuaiVV*      <https://github.com/huaihuaiVV>
+  * *rendon*          <https://github.com/rendon>
+  * *kshenoy*         <https://github.com/kshenoy>
+  * *mattiaslundberg* <https://github.com/mattiaslundberg>
 
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+4 Oct 2014~
+  + Fix error when selecting a function in split window (#49)
+  reported by |mattiaslundberg|
 
 3 Oct 2014~
   + Fix regexp for C++ to support scope resolution operator (#51)
