@@ -1,12 +1,12 @@
 ctrlp-funky
 ============
-Very simple function nativator for ctrlp.vim.
+Very simple function navigator for ctrlp.vim.
 
 SYNOPSIS
 ----------
 This is a ctrlp.vim extension. It simply navigates and jumps to function definitions from the current file without ctags. It just searches function definitions or equivalent lines using regular expressions, therefore some languages' abstraction aren't accurate because of hard to parse.
 
-One of the advantages of this plugin is you needn't to generate tags file to jump to something definition line.
+One of advantages of this plugin is you needn't to generate tags file to jump to functions, classes etc. definition line.
 
 ![ctrlp-funky][1]
 
@@ -40,23 +40,26 @@ Currently, following filetypes are supported:
 PREMISE
 ----------
 First of all, I believe you're a user of a great Vim plugin called [ctrlp.vim](https://github.com/ctrlpvim/ctrlp.vim).
-Otherwise, you need to install it before start installing this plugin.
+Otherwise, you need to install ctrlp.vim before start using this plugin.
 
 
 INSTALLATION
 ----------
 ### [Vundle](https://github.com/gmarik/vundle.git)
-
-    :PluginInstall tacahiroy/ctrlp-funky
+```vim
+:PluginInstall tacahiroy/ctrlp-funky
+```
 
 In addition, don't forget put a line below into your _.vimrc_.
-
-    Plugin 'tacahiroy/ctrlp-funky'
+```vim
+Plugin 'tacahiroy/ctrlp-funky'
+```
 
 ### [pathogen.vim](https://github.com/tpope/vim-pathogen)
-
-    $ cd ~/.vim/bundle
-    $ git clone git://github.com/tacahiroy/ctrlp-funky.git
+```sh
+$ cd ~/.vim/bundle
+$ git clone git://github.com/tacahiroy/ctrlp-funky.git
+```
 
 ### Manually
 If you don't use either plugin management systems, copy _autoload_ and _plugin_ directories to your _.vim_ directory.
@@ -66,16 +69,18 @@ On Windows, basically, _vimfiles_ directory is used instead of _.vim_ directory.
 CONFIGURATION
 --------------
 You need to make the plugin available as a ctrlp.vim extension. Please add *funky* to a variable `g:ctrlp_extensions`.
-
-    let g:ctrlp_extensions = ['funky']
+```vim
+let g:ctrlp_extensions = ['funky']
+```
 
 Reboot Vim and then you can use `:CtrlPFunky` command.
 
 It might be useful key mappings like:
-
-    nnoremap <Leader>fu :CtrlPFunky<Cr>
-    " narrow the list down with a word under cursor
-    nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+```vim
+nnoremap <Leader>fu :CtrlPFunky<Cr>
+" narrow the list down with a word under cursor
+nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+```
 
 
 EXPERIMENTAL
