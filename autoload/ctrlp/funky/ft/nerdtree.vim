@@ -4,7 +4,7 @@
 
 let s:is_files = get(g:, 'ctrlp_funky_nerdtree_include_files', 0)
 
-function! ctrlp#funky#nerdtree#filters()
+function! ctrlp#funky#ft#nerdtree#filters()
   let filters = [
         \ { 'pattern': '\m\C^\s*[▸▾|~+].*\/$',
         \   'formatter': [] }

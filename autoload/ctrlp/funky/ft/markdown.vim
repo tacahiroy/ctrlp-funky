@@ -2,7 +2,7 @@
 " Author: Takahiro Yoshihara
 " License: The MIT License
 
-function! ctrlp#funky#markdown#filters()
+function! ctrlp#funky#ft#markdown#filters()
   let filters = [
         \ { 'pattern': '\m\C^#\{1,6}[\t ]\+\S\+',
         \   'formatter': [] },

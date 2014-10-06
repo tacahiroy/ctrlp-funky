@@ -92,7 +92,7 @@ function! s:lwrp()
   return lwrp
 endfunction
 
-function! ctrlp#funky#chef#filters()
+function! ctrlp#funky#ft#chef#filters()
   let res = s:resources()
 
   if get(g:, 'ctrlp_funky_chef_lwrp', 1)

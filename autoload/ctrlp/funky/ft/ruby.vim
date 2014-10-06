@@ -2,7 +2,7 @@
 " Author: Takahiro Yoshihara
 " License: The MIT License
 
-function! ctrlp#funky#ruby#filters()
+function! ctrlp#funky#ft#ruby#filters()
   let filters = [
         \ { 'pattern': '\m\C^[\t ]*def[\t ]\+\S\+',
         \   'formatter': []}
@@ -34,7 +34,7 @@ function! ctrlp#funky#ruby#filters()
           \ { 'pattern': '\m\C^[\t ]*\(private\|protected\|public\)[\t ]*$',
           \   'formatter': ['\S\+', '&', ''] }]
     \ )
-    call ctrlp#funky#highlight('[^\t ]*\(private\|protected\|public\)', 'CtrlPFunkyRubyAccess', 'String')
+    call ctrlp#funky#ft#highlight('[^\t ]*\(private\|protected\|public\)', 'CtrlPFunkyRubyAccess', 'String')
   endif
 
   if get(g:, 'ctrlp_funky_ruby_rake_words', 1)
@@ -45,7 +45,7 @@ function! ctrlp#funky#ruby#filters()
   endif
 
   if get(g:, 'ctrlp_funky_ruby_chef_words', 0)
-    call extend(filters, ctrlp#funky#chef#filters())
+    call extend(filters, ctrlp#funky#ft#chef#filters())
   endif
 
   return filters

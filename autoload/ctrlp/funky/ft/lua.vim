@@ -2,7 +2,7 @@
 " Author: hlissner
 " License: The MIT License
 
-function! ctrlp#funky#lua#filters()
+function! ctrlp#funky#ft#lua#filters()
   let filters = [
         \ { 'pattern': '\v\s*function\s+\w.+\s*\(',
         \   'formatter': ['\m\C^[\t ]*', '', ''] },

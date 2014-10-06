@@ -2,7 +2,7 @@
 " Author: dusans
 " License: The MIT License
 
-function! ctrlp#funky#yaml#filters()
+function! ctrlp#funky#ft#yaml#filters()
   let filters = [
         \ { 'pattern': '\v\C^\s*.*:',
         \   'formatter': ['\v\C^\s*', '', ''] }

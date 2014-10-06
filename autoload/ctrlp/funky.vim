@@ -152,12 +152,12 @@ function! s:filetype(bufnr)
 endfunction
 
 function! s:has_filter(ft)
-  let func = 'autoload/ctrlp/funky/' . a:ft . '.vim'
+  let func = 'autoload/ctrlp/funky/ft/' . a:ft . '.vim'
   return !empty(globpath(&runtimepath, func))
 endfunction
 
 function! s:has_post_extract_hook(ft)
-  return exists('*ctrlp#funky#' . a:ft . '#post_extract_hook')
+  return exists('*ctrlp#funky#ft#' . a:ft . '#post_extract_hook')
 endfunction
 
 function! s:filters_by_filetype(ft, bufnr)
@@ -167,7 +167,7 @@ function! s:filters_by_filetype(ft, bufnr)
     return s:filters.load(a:ft)
   else
     " NOTE: new API since v0.6.0
-    let filters = ctrlp#funky#{a:ft}#filters()
+    let filters = ctrlp#funky#ft#{a:ft}#filters()
   endif
 
   call s:filters.save(a:ft, filters)
@@ -280,7 +280,7 @@ function! ctrlp#funky#init(bufnr)
         let candidates += ctrlp#funky#extract(a:bufnr, filters)
         call s:debug('Extract: ' . reltimestr(reltime(st)))
         if s:has_post_extract_hook(ft)
-          call ctrlp#funky#{ft}#post_extract_hook(candidates)
+          call ctrlp#funky#ft#{ft}#post_extract_hook(candidates)
         endif
       elseif s:report_filter_error
         echoerr printf('%s: filters not exist', ft)

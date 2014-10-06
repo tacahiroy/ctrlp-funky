@@ -2,7 +2,7 @@
 " Author: Takahiro Yoshihara
 " License: The MIT License
 
-function! ctrlp#funky#vb#filters()
+function! ctrlp#funky#ft#vb#filters()
   let filters = [
         \ { 'pattern': '\v\c^[\t ]*%((Private|Friend|Public)[\t ]+)?(Function|Sub)[\t ]+',
         \   'formatter': [] },
