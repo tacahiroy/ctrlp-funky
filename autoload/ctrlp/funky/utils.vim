@@ -72,6 +72,7 @@ function! s:fu.is_real_file(bufnr)
 endfunction
 
 function! s:fu.debug(...)
+  if !g:ctrlp#funky#is_debug | return | endif
   if a:0 == 0 | return | endif
   echomsg '[DEBUG]' . join(a:000, '')
 endfunction

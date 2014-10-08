@@ -86,11 +86,6 @@ function! s:error(msg)
     let v:errmsg  = a:msg
 endfunction
 
-function! s:debug(...)
-  if !s:is_debug | return | endif
-  call s:fu.debug(a:000)
-endfunction
-
 function! s:filetype(bufnr)
   return getbufvar(a:bufnr, '&l:filetype')
 endfunction
@@ -177,7 +172,7 @@ function! ctrlp#funky#init(bufnr)
         let filters = s:filters_by_filetype(ft, a:bufnr)
         let st = reltime()
         let candidates += ctrlp#funky#extract(a:bufnr, filters)
-        call s:debug('Extract: ' . reltimestr(reltime(st)))
+        call s:fu.debug('Extract: ' . reltimestr(reltime(st)))
         if s:has_post_extract_hook(ft)
           call ctrlp#funky#ft#{ft}#post_extract_hook(candidates)
         endif
@@ -224,7 +219,7 @@ function! ctrlp#funky#extract(bufnr, patterns)
 
     " the file hasn't been changed since cached
     if s:use_cache && s:fu.is_real_file(a:bufnr) && s:cache.is_maybe_unchanged(a:bufnr)
-      call s:debug('CACHE FILE:' . s:cache.filename(s:fu.fname(a:bufnr)))
+      call s:fu.debug('CACHE FILE:' . s:cache.filename(s:fu.fname(a:bufnr)))
       let ca = s:cache.load(a:bufnr)
       if s:sort_by_mru
         let prior = []
@@ -359,7 +354,7 @@ endfunction
 let s:errmsg = ''
 let s:custom_hl_list = {}
 
-let s:is_debug = get(g:, 'ctrlp_funky_debug', 0)
+let g:ctrlp#funky#is_debug = get(g:, 'ctrlp_funky_debug', 0)
 let s:report_filter_error = get(g:, 'ctrlp_funky_report_filter_error', 0)
 let s:sort_by_mru = get(g:, 'ctrlp_funky_sort_by_mru', 0)
 " after jump action
@@ -382,7 +377,7 @@ if s:use_cache
 endif
 
 if s:use_cache
-  call s:debug('INFO: cache dir: ' . s:cache.dir)
+  call s:fu.debug('INFO: cache dir: ' . s:cache.dir)
   if !isdirectory(s:cache.dir)
     try
       call mkdir(s:cache.dir, 'p')
@@ -392,7 +387,7 @@ if s:use_cache
     endtry
   endif
 endif
-call s:debug('INFO: use_cache? ' . (s:use_cache ? 'TRUE' : 'FALSE'))
+call s:fu.debug('INFO: use_cache? ' . (s:use_cache ? 'TRUE' : 'FALSE'))
 
 " The main variable for this extension.
 "
