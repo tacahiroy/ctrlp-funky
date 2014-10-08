@@ -224,7 +224,7 @@ function! ctrlp#funky#extract(bufnr, patterns)
 
     " the file hasn't been changed since cached
     if s:use_cache && s:fu.is_real_file(a:bufnr) && s:cache.is_maybe_unchanged(a:bufnr)
-      call s:debug('CACHE FILE:' . s:fu.path(s:cache.dir, s:fu.fname(a:bufnr)))
+      call s:debug('CACHE FILE:' . s:cache.filename(s:fu.fname(a:bufnr)))
       let ca = s:cache.load(a:bufnr)
       if s:sort_by_mru
         let prior = []
@@ -343,6 +343,14 @@ endfunction
 
 function! ctrlp#funky#highlight(pat, from_group, to_group)
   let s:custom_hl_list[a:from_group] = { 'pat': a:pat, 'to_group': a:to_group }
+endfunction
+
+function! ctrlp#funky#clear_cache(path)
+  call s:cache.clear(a:path)
+endfunction
+
+function! ctrlp#funky#clear_cache_all()
+  call s:cache.clear_all()
 endfunction
 
 ""

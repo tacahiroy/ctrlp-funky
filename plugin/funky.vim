@@ -4,4 +4,5 @@
 " License: The MIT License
 
 command! -nargs=? CtrlPFunky call ctrlp#funky#funky(<q-args>)
-
+command! -nargs=? CtrlPFunkyClearCache call ctrlp#funky#clear_cache(expand('%:p'))
+command! -nargs=? CtrlPFunkyClearCacheAll call ctrlp#funky#clear_cache_all()

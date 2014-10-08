@@ -33,10 +33,6 @@ function! s:is_windows()
   return has('win32') || has('win64')
 endfunction
 
-function! s:conv_sp(name)
-  return substitute(a:name, '[\/:]', '%', 'g')
-endfunction
-
 let s:fu = {}
 
 function! ctrlp#funky#utils#new()
@@ -52,10 +48,6 @@ function! s:fu.build_path(...)
     endif
   endif
   return join(a:000, sp)
-endfunction
-
-function! s:fu.path(dir, fname)
-  return self.build_path(a:dir, s:conv_sp(a:fname))
 endfunction
 
 function! s:fu.fname(bufnr, ...)

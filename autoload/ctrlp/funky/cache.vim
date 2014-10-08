@@ -30,11 +30,6 @@ let s:saved_cpo = &cpo
 set cpo&vim
 
 let s:fu = ctrlp#funky#utils#new()
-
-let s:cache = {}
-let s:cache.list = {}
-let s:cache.dir = ''
-
 " private: {{{
 function! s:ftime(bufnr)
   return getftime(s:fu.fname(a:bufnr))
@@ -47,15 +42,19 @@ endfunction
 function! s:timesize(bufnr)
   return string(s:ftime(a:bufnr)) . string(s:fsize(a:bufnr))
 endfunction
+
+function! s:convsp(name)
+  return substitute(a:name, '[\/:]', '%', 'g')
+endfunction
 " }}}
 
-function! ctrlp#funky#cache#new(dir)
-  if empty(a:dir)
-    echoerr 'cache dir must be specified!!'
-    return ''
-  endif
-  let s:cache.dir = a:dir
-  return s:cache
+" s:cache {{{
+let s:cache = {}
+let s:cache.list = {}
+let s:cache.dir = ''
+
+function! s:cache.filename(fname)
+  return s:fu.build_path(self.dir, s:convsp(a:fname))
 endfunction
 
 function! s:cache.save(bufnr, defs)
@@ -63,7 +62,7 @@ function! s:cache.save(bufnr, defs)
   let fname = s:fu.fname(a:bufnr)
   " save function defs
   let self.list[fname] = extend([h], a:defs)
-  call writefile(self.list[fname], s:fu.path(self.dir, fname))
+  call writefile(self.list[fname], self.filename(fname))
 endfunction
 
 function! s:cache.load(bufnr)
@@ -74,7 +73,7 @@ endfunction
 
 function! s:cache.read(bufnr)
   let fname = s:fu.fname(a:bufnr)
-  let cache_file = s:fu.path(self.dir, fname)
+  let cache_file = self.filename(fname)
   if empty(get(self.list, fname, {}))
     let self.list[fname] = []
     if filereadable(cache_file)
@@ -83,18 +82,26 @@ function! s:cache.read(bufnr)
   endif
 endfunction
 
+" clear cache for just a file
 function! s:cache.clear(path)
-  " files needn't to be readable for deletion
-  if !empty(glob(path))
-    if !delete(path)
-      echoerr 'ERR: cannot delete a cache file - ' . path
-  endif
-  return ''
+  let cache = self.filename(a:path)
+  call self.delete(cache)
 endfunction
 
-function! s:cache.delete(...)
-  let bufnr = get(a:, 1, -1)
-  let path = s:fu.path(self.dir, s:fu.fname(bufnr))
+" clear all cached files
+function! s:cache.clear_all()
+  for f in split(glob(self.dir . '/*'), '\n')
+    call self.delete(f)
+  endfor
+endfunction
+
+function! s:cache.delete(cache)
+  " files needn't to be readable for deletion
+  if !empty(glob(a:cache))
+    if delete(a:cache)
+      echoerr 'ERR: cannot delete a cache file - ' . a:cache
+    endif
+  endif
 endfunction
 
 function! s:cache.timesize(bufnr)
@@ -109,6 +116,16 @@ function! s:cache.is_maybe_unchanged(bufnr)
   let cur = s:timesize(a:bufnr)
   call s:fu.debug(prev . ' = ' . cur . ': ' . (prev == cur ? 'unchanged' : 'changed'))
   return prev == cur
+endfunction
+" }}}
+
+function! ctrlp#funky#cache#new(dir)
+  if empty(a:dir)
+    echoerr 'cache dir must be specified!!'
+    return ''
+  endif
+  let s:cache.dir = a:dir
+  return s:cache
 endfunction
 
 let &cpo = s:saved_cpo
