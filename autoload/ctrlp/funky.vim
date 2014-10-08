@@ -65,54 +65,6 @@ function! s:filters.save(ft, filters)
 endfunction
 " }}}
 
-" Object: s:cache {{{
-let s:cache = {}
-let s:cache.list = {}
-
-function! s:cache.save(bufnr, defs)
-  let h = s:timesize(a:bufnr)
-  let fname = s:fname(a:bufnr)
-  " save function defs
-  let self.list[fname] = extend([h], a:defs)
-  call writefile(self.list[fname], s:build_path(s:cache_dir, s:conv_sp(fname)))
-endfunction
-
-function! s:cache.load(bufnr)
-  call self.read(a:bufnr)
-  " first line is hash value
-  return self.list[s:fname(a:bufnr)][1:-1]
-endfunction
-
-function! s:cache.path(fname)
-  return s:build_path(s:cache_dir, s:conv_sp(a:fname))
-endfunction
-
-function! s:cache.read(bufnr)
-  let fname = s:fname(a:bufnr)
-  let cache_file = self.path(fname)
-  if empty(get(self.list, fname, {}))
-    let self.list[fname] = []
-    if filereadable(cache_file)
-      let self.list[fname] = readfile(cache_file)
-    endif
-  endif
-endfunction
-
-function! s:cache.is_maybe_unchanged(bufnr)
-  if !s:is_real_file(a:bufnr) | return 0 | endif
-  let prev = self.timesize(a:bufnr)
-  let cur = s:timesize(a:bufnr)
-  call s:debug(prev . ' = ' . cur . ': ' . (prev == cur ? 'unchanged' : 'changed'))
-  return prev == cur
-endfunction
-
-function! s:cache.timesize(bufnr)
-  call self.read(a:bufnr)
-  let fname = s:fname(a:bufnr)
-  return get(get(self.list, fname, []), 0, '')
-endfunction
-" }}}
-
 " script funcs {{{
 " TODO: some functions should be defined under ctrlp#funky#utils namespace
 function! s:syntax(filetype)
@@ -134,17 +86,9 @@ function! s:error(msg)
     let v:errmsg  = a:msg
 endfunction
 
-function! s:is_real_file(bufnr)
-  if &buftype =~# '\v^(nofile|quickfix|help)$' | return 0 | endif
-  let path = fnamemodify(bufname(a:bufnr), ':p')
-  silent call s:debug(path . ': ' . filereadable(path))
-  return filereadable(path)
-endfunction
-
 function! s:debug(...)
-  if a:0 == 0 | return | endif
-  if !s:debug | return | endif
-  echomsg '[DEBUG]' . join(a:000, '')
+  if !s:is_debug | return | endif
+  call s:fu.debug(a:000)
 endfunction
 
 function! s:filetype(bufnr)
@@ -211,51 +155,6 @@ function! s:after_jump()
   endif
 
   silent! execute 'normal! ' . action . '0'
-endfunction
-
-function! s:fname(bufnr, ...)
-  let path = fnamemodify(bufname(a:bufnr), ':p')
-  if a:0
-    if a:1 == 'f'
-      " file name only
-      return fnamemodify(path, ':p:t')
-    elseif a:1 == 'd'
-      " dir name only
-      return fnamemodify(path, ':p:h')
-    endif
-  endif
-  return path
-endfunction
-
-function! s:ftime(bufnr)
-  return getftime(s:fname(a:bufnr))
-endfunction
-
-function! s:fsize(bufnr)
-  return getfsize(s:fname(a:bufnr))
-endfunction
-
-function! s:timesize(bufnr)
-  return string(s:ftime(a:bufnr)) . string(s:fsize(a:bufnr))
-endfunction
-
-function! s:is_windows()
-  return has('win32') || has('win64')
-endfunction
-
-function! s:build_path(...)
-  if a:0 == 0 | return '' | endif
-  let sp = '/'
-  if s:is_windows()
-    if exists('+shellslash')
-      let sp = (&shellslash ? '/' : '\')
-    endif
-  endif
-  return join(a:000, sp)
-endfunction
-
-function! s:conv_sp(name)
-  return substitute(a:name, '[\/:]', '%', 'g')
 endfunction
 " }}}
 
@@ -324,7 +223,8 @@ function! ctrlp#funky#extract(bufnr, patterns)
     endif
 
     " the file hasn't been changed since cached
-    if s:use_cache && s:is_real_file(a:bufnr) && s:cache.is_maybe_unchanged(a:bufnr)
+    if s:use_cache && s:fu.is_real_file(a:bufnr) && s:cache.is_maybe_unchanged(a:bufnr)
+      call s:debug('CACHE FILE:' . s:fu.path(s:cache.dir, s:fu.fname(a:bufnr)))
       let ca = s:cache.load(a:bufnr)
       if s:sort_by_mru
         let prior = []
@@ -380,7 +280,7 @@ function! ctrlp#funky#extract(bufnr, patterns)
     let sorted = sort(candidates, function('s:sort_candidates'))
     let prior = map(sort(mru, function('s:sort_mru')), 'v:val[0]')
 
-    if s:use_cache && s:is_real_file(a:bufnr)
+    if s:use_cache && s:fu.is_real_file(a:bufnr)
       call s:cache.save(a:bufnr, prior + sorted)
     endif
 
@@ -451,7 +351,7 @@ endfunction
 let s:errmsg = ''
 let s:custom_hl_list = {}
 
-let s:debug = get(g:, 'ctrlp_funky_debug', 0)
+let s:is_debug = get(g:, 'ctrlp_funky_debug', 0)
 let s:report_filter_error = get(g:, 'ctrlp_funky_report_filter_error', 0)
 let s:sort_by_mru = get(g:, 'ctrlp_funky_sort_by_mru', 0)
 " after jump action
@@ -464,21 +364,22 @@ if index(['line', 'path', 'tabs', 'tabe'], s:matchtype) < 0
   let s:matchtype = 'line'
 endif
 
+let s:fu = ctrlp#funky#utils#new()
+
 " cache
 let s:use_cache = get(g:, 'ctrlp_funky_use_cache', 0)
 if s:use_cache
-  let s:cache_dir = get(g:, 'ctrlp_funky_cache_dir', s:build_path(expand($HOME), '.cache', 'ctrlp-funky'))
-else
-  let s:cache_dir = ''
+  let cache_dir = get(g:, 'ctrlp_funky_cache_dir', s:fu.build_path(expand($HOME), '.cache', 'ctrlp-funky'))
+  let s:cache = ctrlp#funky#cache#new(cache_dir)
 endif
 
 if s:use_cache
-  call s:debug('INFO: cache dir: ' . s:cache_dir)
-  if !isdirectory(s:cache_dir)
+  call s:debug('INFO: cache dir: ' . s:cache.dir)
+  if !isdirectory(s:cache.dir)
     try
-      call mkdir(s:cache_dir, 'p')
+      call mkdir(s:cache.dir, 'p')
     catch /^Vim\%((\a\+)\)\=:E739/
-      echoerr 'ERR: cannot create a directory - ' . s:cache_dir
+      echoerr 'ERR: cannot create a directory - ' . s:cache.dir
       finish
     endtry
   endif
