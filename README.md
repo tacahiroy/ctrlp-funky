@@ -32,6 +32,7 @@ Currently, following filetypes are supported:
 * ruby
 * scala
 * sh (bash, dash and zsh)
+* typescript
 * yaml
 * vb (Visual Basic)
 * vim

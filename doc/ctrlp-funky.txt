@@ -45,6 +45,7 @@ This supports following file types:
 * ruby
 * scala
 * sh (bash, dash and zsh)
+* typescript
 * yaml
 * vb (Visual Basic)
 * vim
@@ -316,10 +317,15 @@ THANKS						*ctrlp-funky-thanks*
   * *rendon*          <https://github.com/rendon>
   * *kshenoy*         <https://github.com/kshenoy>
   * *mattiaslundberg* <https://github.com/mattiaslundberg>
+  * *prabirshrestha*  <https://github.com/prabirshrestha>
 
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+10 Oct 2014~
+  + Add basic TypeScript support (#52)
+    by |prabirshrestha|
 
 4 Oct 2014~
   + Fix error when selecting a function in split window (#49)
