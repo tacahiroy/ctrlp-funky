@@ -7,7 +7,7 @@
 " first bracket is preceeded by a word. If you put a space before your
 " functions, then you're out of luck because this eliminates most text
 " false positives.
-function! ctrlp#funky#c#filters()
+function! ctrlp#funky#ft#c#filters()
   let filters = [
         \ { 'pattern': '^\w.*\s*\w\_[\t ]*(',
         \   'formatter': [] }

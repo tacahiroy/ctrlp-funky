@@ -2,7 +2,7 @@
 " Author: pydave
 " License: The MIT License
 
-function! ctrlp#funky#java#filters()
+function! ctrlp#funky#ft#java#filters()
   " Java has a mostly standard format and style, so assume we've got
   " everything on one line (excluding annotations).
   let regex = '\v^\s+'                " preamble
@@ -19,6 +19,6 @@ function! ctrlp#funky#java#filters()
   return filters
 endfunction
 
-function! ctrlp#funky#java#post_extract_hook(list)
+function! ctrlp#funky#ft#java#post_extract_hook(list)
   call filter(a:list, "v:val !~# '^[\\t ]*else[\\t ]\\+if'")
 endfunction

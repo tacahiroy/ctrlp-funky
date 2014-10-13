@@ -5,7 +5,7 @@
 "support make file target parse
 "support format:
 "A:B  or  $(A):B or A $(B) : B
-function! ctrlp#funky#make#filters()
+function! ctrlp#funky#ft#make#filters()
   let filters = [
         \ { 'pattern': '\m^[^:\t#@''"]\+:=\@![^:\t]*\ze\n\|^\s*define\>',
         \   'formatter': [] }
@@ -13,7 +13,7 @@ function! ctrlp#funky#make#filters()
   return filters
 endfunction
 
-function! ctrlp#funky#make#post_extract_hook(list)
+function! ctrlp#funky#ft#make#post_extract_hook(list)
       let index = 0
       for i in a:list
             let i = substitute(i, '\m:=\@!.*$', '', 'g')

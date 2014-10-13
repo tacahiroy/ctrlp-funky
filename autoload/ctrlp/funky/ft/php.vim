@@ -2,7 +2,7 @@
 " Author: robmiller
 " License: The MIT License
 
-function! ctrlp#funky#php#filters()
+function! ctrlp#funky#ft#php#filters()
   let filters = [
         \ { 'pattern': '\v^\s*\w*(\s*\w*)\s*function\s+[&]*\w+\s*\(',
         \   'formatter': ['\m\C^[\t ]*', '', ''] }

@@ -2,7 +2,7 @@
 " Author: Takahiro Yoshihara
 " License: The MIT License
 
-function! ctrlp#funky#xhtml#filters()
+function! ctrlp#funky#ft#xhtml#filters()
   " these 2 are the same, isn't it?
-  return ctrlp#funky#html#filters()
+  return ctrlp#funky#ft#html#filters()
 endfunction
