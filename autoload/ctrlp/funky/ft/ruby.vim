@@ -34,7 +34,6 @@ function! ctrlp#funky#ft#ruby#filters()
           \ { 'pattern': '\m\C^[\t ]*\(private\|protected\|public\)[\t ]*$',
           \   'formatter': ['\S\+', '&', ''] }]
     \ )
-    call ctrlp#funky#ft#highlight('[^\t ]*\(private\|protected\|public\)', 'CtrlPFunkyRubyAccess', 'String')
   endif
 
   if get(g:, 'ctrlp_funky_ruby_rake_words', 1)
