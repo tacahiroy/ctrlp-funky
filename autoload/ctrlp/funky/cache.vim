@@ -84,8 +84,12 @@ endfunction
 
 " clear cache for just a file
 function! s:cache.clear(path)
+  " accurate?
+  let bufnr = bufnr(a:path)
+  let fname = s:fu.fname(bufnr)
   let cache = self.filename(a:path)
   call self.delete(cache)
+  let self.list[fname] = []
 endfunction
 
 " clear all cached files
@@ -93,6 +97,7 @@ function! s:cache.clear_all()
   for f in split(glob(self.dir . '/*'), '\n')
     call self.delete(f)
   endfor
+  let self.list = {}
 endfunction
 
 function! s:cache.delete(cache)
