@@ -270,13 +270,14 @@ Therefore, if the filter uses old API you may get an error.
 
 						*ctrlp-funky-api-v0.6.0*
 						*ctrlp-funky-create-own-filter*
-The filtype filter must have an |autoload| function named 'filters'.
+The filetype filter must have an |autoload| function named 'filters'.
 This 'filters' function must return a |List| which contains |Dictionaries|.
 And each |Dictionary| must have 'pattern' and 'formatter' as keys.
+NOTE: directory structure has been changed since v0.9.1.
 
 This is a filter for filetype 'vim'.
 >
-  function! ctrlp#funky#vim#filters()
+  function! ctrlp#funky#ft#vim#filters()
     let filters = [
           \ { 'pattern': '\m\C^[\t ]*function!\?[\t ]\+\S\+',
           \   'formatter': ['\m\C^[\t ]*', '', ''] }
@@ -297,7 +298,7 @@ List	formatter~
   |ctrlp-funky| formats each line that extracted from current buffer using
   values of this item. Actually, these items are simply assigned as arguments
   for |substitute()| function.
-  The sample function above removes leading whitespaces.
+  A sample function above removes leading whitespaces.
 
 
 ==============================================================================

@@ -1,4 +1,4 @@
-" File: autoload/ctrlp/cache.vim
+" File: autoload/ctrlp/funky/cache.vim
 " Author: Takahiro Yoshihara <tacahiroy@gmail.com>
 " License: The MIT License
 " Copyright (c) 2014 Takahiro Yoshihara
