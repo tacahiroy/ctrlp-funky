@@ -458,6 +458,7 @@ let s:sort_by_mru = get(g:, 'ctrlp_funky_sort_by_mru', 0)
 let s:after_jump = get(g:, 'ctrlp_funky_after_jump', 'zxzz')
 " 1: set the same filetype as source buffer
 let s:syntax_highlight = get(g:, 'ctrlp_funky_syntax_highlight', 0)
+
 let s:matchtype = get(g:, 'ctrlp_funky_matchtype', 'line')
 if index(['line', 'path', 'tabs', 'tabe'], s:matchtype) < 0
   echoerr 'WRN: value "' . s:matchtype . '" not allowed for g:ctrlp_funky_matchtype.'
@@ -504,7 +505,7 @@ call add(g:ctrlp_ext_vars, {
   \ 'sname':  'fky',
   \ 'type':   s:matchtype,
   \ 'exit':  'ctrlp#funky#exit()',
-  \ 'nolim':  1,
+  \ 'nolim':  get(g:, 'ctrlp_funky_nolim', 0),
   \ 'sort':   0
   \ })
 

@@ -140,6 +140,14 @@ useful setting these values.
 >
 	let g:ctrlp_funky_matchtype = 'line'
 <
+					*'g:ctrlp_funky_nolim'*
+This allows you to switch to no-limit mode. By default, the funky buffer is
+not scrollable = limit mode.
+(default: 0)
+(value: 0 or 1)
+>
+	let g:ctrlp_funky_nolim = 1
+>
 
 FILETYPE SETTINGS			*ctrlp-funky-filetype-settings*
 This section describes ctrlp-funky configuration for each filetype.
