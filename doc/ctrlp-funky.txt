@@ -1,6 +1,6 @@
 *ctrlp-funky.txt* *ctrlp-funky*
 A ctrlp.vim extension - navigate and jump to function defs
-Version: 0.9.0
+Version: 0.9.1
 Author:  Takahiro Yoshihara <https://github.com/tacahiroy>
 
 
@@ -330,6 +330,9 @@ THANKS						*ctrlp-funky-thanks*
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+14 Oct 2014~
+  + Add clear cache functionality
 
 10 Oct 2014~
   + Add basic TypeScript support (#52)
