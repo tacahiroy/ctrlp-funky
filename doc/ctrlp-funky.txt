@@ -149,6 +149,7 @@ not scrollable = limit mode.
 	let g:ctrlp_funky_nolim = 1
 >
 
+==============================================================================
 FILETYPE SETTINGS			*ctrlp-funky-filetype-settings*
 This section describes ctrlp-funky configuration for each filetype.
 
@@ -170,6 +171,15 @@ http://docs.opscode.com/resource.html#common-functionality
 (default: [])
 >
 	let g:ctrlp_funky_chef_custom_resources = ['rabbitmq', 'nodejs']
+<
+
+[go]					*ctrlp-funky-go*
+					*'g:ctrlp_funky_go_types'*
+Set this to 1 (enabled) the results will include type declarations.
+(default: 1)
+(value: 0 or 1)
+>
+	let g:ctrlp_funky_go_types = 0
 <
 
 [nerdtree]				*ctrlp-funky-nerdtree*
@@ -327,10 +337,15 @@ THANKS						*ctrlp-funky-thanks*
   * *kshenoy*         <https://github.com/kshenoy>
   * *mattiaslundberg* <https://github.com/mattiaslundberg>
   * *prabirshrestha*  <https://github.com/prabirshrestha>
+  * *siadat*          <https://github.com/siadat>
 
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+15 Oct 2014~
+  + Add type declarations support for go (#53)
+    by |siadat|
 
 14 Oct 2014~
   + Add clear cache functionality
