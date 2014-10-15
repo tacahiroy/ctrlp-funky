@@ -1,5 +1,6 @@
 " Language: Go
 " Author: Takahiro Yoshihara
+" Contributors: Sina Siadat
 " License: The MIT License
 
 function! ctrlp#funky#ft#go#filters()
@@ -14,6 +15,6 @@ function! ctrlp#funky#ft#go#filters()
           \   'formatter': [] }]
     \ )
   endif
-  
+
   return filters
 endfunction
