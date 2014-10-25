@@ -199,6 +199,7 @@ function! ctrlp#funky#funky(word)
       let g:ctrlp_default_input = a:word
     endif
 
+    let s:winnr = winnr()
     call ctrlp#init(ctrlp#funky#id())
   finally
     if exists('default_input_save')
@@ -316,8 +317,8 @@ function! ctrlp#funky#accept(mode, str)
   call ctrlp#exit()
 
   " should be current window = former window
-  let bufnr = matchstr(a:str, '\d\+\ze:\d\+$')
   let lnum = matchstr(a:str, '\d\+$')
+  execute 'noautocmd ' . get(s:, 'winnr', 1) . 'wincmd w'
   call cursor(lnum, 1)
 
   call s:after_jump()
