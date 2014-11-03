@@ -328,7 +328,7 @@ function! ctrlp#funky#accept(mode, str)
   call s:mru.prioritise(bufnr, s:definition(a:str))
 endfunction
 
-function!ctrlp#funky#exit()
+function! ctrlp#funky#exit()
   if !empty(s:errmsg) | call s:error(s:errmsg) | endif
 endfunction
 
