@@ -58,7 +58,7 @@ This plugin provides a command |:CtrlPFunky|. You just execute it.
 
 						*ctrlp-funky-:CtrlPFunky*
 :CtrlPFunky [WORD]
-	Extract lines from currently edited file.
+	Extract lines from the currently edited file.
 	You can provide an argument to the command. If it's provided, you 
 	get lines that match the 'WORD': the argument will be entered into
 	the CtrlP buffer by default.
@@ -77,7 +77,7 @@ You can customise the behaviour of ctrlp-funky using these variables.
 					*'g:ctrlp_funky_after_jump'*
 After the cursor has jumped to your wanted function line, what do you usually
 tap before getting into real work? '|zo|', '|zx|', '|zx||zt|', or '|zv||zz|'
-etc.  The valid action string consists of two part:
+etc.  A valid action string consists of two parts:
     The first part can be one of  '|zx|', '|zv|', '|zo|' or '|zO|' for
     setting the fold view. If |foldenable| if off, then this part has no
     effect.  The second part can be one of '|zt|', '|zz|' for scrolling the
@@ -115,7 +115,7 @@ the buffer or once you quit Vim, the order of the list is reset to default.
 
 
 					*'g:ctrlp_funky_syntax_highlight'*
-If this is enabled (=1), the |syntax-highlighting| feature is enabled in the
+If this is enabled (=1), the |syntax-highlighting| feature is enabled for the
 CtrlP-buffer. It just sets |filetype| of the CtrlP-buffer to the same as the
 current buffer.
 (default: 0)
@@ -125,7 +125,7 @@ current buffer.
 
 
 					*'g:ctrlp_funky_use_cache'*
-If this is enabled (=1), the cache feature is enabled in the
+If this is enabled (=1), the cache feature is enabled for the
 CtrlP-buffer. In this case, if the file wasn't changed, funky loads function
 definitions from cache, which is quicker.
 Note that funky detects file changed by timestamp and file size.
@@ -144,8 +144,8 @@ If not set, funky defaults to ~/.cache/ctrlp-funky (created if needed).
 					*'g:ctrlp_funky_matchtype'*
 This changes the matching algorithm used by ctrlp.vim. If you want 
 matched chars to be highlighted, you may set this option to 'path'.
-Note that this option changes the matching algorithm, so perhaps the filtered
-result is affected. 
+Note that this option changes the matching algorithm, so the filtered
+result may be affected. 
 Other possible values are 'tabs' and 'tabe', however, I don't think it's
 useful setting these values.
 (default: 'line')
@@ -270,13 +270,14 @@ Set this to 1 (enabled) and the 'chef' filter will be absorbed.
 <
 
 					*'g:ctrlp_funky_ruby_access'*
-Set this to 1 (enabled) and the result will binclude access modifiers such as
-private, protected and public.
+Set this to 1 (enabled) and the result will include access modifiers such as
+'private', 'protected' and 'public'.
 (default: 1)
 (value: 0 or 1)
 >
 	let g:ctrlp_funky_ruby_chef_words = 1
 <
+
 [sh]					*ctrlp-funky-sh*
 					*'g:ctrlp_funky_sh_type*
 Nowadays, '/bin/sh' is usually an alias (symlink) of another shell such as
