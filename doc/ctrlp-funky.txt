@@ -10,7 +10,7 @@ CONTENTS					*ctrlp-funky-contents*
 Introduction			|ctrlp-funky-intro|
 Commands			|ctrlp-funky-commands|
 Settings			|ctrlp-funky-settings|
-  Filetype Settings		|ctrlp-funky-filtype-settings|
+  Filetype Settings		|ctrlp-funky-filetype-settings|
 Filter Implementation Guide	|ctrlp-funky-filter-guide|
 Thanks				|ctrlp-funky-thanks|
 changelog			|ctrlp-funky-changelog|
@@ -58,12 +58,12 @@ This plugin provides a command |:CtrlPFunky|. You just execute it.
 
 						*ctrlp-funky-:CtrlPFunky*
 :CtrlPFunky [WORD]
-	Abstract lines from a current editing file.
-	You can provide an argument for the command. If it's provided you can
-	get lines that matches the 'WORD'.
-	In fact, the argument will be inputted into the CtrlP buffer by default.
+	Extract lines from currently edited file.
+	You can provide an argument to the command. If it's provided, you 
+	get lines that match the 'WORD': the argument will be entered into
+	the CtrlP buffer by default.
 
-Defining a mapping for this command must be useful. >
+It's useful to define a mapping for this command. >
 	nnoremap <Leader>fu :CtrlPFunky<Cr>
 	" Initialise list by a word under cursor
 	nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
@@ -72,16 +72,17 @@ Defining a mapping for this command must be useful. >
 
 ==============================================================================
 SETTINGS					*ctrlp-funky-settings*
-You can customise behaviour of ctrlp-funky using these variables.
+You can customise the behaviour of ctrlp-funky using these variables.
 
 					*'g:ctrlp_funky_after_jump'*
-After cursor jumped to your wanted function line, what did you frequently tap
-before getting into real work? '|zo|', '|zx|', '|zx||zt|', or '|zv||zz|' etc.
-The valid action string consists of two part:
-    The first part can be one of  '|zx|', '|zv|', '|zo|' or '|zO|' for setting fold
-    view. If |foldenable| if off, then this part has no effect.  The second
-    part can be one of '|zt|', '|zz|' for scrolling screen.
-Both of they can be '', which means nothing will be done.
+After the cursor has jumped to your wanted function line, what do you usually
+tap before getting into real work? '|zo|', '|zx|', '|zx||zt|', or '|zv||zz|'
+etc.  The valid action string consists of two part:
+    The first part can be one of  '|zx|', '|zv|', '|zo|' or '|zO|' for
+    setting the fold view. If |foldenable| if off, then this part has no
+    effect.  The second part can be one of '|zt|', '|zz|' for scrolling the
+    screen.
+Both of them can be '', which means nothing will be done.
 The |g:ctrlp_funky_after_jump| can be a single string:
 (default: 'zxzz')
 >
@@ -102,10 +103,10 @@ If you want to leave some 'margin' after 'z[tb]', see |scrolloff|.
 
 					*'g:ctrlp_funky_sort_by_mru'*
 If this is enabled (=1) the list is sorted by MRU (most recently used).
-In short, a function definition what was used last time is appeared on top of
+In short, the most recently used function definition appears at the top of
 the list.
-Note that the MRU feature doesn't work persistently. Therefore if you delete
-the buffer or once you quit Vim, order of the list is reset to default.
+Note that the MRU feature doesn't work persistently: if you delete
+the buffer or once you quit Vim, the order of the list is reset to default.
 (default: 0)
 (value: 0 or 1)
 >
@@ -114,32 +115,45 @@ the buffer or once you quit Vim, order of the list is reset to default.
 
 
 					*'g:ctrlp_funky_syntax_highlight'*
-If this is enabled (=1) |syntax-highlighting| feature is enabled in the CtrlP-
-buffer. It just sets |filetype| to CtrlP buffer same as the current buffer.
+If this is enabled (=1), the |syntax-highlighting| feature is enabled in the
+CtrlP-buffer. It just sets |filetype| of the CtrlP-buffer to the same as the
+current buffer.
 (default: 0)
 >
 	let g:ctrlp_funky_syntax_highlight = 1
-and the file wasn't changed the funky loads function definitions from cache,
-so this makes the funky faster.
-Note that the funky detects file changed by timestamp and file size.
+<
+
+
+					*'g:ctrlp_funky_use_cache'*
+If this is enabled (=1), the cache feature is enabled in the
+CtrlP-buffer. In this case, if the file wasn't changed, funky loads function
+definitions from cache, which is quicker.
+Note that funky detects file changed by timestamp and file size.
 (default: 0)
 (value: 0 or 1)
 >
 	let g:ctrlp_funky_use_cache = 1
 <
 
+
+					*'g:ctrlp_funky_use_cache'*
+This may be set to specify a cache dir for |g:ctrlp_funky_use_cache|.
+If not set, funky defaults to ~/.cache/ctrlp-funky (created if needed).
+
+
 					*'g:ctrlp_funky_matchtype'*
-This changes matching algorithm used inside ctrlp.vim. If you want to have
-highlight matched chars feature, you may set this option to 'path'.
-Note that this option changes matching algorithm, so perhaps filtered result
-is affected, I guess it's not big affection though.
-Also this option can be taken 'tabs' and 'tabe', however, I don't think it's
+This changes the matching algorithm used by ctrlp.vim. If you want 
+matched chars to be highlighted, you may set this option to 'path'.
+Note that this option changes the matching algorithm, so perhaps the filtered
+result is affected. 
+Other possible values are 'tabs' and 'tabe', however, I don't think it's
 useful setting these values.
 (default: 'line')
 (value: 'line', 'path', 'tabs', 'tabe')
 >
 	let g:ctrlp_funky_matchtype = 'line'
 <
+
 					*'g:ctrlp_funky_nolim'*
 This allows you to switch to no-limit mode. By default, the funky buffer is
 not scrollable = limit mode.
@@ -156,7 +170,7 @@ This section describes ctrlp-funky configuration for each filetype.
 
 [chef]					*ctrlp-funky-chef*
 					*'g:ctrlp_funky_chef_lwrp'*
-Set this to 1 (enabled) the results will include LWRP.
+Set this to 1 (enabled) for the results to include LWRP.
 http://docs.opscode.com/lwrp.html#opscode-maintained
 (default: 1)
 (value: 0 or 1)
@@ -175,7 +189,7 @@ http://docs.opscode.com/resource.html#common-functionality
 
 [go]					*ctrlp-funky-go*
 					*'g:ctrlp_funky_go_types'*
-Set this to 1 (enabled) the results will include type declarations.
+Set this to 1 (enabled) and the results will include type declarations.
 (default: 1)
 (value: 0 or 1)
 >
@@ -184,7 +198,7 @@ Set this to 1 (enabled) the results will include type declarations.
 
 [nerdtree]				*ctrlp-funky-nerdtree*
 					*'g:ctrlp_funky_nerdtree_include_files'*
-Set this to 1 (enabled) the results will include files.
+Set this to 1 (enabled) and the results will include files.
 (default: 0)
 (value: 0 or 1)
 >
@@ -193,7 +207,7 @@ Set this to 1 (enabled) the results will include files.
 
 [php]					*ctrlp-funky-php*
 					*'g:ctrlp_funky_php_requires'*
-Set this to 1 (enabled) the results will include 'require' and
+Set this to 1 (enabled) and the results will include 'require' and
 'require_once' lines.
 (default: 0)
 (value: 0 or 1)
@@ -202,7 +216,7 @@ Set this to 1 (enabled) the results will include 'require' and
 <
 
 					*'g:ctrlp_funky_php_includes'*
-Set this to 1 (enabled) the results will include 'include' and
+Set this to 1 (enabled) and the results will include 'include' and
 'include_once' lines.
 (default: 0)
 >
@@ -211,7 +225,7 @@ Set this to 1 (enabled) the results will include 'include' and
 
 [ruby]					*ctrlp-funky-ruby*
 					*'g:ctrlp_funky_ruby_requires'*
-Set this to 1 (enabled) the results will include 'require' and
+Set this to 1 (enabled) and the results will include 'require' and
 'require_relative' lines.
 (default: 0)
 (value: 0 or 1)
@@ -220,7 +234,7 @@ Set this to 1 (enabled) the results will include 'require' and
 <
 
 					*'g:ctrlp_funky_ruby_classes'*
-Set this to 1 (enabled) the results will include class definitions.
+Set this to 1 (enabled) and the results will include class definitions.
 (default: 1)
 (value: 0 or 1)
 >
@@ -228,7 +242,7 @@ Set this to 1 (enabled) the results will include class definitions.
 <
 
 					*'g:ctrlp_funky_ruby_modules'*
-Set this to 1 (enabled) the results will include module definitions.
+Set this to 1 (enabled) and the results will include module definitions.
 (default: 1)
 (value: 0 or 1)
 >
@@ -240,7 +254,7 @@ This option is no longer available. Use |g:ctrlp_funky_ruby_rake_words|
 instead. [OBSOLETE]
 
 					*'g:ctrlp_funky_ruby_rake_words*
-Set this to 1 (enabled) 'rake' filter will be absorbed.
+Set this to 1 (enabled) and the 'rake' filter will be absorbed.
 (default: 0)
 (value: 0 or 1)
 >
@@ -248,7 +262,7 @@ Set this to 1 (enabled) 'rake' filter will be absorbed.
 <
 
 					*'g:ctrlp_funky_ruby_chef_words'*
-Set this to 1 (enabled) 'chef' filter will be absorbed.
+Set this to 1 (enabled) and the 'chef' filter will be absorbed.
 (default: 0)
 (value: 0 or 1)
 >
@@ -256,7 +270,7 @@ Set this to 1 (enabled) 'chef' filter will be absorbed.
 <
 
 					*'g:ctrlp_funky_ruby_access'*
-Set this to 1 (enabled) the result will be included access modifiers such as
+Set this to 1 (enabled) and the result will binclude access modifiers such as
 private, protected and public.
 (default: 1)
 (value: 0 or 1)
@@ -265,9 +279,9 @@ private, protected and public.
 <
 [sh]					*ctrlp-funky-sh*
 					*'g:ctrlp_funky_sh_type*
-In most of the case, '/bin/sh' is an alias (symlink) of an other shell such as
-bash, ksh etc nowadays. You can specify the Funky's internal filetype for 'sh'.
-If this is set to 'dash', the Funky treats 'sh' as 'dash'.
+Nowadays, '/bin/sh' is usually an alias (symlink) of another shell such as
+bash, ksh, etc. You can specify Funky's internal filetype for 'sh'.
+If this is set to 'dash', Funky treats 'sh' as 'dash'.
 (default: 'bash')
 >
 	let g:ctrlp_funky_sh_type = 'ksh'
@@ -276,7 +290,7 @@ If this is set to 'dash', the Funky treats 'sh' as 'dash'.
 FILTER IMPLEMENTATION GUIDE			*ctrlp-funky-filter-guide*
 This section describes how to implement your own filter.
 The internal API has been changed since |ctrlp-funky| version 0.6.0.
-Therefore, if the filter uses old API you may get an error.
+Therefore, if the filter uses the old API you may get an error.
 
 						*ctrlp-funky-api-v0.6.0*
 						*ctrlp-funky-create-own-filter*
@@ -305,10 +319,10 @@ String	pattern~
   This is a regexp to extract function definitions.
 
 List	formatter~
-  |ctrlp-funky| formats each line that extracted from current buffer using
-  values of this item. Actually, these items are simply assigned as arguments
-  for |substitute()| function.
-  A sample function above removes leading whitespaces.
+  |ctrlp-funky| formats each line that is extracted from the current buffer
+  using the values of this item. Actually, these items are simply passed as
+  arguments to the |substitute()| function.
+  The sample function above removes leading whitespace.
 
 
 ==============================================================================
