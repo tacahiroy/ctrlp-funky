@@ -136,7 +136,7 @@ Note that funky detects file changed by timestamp and file size.
 <
 
 
-					*'g:ctrlp_funky_use_cache'*
+					*'g:ctrlp_funky_cache_dir'*
 This may be set to specify a cache dir for |g:ctrlp_funky_use_cache|.
 If not set, funky defaults to ~/.cache/ctrlp-funky (created if needed).
 
