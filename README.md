@@ -69,7 +69,7 @@ On Windows, basically, _vimfiles_ directory is used instead of _.vim_ directory.
 
 CONFIGURATION
 --------------
-It might be useful key mappings like:
+It's useful to define key mappings like this:
 ```vim
 nnoremap <Leader>fu :CtrlPFunky<Cr>
 " narrow the list down with a word under cursor
@@ -91,7 +91,7 @@ See `:h g:ctrlp_funky_matchtype` for more details and notes.
 
 ### SYNTAX HIGHLIGHTING
 I'd like to introduce one of ctrlp-funky options.
-Do you want to make ctrlp-funky funkier? Okay - you can do it just 1 line config.
+Do you want to make ctrlp-funky funkier? Okay - you can do it with just 1 line config.
 ```vim
 let g:ctrlp_funky_syntax_highlight = 1
 ```
@@ -113,7 +113,7 @@ LINK
 LICENSE
 -------
 
-Copyright (C) 2012-2014 Takahiro Yoshihara. Distributed under the MIT License.
+Copyright (C) 2012-2015 Takahiro Yoshihara. Distributed under the MIT License.
 
 [1]: http://i.imgur.com/yO4PWAF.png
 [2]: http://i.imgur.com/CnKui5H.png
