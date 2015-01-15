@@ -21,7 +21,7 @@ About				|ctrlp-funky-about|
 ==============================================================================
 INTRODUCTION					*ctrlp-funky-intro*
 
-ctrl-funky is an extension of ctrlp.vim.
+|ctrlp-funky| is an extension of ctrlp.vim.
 This supports following file types:
 
 * c/cpp (C/C++)
@@ -54,7 +54,7 @@ This supports following file types:
 ==============================================================================
 COMMANDS					*ctrlp-funky-commands*
 
-This plugin provides a command |:CtrlPFunky|. You just execute it.
+This plugin provides a command |:CtrlPFunky|.
 
 						*ctrlp-funky-:CtrlPFunky*
 :CtrlPFunky [WORD]
@@ -63,7 +63,8 @@ This plugin provides a command |:CtrlPFunky|. You just execute it.
 	get lines that match the 'WORD': the argument will be entered into
 	the CtrlP buffer by default.
 
-It's useful to define a mapping for this command. >
+It's useful to define mappings for this command. >
+
 	nnoremap <Leader>fu :CtrlPFunky<Cr>
 	" Initialise list by a word under cursor
 	nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
@@ -72,7 +73,7 @@ It's useful to define a mapping for this command. >
 
 ==============================================================================
 SETTINGS					*ctrlp-funky-settings*
-You can customise the behaviour of ctrlp-funky using these variables.
+You can customise the behaviour of |ctrlp-funky| using these variables.
 
 					*'g:ctrlp_funky_after_jump'*
 After the cursor has jumped to your wanted function line, what do you usually
@@ -102,10 +103,10 @@ If you want to leave some 'margin' after 'z[tb]', see |scrolloff|.
 
 
 					*'g:ctrlp_funky_sort_by_mru'*
-If this is enabled (=1) the list is sorted by MRU (most recently used).
+If this is enabled (=1), the list is sorted by MRU (most recently used).
 In short, the most recently used function definition appears at the top of
 the list.
-Note that the MRU feature doesn't work persistently: if you delete
+Note that the MRU feature doesn't work persistently: If you delete
 the buffer or once you quit Vim, the order of the list is reset to default.
 (default: 0)
 (value: 0 or 1)
@@ -142,7 +143,7 @@ If not set, funky defaults to ~/.cache/ctrlp-funky (created if needed).
 
 
 					*'g:ctrlp_funky_matchtype'*
-This changes the matching algorithm used by ctrlp.vim. If you want 
+This changes the matching algorithm used by |ctrlp|.vim. If you want 
 matched chars to be highlighted, you may set this option to 'path'.
 Note that this option changes the matching algorithm, so the filtered
 result may be affected. 
@@ -165,7 +166,7 @@ not scrollable = limit mode.
 
 ==============================================================================
 FILETYPE SETTINGS			*ctrlp-funky-filetype-settings*
-This section describes ctrlp-funky configuration for each filetype.
+This section describes |ctrlp-funky| configuration for each filetype.
 
 
 [chef]					*ctrlp-funky-chef*
@@ -300,7 +301,7 @@ This 'filters' function must return a |List| which contains |Dictionaries|.
 And each |Dictionary| must have 'pattern' and 'formatter' as keys.
 NOTE: directory structure has been changed since v0.9.1.
 
-This is a filter for filetype 'vim'.
+This example is for 'vim'.
 >
   function! ctrlp#funky#ft#vim#filters()
     let filters = [
@@ -308,7 +309,7 @@ This is a filter for filetype 'vim'.
           \   'formatter': ['\m\C^[\t ]*', '', ''] }
     \ ]
 
-    " You can highlight whatever in the ctrlp.vim window if you want
+    " You can highlight whatever in the |ctrlp|.vim window if you want
     call ctrlp#funky#highlight('^[\t ]*function[\t ]',
                              \ 'CtrlPFunkyVimFunc', 'Function')
 
