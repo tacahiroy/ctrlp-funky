@@ -354,10 +354,20 @@ THANKS						*ctrlp-funky-thanks*
   * *mattiaslundberg* <https://github.com/mattiaslundberg>
   * *prabirshrestha*  <https://github.com/prabirshrestha>
   * *siadat*          <https://github.com/siadat>
+  * *jean*            <https://github.com/jean>
+  * *Komnomnomnom*    <https://github.com/Komnomnomnom>
 
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+1 Jan 2015~
+  + Fix duplicate tag in the doc (#58)
+    by |Komnomnomnom|
+
+27 Dec 2014~
+  + Fix doc entry for cache dir (#57)
+    by |jean|
 
 15 Oct 2014~
   + Add type declarations support for go (#53)
