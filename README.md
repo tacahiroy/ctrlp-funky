@@ -69,13 +69,6 @@ On Windows, basically, _vimfiles_ directory is used instead of _.vim_ directory.
 
 CONFIGURATION
 --------------
-You need to make the plugin available as a ctrlp.vim extension. Please add *funky* to a variable `g:ctrlp_extensions`.
-```vim
-let g:ctrlp_extensions = ['funky']
-```
-
-Reboot Vim and then you can use `:CtrlPFunky` command.
-
 It might be useful key mappings like:
 ```vim
 nnoremap <Leader>fu :CtrlPFunky<Cr>
