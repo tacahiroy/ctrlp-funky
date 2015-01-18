@@ -89,7 +89,7 @@ The |g:ctrlp_funky_after_jump| can be a single string:
 >
        let g:ctrlp_funky_after_jump = 'zxzt'
 <
-which affects all filetypes, or it can be a dictionary as follows:
+which affects all filetypes, or it can be a |Dictionary| as follows:
 >
        let g:ctrlp_funky_after_jump = {
             \ 'default' : 'zxzz',
