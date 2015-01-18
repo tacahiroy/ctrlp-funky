@@ -330,7 +330,7 @@ List	formatter~
 ==============================================================================
 THANKS						*ctrlp-funky-thanks*
 
-  * *kien* <http://github.com/kien> - the author of ctrlp.vim
+  * *kien* <https://github.com/kien> - the author of ctrlp.vim
 
   * *pydave*          <https://github.com/pydave>
   * *curist*          <https://github.com/curist>
