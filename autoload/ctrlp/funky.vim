@@ -316,6 +316,7 @@ function! ctrlp#funky#accept(mode, str)
   " always back to former window
   call ctrlp#exit()
 
+  let bufnr = matchstr(a:str, ':\zs\d\+\ze:')
   " should be current window = former window
   let lnum = matchstr(a:str, '\d\+$')
   execute 'noautocmd ' . get(s:, 'winnr', 1) . 'wincmd w'
