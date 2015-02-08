@@ -1,6 +1,6 @@
 *ctrlp-funky.txt* *ctrlp-funky*
 A ctrlp.vim extension - navigate and jump to function defs
-Version: 0.9.2
+Version: 0.10.0
 Author:  Takahiro Yoshihara <https://github.com/tacahiroy>
 
 
@@ -101,6 +101,15 @@ which affects all filetypes, or it can be a |Dictionary| as follows:
 <
 If you want to leave some 'margin' after 'z[tb]', see |scrolloff|.
 
+
+					*'g:ctrlp_funky_multi_buffers'*
+If this is enabled (=1), Funky searches function defs from all buffers.
+So you can go back and forth in buffers using this functionality.
+(default: 0)
+(value: 0 or 1)
+>
+	let g:ctrlp_funky_multi_buffers = 1
+<
 
 					*'g:ctrlp_funky_sort_by_mru'*
 If this is enabled (=1), the list is sorted by MRU (most recently used).
@@ -365,6 +374,7 @@ CHANGELOG 					*ctrlp-funky-changelog*
 8 Feb 2015~
   + Fix error on accept() if sort_by_mru is enabled (#59)
     reported by |timfeirg|
+  + Add multiple buffer support (minimum impl)
 
 1 Jan 2015~
   + Fix duplicate tag in the doc (#58)
