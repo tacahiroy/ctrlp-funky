@@ -1,6 +1,6 @@
 *ctrlp-funky.txt* *ctrlp-funky*
 A ctrlp.vim extension - navigate and jump to function defs
-Version: 0.9.1
+Version: 0.9.2
 Author:  Takahiro Yoshihara <https://github.com/tacahiroy>
 
 
@@ -356,10 +356,15 @@ THANKS						*ctrlp-funky-thanks*
   * *siadat*          <https://github.com/siadat>
   * *jean*            <https://github.com/jean>
   * *Komnomnomnom*    <https://github.com/Komnomnomnom>
+  * *timfeirg*        <https://github.com/timfeirg>
 
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+8 Feb 2015~
+  + Fix error on accept() if sort_by_mru is enabled (#59)
+    reported by |timfeirg|
 
 1 Jan 2015~
   + Fix duplicate tag in the doc (#58)
