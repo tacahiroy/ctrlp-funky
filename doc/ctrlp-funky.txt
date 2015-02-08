@@ -105,6 +105,7 @@ If you want to leave some 'margin' after 'z[tb]', see |scrolloff|.
 					*'g:ctrlp_funky_multi_buffers'*
 If this is enabled (=1), Funky searches function defs from all buffers.
 So you can go back and forth in buffers using this functionality.
+Note that this makes disabled |'g:ctrlp_funky_sort_by_mru'| as at 0.10.0.
 (default: 0)
 (value: 0 or 1)
 >
