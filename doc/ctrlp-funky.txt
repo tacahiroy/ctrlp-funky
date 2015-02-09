@@ -367,10 +367,15 @@ THANKS						*ctrlp-funky-thanks*
   * *jean*            <https://github.com/jean>
   * *Komnomnomnom*    <https://github.com/Komnomnomnom>
   * *timfeirg*        <https://github.com/timfeirg>
+  * *h14i*            <https://github.com/h14i>
 
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+9 Feb 2015~
+  + Fix function name for typescript (#60)
+    by |h14i|
 
 8 Feb 2015~
   + Fix error on accept() if sort_by_mru is enabled (#59)
