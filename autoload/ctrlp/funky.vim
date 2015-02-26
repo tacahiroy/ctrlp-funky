@@ -125,6 +125,38 @@ function! s:filters_by_filetype(ft, bufnr)
   return filters
 endfunction
 
+
+function! ctrlp#funky#findCandidates(bufnr)
+    if s:is_multi_buffers
+      let bufs = map(ctrlp#buffers(), 'bufnr(v:val)')
+    else
+      let bufs = [a:bufnr]
+    endif
+    let cands = []
+    let pos = getpos('.')
+    for bufInd in bufs
+      call s:load_buffer_by_name(bufInd)
+      let filetype = s:filetype(bufInd)
+      for ft in split(filetype, '\.')
+        if s:has_filter(ft)
+          let filters = s:filters_by_filetype(ft, bufInd)
+          let st = reltime()
+          let cands += ctrlp#funky#extract(bufInd, filters)
+          call s:fu.debug('Extract: ' . reltimestr(reltime(st)))
+          if s:has_post_extract_hook(ft)
+            call ctrlp#funky#ft#{ft}#post_extract_hook(cands)
+          endif
+        elseif s:report_filter_error
+          echoerr printf('%s: filters not exist', ft)
+        endif
+      endfor
+    endfor
+    call setpos('.', pos)
+    return cands
+endfunction
+
+
+
 " It does an action after jump to a definition such as 'zxzz'
 " In most of cases, this is used for opening folds.
 "
@@ -164,57 +196,15 @@ function! s:after_jump()
 endfunction
 " }}}
 
+
+
 " Provides a list of strings to search in
 "
 " Return: List
 " FIXME: refactoring
 function! ctrlp#funky#init(bufnr)
-  " ControlP buffer is active when this function is invoked
-  try
-    " NOTE: To prevent ctrlp error. this is a bug on ctrlp itself, perhaps?
-    let saved_ei = &eventignore
-    let &eventignore = 'BufLeave'
-
-    let ctrlp_winnr = bufwinnr(bufnr(''))
-    execute bufwinnr(a:bufnr) . 'wincmd w'
-    let pos = getpos('.')
-
-    if s:is_multi_buffers
-      let bufs = map(ctrlp#buffers(), 'bufnr(v:val)')
-    else
-      let bufs = [a:bufnr]
-    endif
-
-    let candidates = []
-    for bufnr in bufs
-      call s:load_buffer_by_name(bufnr)
-      let filetype = s:filetype(bufnr)
-      for ft in split(filetype, '\.')
-        if s:has_filter(ft)
-          let filters = s:filters_by_filetype(ft, bufnr)
-          let st = reltime()
-          let candidates += ctrlp#funky#extract(bufnr, filters)
-          call s:fu.debug('Extract: ' . reltimestr(reltime(st)))
-          if s:has_post_extract_hook(ft)
-            call ctrlp#funky#ft#{ft}#post_extract_hook(candidates)
-          endif
-        elseif s:report_filter_error
-          echoerr printf('%s: filters not exist', ft)
-        endif
-      endfor
-    endfor
-
-    " activate the former buffer
-    execute 'buffer ' . bufname(a:bufnr)
-    call setpos('.', pos)
-
-    execute ctrlp_winnr . 'wincmd w'
-    call s:syntax(filetype)
-
-    return candidates
-  finally
-    let &eventignore = saved_ei
-  endtry
+  call s:syntax(s:filetype(a:bufnr))
+  return s:curCandidates
 endfunction
 
 function! ctrlp#funky#funky(word)
@@ -225,7 +215,15 @@ function! ctrlp#funky#funky(word)
     endif
 
     let s:winnr = winnr()
-    call ctrlp#init(ctrlp#funky#id())
+    let s:curCandidates = ctrlp#funky#findCandidates(s:winnr)
+    let matches = ctrlp#matchLines(s:curCandidates, a:word)
+    if len(matches)==1
+      let lnum = matchstr(matches[0], '\d\+$')
+      call cursor(lnum, 1)
+      call s:after_jump()
+    else
+      call ctrlp#init(ctrlp#funky#id())
+    endif
   finally
     if exists('default_input_save')
       let g:ctrlp_default_input = default_input_save
