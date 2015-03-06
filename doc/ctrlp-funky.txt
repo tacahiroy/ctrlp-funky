@@ -37,6 +37,7 @@ This supports following file types:
 * lua
 * make (Makefile)
 * markdown
+* moon (MoonScript)
 * nerdtree
 * objc (Objective-C)
 * perl
@@ -368,10 +369,15 @@ THANKS						*ctrlp-funky-thanks*
   * *Komnomnomnom*    <https://github.com/Komnomnomnom>
   * *timfeirg*        <https://github.com/timfeirg>
   * *h14i*            <https://github.com/h14i>
+  * *ggVGc*            <https://github.com/ggVGc>
 
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+6 Mar 2015~
+  + Add MoonScript (moon) support (#62)
+    by |ggVGc|
 
 9 Feb 2015~
   + Fix function name for typescript (#60)

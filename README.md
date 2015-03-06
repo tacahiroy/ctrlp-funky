@@ -24,6 +24,7 @@ Currently, following filetypes are supported:
 * lua
 * make (Makefile)
 * markdown
+* moon (MoonScript)
 * nerdtree
 * objc (Objective-C)
 * perl
