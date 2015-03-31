@@ -375,6 +375,10 @@ THANKS						*ctrlp-funky-thanks*
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
 
+31 Mar 2015~
+  + Improve TypeScript support (#64)
+    by |prabirshrestha|
+
 6 Mar 2015~
   + Add MoonScript (moon) support (#62)
     by |ggVGc|
