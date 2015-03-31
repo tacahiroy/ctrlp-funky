@@ -194,7 +194,7 @@ function! ctrlp#funky#init(bufnr)
           let filters = s:filters_by_filetype(ft, bufnr)
           let st = reltime()
           let candidates += ctrlp#funky#extract(bufnr, filters)
-          call s:fu.debug('Extract: ' . reltimestr(reltime(st)))
+          call s:fu.debug('Extract: ' . len(candidates) . ' lines in ' . reltimestr(reltime(st)))
           if s:has_post_extract_hook(ft)
             call ctrlp#funky#ft#{ft}#post_extract_hook(candidates)
           endif
@@ -233,7 +233,7 @@ function! ctrlp#funky#funky(word)
   endtry
 endfunction
 
-" TODO: this fat function needs to be improved. 'if s:sort_by_mru' too much
+" TODO: this fat function needs to be improved. 'if s:sort_by_mru' too much etc.
 function! ctrlp#funky#extract(bufnr, patterns)
   try
     let candidates = []
