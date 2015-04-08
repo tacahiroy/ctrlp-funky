@@ -15,6 +15,7 @@ Currently, following filetypes are supported:
 * chef
 * cmm (TRACE32)
 * coffee-script
+* dart
 * elixir
 * go
 * html/xhtml

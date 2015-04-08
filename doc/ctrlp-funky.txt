@@ -28,6 +28,7 @@ This supports following file types:
 * chef (Resources)
 * cmm (TRACE32)
 * coffee-script
+* dart
 * elixir
 * go (golang)
 * html/xhtml
@@ -374,6 +375,9 @@ THANKS						*ctrlp-funky-thanks*
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+9 Apr 2015~
+  + Add basic Dart support
 
 31 Mar 2015~
   + Improve TypeScript support (#64)
