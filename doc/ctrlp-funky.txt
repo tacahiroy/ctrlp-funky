@@ -35,6 +35,7 @@ This supports following file types:
 * java
 * javascript
 * jinja (template engine for Python)
+* LaTeX
 * lua
 * make (Makefile)
 * markdown
@@ -375,6 +376,9 @@ THANKS						*ctrlp-funky-thanks*
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+12 Apr 2015~
+  + Add basic LaTeX support
 
 9 Apr 2015~
   + Add basic Dart support

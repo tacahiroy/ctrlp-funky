@@ -22,6 +22,7 @@ Currently, following filetypes are supported:
 * java
 * javascript
 * jinja (template engine for Python)
+* LaTeX
 * lua
 * make (Makefile)
 * markdown
