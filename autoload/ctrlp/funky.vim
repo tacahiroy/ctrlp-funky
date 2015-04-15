@@ -278,11 +278,8 @@ function! ctrlp#funky#extract(bufnr, patterns)
         execute 'silent! global/' . c.pattern . '/echo printf("%s \t#%s:%d:%d", getline(line(".") + offset), "", a:bufnr, line(".") + offset)'
       redir END
 
-      if ilist !~# '\n\(E486: \)\?Pattern not found:'
+      if ilist =~# '\s\t#:\d\+:\d\+$'
         for l in split(ilist, '\n')
-          if l =~# '^ \t#:\d\+:\d\+$'
-            continue
-          endif
           let [left, right] = split(l, '\ze \t#:\d\+:\d\+')
           let formatter = c.formatter
           let [pat, str, flags] = [get(formatter, 0, ''), get(formatter, 1, ''), get(formatter, 2, '')]
