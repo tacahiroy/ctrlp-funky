@@ -1,6 +1,6 @@
 *ctrlp-funky.txt* *ctrlp-funky*
 A ctrlp.vim extension - navigate and jump to function defs
-Version: 0.10.0
+Version: 0.10.1
 Author:  Takahiro Yoshihara <https://github.com/tacahiroy>
 
 
@@ -35,7 +35,6 @@ This supports following file types:
 * java
 * javascript
 * jinja (template engine for Python)
-* LaTeX
 * lua
 * make (Makefile)
 * markdown
@@ -48,6 +47,7 @@ This supports following file types:
 * ruby
 * scala
 * sh (bash, dash and zsh)
+* tex (LaTeX)
 * typescript
 * yaml
 * vb (Visual Basic)
@@ -371,14 +371,22 @@ THANKS						*ctrlp-funky-thanks*
   * *Komnomnomnom*    <https://github.com/Komnomnomnom>
   * *timfeirg*        <https://github.com/timfeirg>
   * *h14i*            <https://github.com/h14i>
-  * *ggVGc*            <https://github.com/ggVGc>
+  * *ggVGc*           <https://github.com/ggVGc>
+  * *senft*           <https://github.com/senft>
+  * *bmenant*         <https://github.com/bmenant>
+  * *fufler*          <https://github.com/fufler>
 
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
 
+16 Apr 2015~
+  + Fix E688 problem with non English locales (#38)
+    reported by |bmenant| / fixed by |fufler|
+
 12 Apr 2015~
   + Add basic LaTeX support
+    by |senft|
 
 9 Apr 2015~
   + Add basic Dart support
