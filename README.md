@@ -10,35 +10,8 @@ One of advantages of this plugin is you needn't to generate tags file to jump to
 
 ![ctrlp-funky][1]
 
-Currently, following filetypes are supported:
-* c/cpp (C/C++)
-* chef
-* cmm (TRACE32)
-* coffee-script
-* dart
-* elixir
-* go
-* html/xhtml
-* java
-* javascript
-* jinja (template engine for Python)
-* LaTeX
-* lua
-* make (Makefile)
-* markdown
-* moon (MoonScript)
-* nerdtree
-* objc (Objective-C)
-* perl
-* php
-* python
-* ruby
-* scala
-* sh (bash, dash and zsh)
-* typescript
-* yaml
-* vb (Visual Basic)
-* vim
+### Supported filetypes:
+See [ctrlp-funky.txt](https://github.com/tacahiroy/ctrlp-funky/blob/master/doc/ctrlp-funky.txt#L22)
 
 
 PREMISE
