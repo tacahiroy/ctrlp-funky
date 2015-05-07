@@ -370,10 +370,19 @@ function! ctrlp#funky#highlight(pat, from_group, to_group)
 endfunction
 
 function! ctrlp#funky#clear_cache(path)
+  " FIXME: DRY!!
+  if !s:cache.is_enabled()
+    echomsg 'INFO: cache feature is not enabled, so do nothing.'
+    return
+  endif
   call s:cache.clear(a:path)
 endfunction
 
 function! ctrlp#funky#clear_cache_all()
+  if !s:cache.is_enabled()
+    echomsg 'INFO: cache feature is not enabled, so do nothing.'
+    return
+  endif
   call s:cache.clear_all()
 endfunction
 
@@ -396,30 +405,17 @@ let s:syntax_highlight = get(g:, 'ctrlp_funky_syntax_highlight', 0)
 
 let s:matchtype = get(g:, 'ctrlp_funky_matchtype', 'line')
 if index(['line', 'path', 'tabs', 'tabe'], s:matchtype) < 0
-  echoerr 'WRN: value "' . s:matchtype . '" not allowed for g:ctrlp_funky_matchtype.'
+  echoerr 'WARN: value "' . s:matchtype . '" not allowed for g:ctrlp_funky_matchtype.'
   let s:matchtype = 'line'
 endif
 
 let s:fu = ctrlp#funky#utils#new()
 
 " cache
-let s:use_cache = get(g:, 'ctrlp_funky_use_cache', 0)
-if s:use_cache
-  let cache_dir = get(g:, 'ctrlp_funky_cache_dir', s:fu.build_path(expand($HOME), '.cache', 'ctrlp-funky'))
-  let s:cache = ctrlp#funky#cache#new(cache_dir)
-endif
+let cache_dir = get(g:, 'ctrlp_funky_cache_dir', s:fu.build_path(expand($HOME), '.cache', 'ctrlp-funky'))
+let s:cache = ctrlp#funky#cache#new(cache_dir)
+let s:use_cache = s:cache.is_enabled()
 
-if s:use_cache
-  call s:fu.debug('INFO: cache dir: ' . s:cache.dir)
-  if !isdirectory(s:cache.dir)
-    try
-      call mkdir(s:cache.dir, 'p')
-    catch /^Vim\%((\a\+)\)\=:E739/
-      echoerr 'ERR: cannot create a directory - ' . s:cache.dir
-      finish
-    endtry
-  endif
-endif
 call s:fu.debug('INFO: use_cache? ' . (s:use_cache ? 'TRUE' : 'FALSE'))
 call s:fu.debug('INFO: mutli_buffers? ' . (s:is_multi_buffers ? 'TRUE' : 'FALSE'))
 

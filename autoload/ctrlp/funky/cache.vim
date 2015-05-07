@@ -1,7 +1,7 @@
 " File: autoload/ctrlp/funky/cache.vim
 " Author: Takahiro Yoshihara <tacahiroy@gmail.com>
 " License: The MIT License
-" Copyright (c) 2014 Takahiro Yoshihara
+" Copyright (c) 2014,2015 Takahiro Yoshihara
 
 " Permission is hereby granted, free of charge, to any person obtaining a copy
 " of this software and associated documentation files (the "Software"), to deal
@@ -51,13 +51,31 @@ endfunction
 " s:cache {{{
 let s:cache = {}
 let s:cache.list = {}
-let s:cache.dir = ''
+let s:cache.dirname = ''
+
+let s:use_cache = get(g:, 'ctrlp_funky_use_cache', 0)
+function! s:cache.is_enabled()
+  return s:use_cache
+endfunction
 
 function! s:cache.filename(fname)
-  return s:fu.build_path(self.dir, s:convsp(a:fname))
+  return s:fu.build_path(self.dirname, s:convsp(a:fname))
+endfunction
+
+function! s:cache.mkdir_if_missing()
+  let dir = self.dirname
+  if !isdirectory(dir)
+    try
+      call mkdir(dir, 'p')
+    catch /^Vim\%((\a\+)\)\=:E739/
+      echoerr 'ERR: cannot create a directory - ' . dir
+      finish
+    endtry
+  endif
 endfunction
 
 function! s:cache.save(bufnr, defs)
+  call self.mkdir_if_missing()
   let h = s:timesize(a:bufnr)
   let fname = s:fu.fname(a:bufnr)
   " save function defs
@@ -72,6 +90,7 @@ function! s:cache.load(bufnr)
 endfunction
 
 function! s:cache.read(bufnr)
+  call self.mkdir_if_missing()
   let fname = s:fu.fname(a:bufnr)
   let cache_file = self.filename(fname)
   if empty(get(self.list, fname, {}))
@@ -92,9 +111,9 @@ function! s:cache.clear(path)
   let self.list[fname] = []
 endfunction
 
-" clear all cached files
+" delete all cache files
 function! s:cache.clear_all()
-  for f in split(glob(self.dir . '/*'), '\n')
+  for f in split(glob(self.dirname . '/*'), '\n')
     call self.delete(f)
   endfor
   let self.list = {}
@@ -129,7 +148,7 @@ function! ctrlp#funky#cache#new(dir)
     echoerr 'cache dir must be specified!!'
     return ''
   endif
-  let s:cache.dir = a:dir
+  let s:cache.dirname = a:dir
   return s:cache
 endfunction
 
