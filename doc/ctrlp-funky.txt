@@ -57,7 +57,8 @@ This supports following file types:
 ==============================================================================
 COMMANDS					*ctrlp-funky-commands*
 
-This plugin provides a command |:CtrlPFunky|.
+The basic command of |ctrlp-funky| is |:CtrlPFunky|. What you need to do is
+just run this command in most of cases.
 
 						*ctrlp-funky-:CtrlPFunky*
 :CtrlPFunky [WORD]
@@ -68,10 +69,20 @@ This plugin provides a command |:CtrlPFunky|.
 
 It's useful to define mappings for this command. >
 
-	nnoremap <Leader>fu :CtrlPFunky<Cr>
+	nnoremap <Leader>f :CtrlPFunky<Cr>
 	" Initialise list by a word under cursor
-	nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+	nnoremap <Leader>u :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 <
+
+						*ctrlp-funky-:CtrlPFunkyClearCache*
+:CtrlPFunkyClearCache
+	This command deletes cache file for the current buffer.
+	Note that this does nothing if |g:ctrlp_funky_use_cache| is set to 0.
+
+						*ctrlp-funky-:CtrlPFunkyClearCacheAll*
+:CtrlPFunkyClearCacheAll
+	This command behaves the same as |:CtrlPFunkyClearCache|, but deletes
+	all cache files.
 
 
 ==============================================================================
