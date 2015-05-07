@@ -24,7 +24,7 @@ INTRODUCTION					*ctrlp-funky-intro*
 |ctrlp-funky| is an extension of ctrlp.vim.
 This supports following file types:
 
-* c/cpp (C/C++)
+* c / cpp (C++) / cs (C#)
 * chef (Resources)
 * cmm (TRACE32)
 * coffee-script
@@ -379,6 +379,9 @@ THANKS						*ctrlp-funky-thanks*
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+7 May 2015~
+  + Add basic C# (cs) support (#66)
 
 16 Apr 2015~
   + Fix E688 problem with non English locales (#38)
