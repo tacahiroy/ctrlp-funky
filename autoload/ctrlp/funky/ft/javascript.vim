@@ -9,6 +9,8 @@ function! ctrlp#funky#ft#javascript#filters()
         \ { 'pattern': '\v\w.+\:\s*function\s*\(', 
         \   'formatter': ['\v(^\s*)|(\s*\{.*\ze \t#)', '', 'g'] },
         \ { 'pattern': '\v\C\w.+\s*\=\s*function\s*\(',
+        \   'formatter': ['\v(^\s*)|(\s*\{.*\ze \t#)', '', 'g'] },
+        \ { 'pattern': '\v\s*function(\*\s+|\s+\*\s+|\s+\*)\w+\(',
         \   'formatter': ['\v(^\s*)|(\s*\{.*\ze \t#)', '', 'g'] }
   \ ]
   return filters
