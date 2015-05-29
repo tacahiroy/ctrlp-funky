@@ -300,7 +300,16 @@ Set this to 1 (enabled) and the result will include access modifiers such as
 (default: 1)
 (value: 0 or 1)
 >
-	let g:ctrlp_funky_ruby_chef_words = 1
+	let g:ctrlp_funky_ruby_access = 1
+<
+
+					*'g:ctrlp_funky_ruby_rspec'*
+Set this to 1 (enabled) and the result will include rspec definitions like
+'context', 'scenario', 'feature', 'describe' and 'it'.
+(default: 1)
+(value: 0 or 1)
+>
+	let g:ctrlp_funky_ruby_rspec = 1
 <
 
 [sh]					*ctrlp-funky-sh*
