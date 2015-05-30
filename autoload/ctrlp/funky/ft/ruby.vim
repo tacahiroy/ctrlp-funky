@@ -36,6 +36,13 @@ function! ctrlp#funky#ft#ruby#filters()
     \ )
   endif
 
+  if get(g:, 'ctrlp_funky_ruby_rspec', 1)
+    call extend(filters, [
+          \ { 'pattern': '\m\C^[\t ]*\(describe\|context\|feature\|scenario\|it\)[\t ]\+\S\+',
+          \   'formatter': [] }]
+    \ )
+  endif
+
   if get(g:, 'ctrlp_funky_ruby_rake_words', 1)
     call extend(filters, [
           \ { 'pattern': '\m\C^[\t ]*task[\t ]\+\S\+',
