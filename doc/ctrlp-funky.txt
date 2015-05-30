@@ -25,7 +25,6 @@ INTRODUCTION					*ctrlp-funky-intro*
 This supports following file types:
 
 * c / cpp (C++) / cs (C#)
-* chef (Resources)
 * cmm (TRACE32)
 * coffee-script
 * css
@@ -45,7 +44,7 @@ This supports following file types:
 * perl
 * php
 * python
-* ruby
+* ruby (ruby, rake, rspec and chef)
 * scala
 * sh (bash, dash and zsh)
 * tex (LaTeX)
@@ -397,6 +396,7 @@ THANKS						*ctrlp-funky-thanks*
   * *bmenant*         <https://github.com/bmenant>
   * *fufler*          <https://github.com/fufler>
   * *metainfra*       <https://github.com/metainfa>
+  * *svenwin*         <https://github.com/svenwin>
 
 
 ==============================================================================
@@ -404,6 +404,8 @@ CHANGELOG 					*ctrlp-funky-changelog*
 
 30 May 2015~
   + Add very basic css support (#69)
+  + Add support for rspec definitions (#71)
+  by |svenwin|
 
 27 May 2015~
   + Add generator function support for javascript (#68)
