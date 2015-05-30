@@ -1,5 +1,5 @@
 " File: autoload/ctrlp/funky.vim
-" Description: a simple ctrlp.vim extension provides jumping to a function
+" Description: a simple function navigator for ctrlp.vim
 " Author: Takahiro Yoshihara <tacahiroy@gmail.com>
 " License: The MIT License
 " Copyright (c) 2012-2014 Takahiro Yoshihara
@@ -27,7 +27,7 @@ if get(g:, 'loaded_ctrlp_funky', 0)
 endif
 let g:loaded_ctrlp_funky = 1
 
-let s:saved_cpo = &cpo
+let s:save_cpo = &cpo
 set cpo&vim
 
 " Object: s:mru {{{
@@ -445,5 +445,5 @@ call add(g:ctrlp_ext_vars, {
 " Give the extension an ID
 let s:id = g:ctrlp_builtins + len(g:ctrlp_ext_vars)
 
-let &cpo = s:saved_cpo
-unlet s:saved_cpo
+let &cpo = s:save_cpo
+unlet s:save_cpo
