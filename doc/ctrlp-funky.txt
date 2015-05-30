@@ -28,6 +28,7 @@ This supports following file types:
 * chef (Resources)
 * cmm (TRACE32)
 * coffee-script
+* css
 * dart
 * elixir
 * go (golang)
@@ -386,10 +387,18 @@ THANKS						*ctrlp-funky-thanks*
   * *senft*           <https://github.com/senft>
   * *bmenant*         <https://github.com/bmenant>
   * *fufler*          <https://github.com/fufler>
+  * *metainfra*       <https://github.com/metainfa>
 
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+30 May 2015~
+  + Add very basic css support (#69)
+
+27 May 2015~
+  + Add generator function support for javascript (#68)
+  by |metainfa|
 
 7 May 2015~
   + Add basic C# (cs) support (#66)
