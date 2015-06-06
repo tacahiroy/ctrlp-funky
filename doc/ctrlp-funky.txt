@@ -46,6 +46,7 @@ This supports following file types:
 * python
 * ruby (ruby, rake, rspec and chef)
 * scala
+* scss
 * sh (bash, dash and zsh)
 * tex (LaTeX)
 * typescript
@@ -404,6 +405,10 @@ CHANGELOG 					*ctrlp-funky-changelog*
 
 30 May 2015~
   + Add very basic css support (#69)
+  + Improve css support (#69)
+    by anstosa
+  + Add scss support (#69)
+    by anstosa
   + Add support for rspec definitions (#71)
   by |svenwin|
 
