@@ -27,7 +27,7 @@ This supports following file types:
 * c / cpp (C++) / cs (C#)
 * cmm (TRACE32)
 * coffee-script
-* css
+* css (css, scss)
 * dart
 * elixir
 * go (golang)
@@ -44,9 +44,8 @@ This supports following file types:
 * perl
 * php
 * python
-* ruby (ruby, rake, rspec and chef)
+* ruby (ruby, rake, rspec and chef recipe)
 * scala
-* scss
 * sh (bash, dash and zsh)
 * tex (LaTeX)
 * typescript
@@ -396,8 +395,9 @@ THANKS						*ctrlp-funky-thanks*
   * *senft*           <https://github.com/senft>
   * *bmenant*         <https://github.com/bmenant>
   * *fufler*          <https://github.com/fufler>
-  * *metainfra*       <https://github.com/metainfa>
+  * *metainfa*       <https://github.com/metainfa>
   * *svenwin*         <https://github.com/svenwin>
+  * *anstosa*         <https://github.com/anstosa>
 
 
 ==============================================================================
@@ -405,16 +405,12 @@ CHANGELOG 					*ctrlp-funky-changelog*
 
 30 May 2015~
   + Add very basic css support (#69)
-  + Improve css support (#69)
-    by anstosa
-  + Add scss support (#69)
-    by anstosa
-  + Add support for rspec definitions (#71)
-  by |svenwin|
+  + Improve css support (#72) by |anstosa|
+  + Add scss support (#69) by |anstosa|
+  + Add support for rspec definitions (#71) by |svenwin|
 
 27 May 2015~
-  + Add generator function support for javascript (#68)
-  by |metainfa|
+  + Add generator function support for javascript by |metainfa| (#68)
 
 7 May 2015~
   + Add basic C# (cs) support (#66)
@@ -424,23 +420,19 @@ CHANGELOG 					*ctrlp-funky-changelog*
     reported by |bmenant| / fixed by |fufler|
 
 12 Apr 2015~
-  + Add basic LaTeX support
-    by |senft|
+  + Add basic LaTeX support by |senft|
 
 9 Apr 2015~
   + Add basic Dart support
 
 31 Mar 2015~
-  + Improve TypeScript support (#64)
-    by |prabirshrestha|
+  + Improve TypeScript support by |prabirshrestha| (#64)
 
 6 Mar 2015~
-  + Add MoonScript (moon) support (#62)
-    by |ggVGc|
+  + Add MoonScript (moon) support by |ggVGc| (#62)
 
 9 Feb 2015~
-  + Fix function name for typescript (#60)
-    by |h14i|
+  + Fix function name for typescript by |h14i| (#60)
 
 8 Feb 2015~
   + Fix error on accept() if sort_by_mru is enabled (#59)
@@ -467,67 +459,58 @@ CHANGELOG 					*ctrlp-funky-changelog*
     by |prabirshrestha|
 
 4 Oct 2014~
-  + Fix error when selecting a function in split window (#49)
-  reported by |mattiaslundberg|
+  + Fix error when selecting a function in split window
+    reported by |mattiaslundberg| (#49)
 
 3 Oct 2014~
-  + Fix regexp for C++ to support scope resolution operator (#51)
-  reported by |kshenoy|
+  + Fix regexp for C++ to support scope resolution operator
+    reported by |kshenoy| (#51)
 
 30 Sep 2014~
-  + Add 'g:ctrlp_funky_matchtype' (#13, #50)
+  + Add 'g:ctrlp_funky_matchtype' (#13 / #50)
 
 27 Aug 2014~
-  + Improve java support (#48)
-    by |rendon|
+  + Improve java support by |rendon| (#48)
 
 14 Aug 2014~
   + Improve cmm and make support (#46)
-  + Fix multi-lined function support for C and Java (#47)
-    by |huaihuaiVV|
+  + Fix multi-lined function support for C and Java by |huaihuaiVV| (#47)
 
 13 Aug 2014~
-  + Add TRACE32 (cmm) and Makefile (make) support (#44)
-    by |huaihuaiVV|
+  + Add TRACE32 (cmm) and Makefile (make) support by |huaihuaiVV| (#44)
 
 12 Aug 2014~
   + Add basic Elixir support
 
 27 July 2014~
-  + Improve Scala support (#40)
-    reported by |walkingsparrow|
+  + Improve Scala support reported by |walkingsparrow| (#40)
 
 12 July 2014~
   + Add very basic Scala support
 
 24 June 2014~
-  + 0.9.0: Add cache feature (#27)
-    ideas from |dusans|
+  + 0.9.0: Add cache feature ideated by |dusans| (#27)
 
 30 May 2014~
-  + 0.8.5: php - Add support for extra keywords, final, static etc. (#35)
-    by |axehead|
+  + 0.8.5: php - Add support for extra keywords, final, static etc.
+    by |axehead| (#35)
 
 28 May 2014~
-  + Fix error a markdown file contains YAML Front matter (#36)
-    reported by |dictav|
+  + Fix error a markdown file contains YAML Front matter
+    reported by |dictav| (#36)
   + markdown: Add h4 to h6 support
 
 22 Apr 2014~
-  + Add support for returning by reference function for PHP (#31)
-    by |dingmingxin|
+  + Add support for returning by reference function for PHP by |dingmingxin| (#31)
 
 20 Apr 2014~
-  + 0.8.4: Fix performance issue for python (#30)
-    by |dusans|
+  + 0.8.4: Fix performance issue for python by |dusans| (#30)
 
 10 Mar 2014~
-  + 0.8.3: Add Jinja template support. (#29)
-    by |vitalk|
+  + 0.8.3: Add Jinja template support by |vitalk| (#29)
 
 22 Feb 2014~
-  + 0.8.2: Add html and xhtml support. (#28)
-    by |mmazer|
+  + 0.8.2: Add html and xhtml support by |mmazer| (#28)
 
 26 Jan 2014~
   + 0.8.1: Add syntax highlight option: |g:ctrlp_funky_syntax_highlight|
@@ -540,8 +523,7 @@ CHANGELOG 					*ctrlp-funky-changelog*
   + 0.7.1: Remove the old API
 
 9 Nov 2013~
-  + 0.7.0: Add coffee-script support. (#23)
-    by |kirstein|
+  + 0.7.0: Add coffee-script support by |kirstein| (#23)
 
 16 Oct 2013~
   + Add post_extract_hook support
@@ -559,19 +541,16 @@ CHANGELOG 					*ctrlp-funky-changelog*
 
 7 Sept 2013~
   + Add MRU feature: |g:ctrlp_funky_sort_by_mru|
-  + Add YAML support. (#20)
-    by |dusans|
+  + Add YAML support by |dusans| (#20)
 
 30 Aug 2013~
-  + Add javascript object function support. (#17)
-    by |mephux|
+  + Add javascript object function support by |mephux| (#17)
 
 27 Aug 2013~
   + Fix "Pattern not found" line appears in the list
 
 15 Aug 2013~
-  + Add support for Lua
-    by |hlissner|
+  + Add support for Lua by |hlissner|
 
 9 Aug 2013~
   + New option: |g:ctrlp_funky_sh_type|
@@ -585,8 +564,7 @@ CHANGELOG 					*ctrlp-funky-changelog*
   + Add multi-lined function def support in Python (#12)
 
 17 Jun 2013~
-  + Add C support, improved C++ pattern.
-    by |unc0|
+  + Add C support, improved C++ pattern by |unc0|
 
 23 May 2013~
   + Fix regex pattern for sh. No parentheses case can be detected.
@@ -596,8 +574,7 @@ CHANGELOG 					*ctrlp-funky-changelog*
                  |g:ctrlp_funky_php_includes|,
 
 2 May 2013~
-  + Add support for php
-    by |robmiller|
+  + Add support for php by |robmiller|
 
 25 Apr 2013~
   + New options: |g:ctrlp_funky_chef_custom_resources|
@@ -617,8 +594,7 @@ CHANGELOG 					*ctrlp-funky-changelog*
 
 12 Feb 2013~
   + Add 'get_filter' method in each filter to disclose own filter
-  + Add support for Objective-C (objc)
-    by |tokorom|
+  + Add support for Objective-C (objc) by |tokorom|
 
 27 Jan 2013~
   + Add support for Shell Script (bash)
@@ -633,12 +609,10 @@ CHANGELOG 					*ctrlp-funky-changelog*
                  |g:ctrlp_funky_ruby_contains_rake|
 
 20 Jan 2013~
-  + Add class filter for python
-    by |Benoit|
+  + Add class filter for python by |Benoit|
 
 14 Jan 2013~
-  + Add support for javascript
-    by |curist|
+  + Add support for javascript by |curist|
 
 06 Jun 2012~
   + Add support for python
