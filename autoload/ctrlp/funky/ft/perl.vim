@@ -4,8 +4,8 @@
 
 function! ctrlp#funky#ft#perl#filters()
   let filters = [
-        \ { 'pattern': '\m\C\<sub\>[\t ]*',
-        \   'formatter': [] }
+        \ { 'pattern': '\m\C\(\<sub\%(type\)\?\>\|\<coerce[\t ]\+\w\+\|enum\|[''"]\w\+::\w\+[''"]\)[\t ]*',
+        \   'formatter': [] },
   \ ]
 
   return filters
