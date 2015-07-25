@@ -395,13 +395,18 @@ THANKS						*ctrlp-funky-thanks*
   * *senft*           <https://github.com/senft>
   * *bmenant*         <https://github.com/bmenant>
   * *fufler*          <https://github.com/fufler>
-  * *metainfa*       <https://github.com/metainfa>
+  * *metainfa*        <https://github.com/metainfa>
   * *svenwin*         <https://github.com/svenwin>
   * *anstosa*         <https://github.com/anstosa>
+  * *imran-uk*        <https://github.com/imran-uk>
 
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+25 July 2015~
+  + Add support for Perl Moose and Method::Signatures (#73) 
+    requested by |imran-uk|
 
 30 May 2015~
   + Add very basic css support (#69)
@@ -440,23 +445,19 @@ CHANGELOG 					*ctrlp-funky-changelog*
   + Add multiple buffer support (minimum impl)
 
 1 Jan 2015~
-  + Fix duplicate tag in the doc (#58)
-    by |Komnomnomnom|
+  + Fix duplicate tag in the doc by |Komnomnomnom| (#58) 
 
 27 Dec 2014~
-  + Fix doc entry for cache dir (#57)
-    by |jean|
+  + Fix doc entry for cache dir by |jean| (#57) 
 
 15 Oct 2014~
-  + Add type declarations support for go (#53)
-    by |siadat|
+  + Add type declarations support for golang by |siadat| (#53) 
 
 14 Oct 2014~
   + Add clear cache functionality
 
 10 Oct 2014~
-  + Add basic TypeScript support (#52)
-    by |prabirshrestha|
+  + Add basic TypeScript support by |prabirshrestha| (#52) 
 
 4 Oct 2014~
   + Fix error when selecting a function in split window
