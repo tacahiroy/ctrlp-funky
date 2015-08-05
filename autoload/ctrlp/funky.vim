@@ -299,7 +299,7 @@ function! ctrlp#funky#extract(bufnr, patterns)
       endif
     endfor
 
-    let sorted = sort(candidates, function('s:sort_candidates'))
+    let sorted = sort(candidates, function(s:sort_reverse ? 's:sort_candidates_reverse': 's:sort_candidates'))
     let prior = map(sort(mru, function('s:sort_mru')), 'v:val[0]')
 
     if s:use_cache && s:fu.is_real_file(a:bufnr)
@@ -324,6 +324,12 @@ function! s:sort_candidates(a, b)
   let line1 = str2nr(matchstr(a:a, '\d\+$'), 10)
   let line2 = str2nr(matchstr(a:b, '\d\+$'), 10)
   return line1 == line2 ? 0 : line1 > line2 ? 1 : -1
+endfunction
+
+function! s:sort_candidates_reverse(a, b)
+  let line1 = str2nr(matchstr(a:a, '\d\+$'), 10)
+  let line2 = str2nr(matchstr(a:b, '\d\+$'), 10)
+  return line1 == line2 ? 0 : line1 < line2 ? 1 : -1
 endfunction
 
 function! s:sort_mru(a, b)
@@ -398,6 +404,7 @@ let s:is_multi_buffers = get(g:, 'ctrlp_funky_multi_buffers', 0)
 
 let s:report_filter_error = get(g:, 'ctrlp_funky_report_filter_error', 0)
 let s:sort_by_mru = get(g:, 'ctrlp_funky_sort_by_mru', 0)
+let s:sort_reverse = get(g:, 'ctrlp_funky_sort_reverse', 0)
 " after jump action
 let s:after_jump = get(g:, 'ctrlp_funky_after_jump', 'zxzz')
 " 1: set the same filetype as source buffer
