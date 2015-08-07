@@ -299,7 +299,10 @@ function! ctrlp#funky#extract(bufnr, patterns)
       endif
     endfor
 
-    let sorted = sort(candidates, function(s:sort_reverse ? 's:sort_candidates_reverse': 's:sort_candidates'))
+    let sorted = sort(candidates, function('s:sort_candidates'))
+    if s:sort_reverse
+        let sorted = reverse(sorted)
+    endif
     let prior = map(sort(mru, function('s:sort_mru')), 'v:val[0]')
 
     if s:use_cache && s:fu.is_real_file(a:bufnr)
@@ -324,12 +327,6 @@ function! s:sort_candidates(a, b)
   let line1 = str2nr(matchstr(a:a, '\d\+$'), 10)
   let line2 = str2nr(matchstr(a:b, '\d\+$'), 10)
   return line1 == line2 ? 0 : line1 > line2 ? 1 : -1
-endfunction
-
-function! s:sort_candidates_reverse(a, b)
-  let line1 = str2nr(matchstr(a:a, '\d\+$'), 10)
-  let line2 = str2nr(matchstr(a:b, '\d\+$'), 10)
-  return line1 == line2 ? 0 : line1 < line2 ? 1 : -1
 endfunction
 
 function! s:sort_mru(a, b)
