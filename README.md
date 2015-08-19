@@ -32,7 +32,7 @@ In addition, don't forget put a line below into your _.vimrc_.
 Plugin 'tacahiroy/ctrlp-funky'
 ```
 
-### [vim-plug](https://github.com/gmarik/vundle.git)
+### [vim-plug](https://github.com/junegunn/vim-plug)
 First, you need to put the following line into your _.vimrc_.
 ```vim
 Plug 'tacahiroy/ctrlp-funky'
