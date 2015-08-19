@@ -22,7 +22,7 @@ Otherwise, you need to install ctrlp.vim before start using this plugin.
 
 INSTALLATION
 ----------
-### [Vundle](https://github.com/gmarik/vundle.git)
+### [Vundle](https://github.com/VundleVim/Vundle.Vim)
 1. Run `:PluginInstall tacahiroy/ctrlp-funky`
 2. Add `Plugin 'tacahiroy/ctrlp-funky'` to _.vimrc_
 
