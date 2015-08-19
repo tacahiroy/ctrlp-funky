@@ -32,6 +32,21 @@ In addition, don't forget put a line below into your _.vimrc_.
 Plugin 'tacahiroy/ctrlp-funky'
 ```
 
+### [vim-plug](https://github.com/gmarik/vundle.git)
+First, you need to put the following line into your _.vimrc_.
+```vim
+Plug 'tacahiroy/ctrlp-funky'
+```
+
+After that, you may run either following commands to install ctrlp-funky:
+```vim
+:PlugInstall ctrlp-funky
+```
+or
+```vim
+:PlugUpdate
+```
+
 ### [pathogen.vim](https://github.com/tpope/vim-pathogen)
 ```sh
 $ cd ~/.vim/bundle
