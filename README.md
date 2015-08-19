@@ -23,44 +23,25 @@ Otherwise, you need to install ctrlp.vim before start using this plugin.
 INSTALLATION
 ----------
 ### [Vundle](https://github.com/gmarik/vundle.git)
-```vim
-:PluginInstall tacahiroy/ctrlp-funky
-```
-
-In addition, don't forget put a line below into your _.vimrc_.
-```vim
-Plugin 'tacahiroy/ctrlp-funky'
-```
+1. Run `:PluginInstall tacahiroy/ctrlp-funky`
+2. Add `Plugin 'tacahiroy/ctrlp-funky'` to _.vimrc_
 
 ### [vim-plug](https://github.com/junegunn/vim-plug)
-First, you need to put the following line into your _.vimrc_.
-```vim
-Plug 'tacahiroy/ctrlp-funky'
-```
-
-After that, you may run either following commands to install ctrlp-funky:
-```vim
-:PlugInstall ctrlp-funky
-```
-or
-```vim
-:PlugUpdate
-```
+1. Add `Plug 'tacahiroy/ctrlp-funky'` to _.vimrc_
+2. Run `:PlugInstall`
 
 ### [pathogen.vim](https://github.com/tpope/vim-pathogen)
-```sh
-$ cd ~/.vim/bundle
-$ git clone git://github.com/tacahiroy/ctrlp-funky.git
-```
+1. `cd ~/.vim/bundle`
+2. `git clone git://github.com/tacahiroy/ctrlp-funky.git`
 
 ### Manually
-If you don't use either plugin management systems, copy _autoload_ and _plugin_ directories to your _.vim_ directory.
+If you don't use either plugin management systems, copy _autoload_ and _plugin_ directories to _.vim_ directory.
 On Windows, basically, _vimfiles_ directory is used instead of _.vim_ directory.
 
 
 CONFIGURATION
 --------------
-It's useful to define key mappings like this:
+It should be useful to define key mappings like this:
 ```vim
 nnoremap <Leader>fu :CtrlPFunky<Cr>
 " narrow the list down with a word under cursor
