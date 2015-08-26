@@ -2,7 +2,8 @@
 " Description: a simple function navigator for ctrlp.vim
 " Author: Takahiro Yoshihara <tacahiroy@gmail.com>
 " License: The MIT License
-" Copyright (c) 2012-2014 Takahiro Yoshihara
+" {{{
+" Copyright (c) 2012-2015 Takahiro Yoshihara
 
 " Permission is hereby granted, free of charge, to any person obtaining a copy
 " of this software and associated documentation files (the "Software"), to deal
@@ -21,6 +22,7 @@
 " LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 " OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 " SOFTWARE.
+" }}}
 
 if get(g:, 'loaded_ctrlp_funky', 0)
   finish
@@ -65,7 +67,7 @@ function! s:filters.save(ft, filters)
 endfunction
 " }}}
 
-" script funcs {{{
+" script local funcs {{{
 " TODO: some functions should be defined under ctrlp#funky#utils namespace
 function! s:syntax(filetype)
   if !ctrlp#nosy()
@@ -162,6 +164,30 @@ function! s:after_jump()
 
   silent! execute 'normal! ' . action . '0'
 endfunction
+
+function! s:definition(line)
+  return matchstr(a:line, '^.*\ze\t#')
+endfunction
+
+function! s:buflnum(line)
+  return matchstr(a:line, '\zs\t#.\+$')
+endfunction
+
+function! s:sort_candidates(a, b)
+  let line1 = str2nr(matchstr(a:a, '\d\+$'), 10)
+  let line2 = str2nr(matchstr(a:b, '\d\+$'), 10)
+  return line1 == line2 ? 0 : line1 > line2 ? 1 : -1
+endfunction
+
+function! s:sort_mru(a, b)
+  let a = a:a
+  let b = a:b
+  return a[1] == b[1] ? 0 : a[1] > b[1] ? 1 : -1
+endfunction
+
+function! s:str2def(line)
+  return matchstr(a:line, '^.*\ze\t#')
+endfunction
 " }}}
 
 " Provides a list of strings to search in
@@ -185,28 +211,12 @@ function! ctrlp#funky#init(bufnr)
       let bufs = [a:bufnr]
     endif
 
-    let candidates = []
-    for bufnr in bufs
-      call s:load_buffer_by_name(bufnr)
-      let filetype = s:filetype(bufnr)
-      for ft in split(filetype, '\.')
-        if s:has_filter(ft)
-          let filters = s:filters_by_filetype(ft, bufnr)
-          let st = reltime()
-          let candidates += ctrlp#funky#extract(bufnr, filters)
-          call s:fu.debug('Extract: ' . len(candidates) . ' lines in ' . reltimestr(reltime(st)))
-          if s:has_post_extract_hook(ft)
-            call ctrlp#funky#ft#{ft}#post_extract_hook(candidates)
-          endif
-        elseif s:report_filter_error
-          echoerr printf('%s: filters not exist', ft)
-        endif
-      endfor
-    endfor
+    let candidates = ctrlp#funky#candidates(bufs)
 
     " activate the former buffer
     execute 'buffer ' . bufname(a:bufnr)
     call setpos('.', pos)
+    let filetype = s:filetype(a:bufnr)
 
     execute ctrlp_winnr . 'wincmd w'
     call s:syntax(filetype)
@@ -215,6 +225,29 @@ function! ctrlp#funky#init(bufnr)
   finally
     let &eventignore = saved_ei
   endtry
+endfunction
+
+function! ctrlp#funky#candidates(bufs)
+  let candidates = []
+  for bufnr in a:bufs
+    call s:load_buffer_by_name(bufnr)
+    let filetype = s:filetype(bufnr)
+    for ft in split(filetype, '\.')
+      if s:has_filter(ft)
+        let filters = s:filters_by_filetype(ft, bufnr)
+        let st = reltime()
+        let candidates += ctrlp#funky#extract(bufnr, filters)
+        call s:fu.debug('Extract: ' . len(candidates) . ' lines in ' . reltimestr(reltime(st)))
+        if s:has_post_extract_hook(ft)
+          call ctrlp#funky#ft#{ft}#post_extract_hook(candidates)
+        endif
+      elseif s:report_filter_error
+        echoerr printf('%s: filters not exist', ft)
+      endif
+    endfor
+  endfor
+
+  return candidates
 endfunction
 
 function! ctrlp#funky#funky(word)
@@ -286,7 +319,7 @@ function! ctrlp#funky#extract(bufnr, patterns)
           let filtered = substitute(left, pat, str, flags) . right
 
           if s:sort_by_mru
-            let pos = s:mru.index(a:bufnr, s:definition(filtered))
+            let pos = s:mru.index(a:bufnr, s:str2def(filtered))
           endif
 
           if s:sort_by_mru && pos >= 0
@@ -312,26 +345,6 @@ function! ctrlp#funky#extract(bufnr, patterns)
   endtry
 endfunction
 
-function! s:definition(line)
-  return matchstr(a:line, '^.*\ze\t#')
-endfunction
-
-function! s:buflnum(line)
-  return matchstr(a:line, '\zs\t#.\+$')
-endfunction
-
-function! s:sort_candidates(a, b)
-  let line1 = str2nr(matchstr(a:a, '\d\+$'), 10)
-  let line2 = str2nr(matchstr(a:b, '\d\+$'), 10)
-  return line1 == line2 ? 0 : line1 > line2 ? 1 : -1
-endfunction
-
-function! s:sort_mru(a, b)
-  let a = a:a
-  let b = a:b
-  return a[1] == b[1] ? 0 : a[1] > b[1] ? 1 : -1
-endfunction
-
 " The action to perform on the selected string.
 "
 " Arguments:
@@ -353,7 +366,7 @@ function! ctrlp#funky#accept(mode, str)
 
   if !s:sort_by_mru | return | endif
 
-  call s:mru.prioritise(bufnr, s:definition(a:str))
+  call s:mru.prioritise(bufnr, s:str2def(a:str))
 endfunction
 
 function! ctrlp#funky#exit()
