@@ -76,7 +76,7 @@ function! s:syntax(filetype)
       execute printf('syn match %s "%s"', k, v.pat)
     endfor
 
-    if !s:is_multi_buffers && s:syntax_highlight
+    if s:syntax_highlight
       let &filetype = a:filetype
     endif
 
@@ -219,7 +219,7 @@ function! ctrlp#funky#init(bufnr)
     let filetype = s:filetype(a:bufnr)
 
     execute ctrlp_winnr . 'wincmd w'
-    call s:syntax(filetype)
+    if len(bufs) == 1 | call s:syntax(filetype) | endif
 
     return candidates
   finally
