@@ -6,7 +6,8 @@ SYNOPSIS
 ----------
 This is a ctrlp.vim extension. It simply navigates and jumps to function definitions from the current file without ctags. It just searches function definitions or equivalent lines using regular expressions, therefore some languages' abstraction aren't accurate because of hard to parse.
 
-One of advantages of this plugin is you needn't to generate tags file to jump to definition of functions, classes etc.
+One of advantages of this plugin is that no configurations required in most of cases, so install, then it starts working and no ctags required.
+*If you want to have more accurate list of function defs, you should use other ctags based tools.*
 
 ![ctrlp-funky][1]
 
