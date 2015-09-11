@@ -1,14 +1,14 @@
 ctrlp-funky
 ============
-Very simple function navigator for ctrlp.vim.  
-For lazy people who doesn't want to use ctags to find out functions.
+Super simple function navigator for ctrlp.vim.  
+For lazy people who cannot wait until ctags finishes.
 
 SYNOPSIS
 ----------
 This is a ctrlp.vim extension. It simply navigates and jumps to function definitions from the current file without ctags. It just searches function definitions or equivalent lines using regular expressions, therefore some languages' abstraction aren't accurate because of hard to parse.
 
 One of advantages of this plugin is that no configurations required in most of cases, so install, then it starts working and no ctags required.
-*If you want to have more accurate list of function defs, you should use other ctags based tools.*
+*If you want to have more accurate list of function defs, you should use other ctags based tools, etc.*
 
 ![ctrlp-funky][1]
 
