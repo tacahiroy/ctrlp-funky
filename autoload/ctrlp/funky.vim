@@ -334,12 +334,13 @@ function! ctrlp#funky#extract(bufnr, patterns)
 
     let sorted = sort(candidates, function('s:sort_candidates'))
     let prior = map(sort(mru, function('s:sort_mru')), 'v:val[0]')
+    let results = uniq(prior + sorted)
 
     if s:use_cache && s:fu.is_real_file(a:bufnr)
-      call s:cache.save(a:bufnr, prior + sorted)
+      call s:cache.save(a:bufnr, results)
     endif
 
-    return prior + sorted
+    return results
   finally
     execute ctrlp_winnr . 'wincmd w'
   endtry
