@@ -188,6 +188,10 @@ endfunction
 function! s:str2def(line)
   return matchstr(a:line, '^.*\ze\t#')
 endfunction
+
+function! s:uniq(list)
+  return exists('*uniq') ? uniq(a:list) : a:list
+endfunction
 " }}}
 
 " Provides a list of strings to search in
@@ -334,7 +338,7 @@ function! ctrlp#funky#extract(bufnr, patterns)
 
     let sorted = sort(candidates, function('s:sort_candidates'))
     let prior = map(sort(mru, function('s:sort_mru')), 'v:val[0]')
-    let results = uniq(prior + sorted)
+    let results = s:uniq(prior + sorted)
 
     if s:use_cache && s:fu.is_real_file(a:bufnr)
       call s:cache.save(a:bufnr, results)
@@ -445,6 +449,7 @@ call s:fu.debug('INFO: mutli_buffers? ' . (s:is_multi_buffers ? 'TRUE' : 'FALSE'
 "                      |     |     `- match first tab delimited str
 "                      |     `- match full line like file/dir path
 "                      `- match full line
+let g:ctrlp_ext_vars = get(g:, 'ctrlp_ext_vars', [])
 call add(g:ctrlp_ext_vars, {
   \ 'init':   'ctrlp#funky#init(s:crbufnr)',
   \ 'accept': 'ctrlp#funky#accept',
@@ -457,6 +462,7 @@ call add(g:ctrlp_ext_vars, {
   \ })
 
 " Give the extension an ID
+let g:ctrlp_builtins = get(g:, 'ctrlp_builtins', 0)
 let s:id = g:ctrlp_builtins + len(g:ctrlp_ext_vars)
 
 let &cpo = s:save_cpo
