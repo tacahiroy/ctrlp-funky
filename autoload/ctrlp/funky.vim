@@ -192,6 +192,21 @@ endfunction
 function! s:uniq(list)
   return exists('*uniq') ? uniq(a:list) : a:list
 endfunction
+
+" Open files
+function! s:project_files()
+  let bufs = []
+  for f in ctrlp#files()
+    if bufexists(f)
+      call add(bufs, bufnr(f))
+    elseif filereadable(f)
+      silent! execute 'edit ' . f
+      call add(bufs, bufnr(f))
+    endif
+  endfor
+
+  return bufs
+endfunction
 " }}}
 
 " Provides a list of strings to search in
@@ -208,6 +223,11 @@ function! ctrlp#funky#init(bufnr)
     let ctrlp_winnr = bufwinnr(bufnr(''))
     execute bufwinnr(a:bufnr) . 'wincmd w'
     let pos = getpos('.')
+
+    " TODO: Need to fix priority for options
+    if s:is_project
+      let bufs = s:project_files()
+    endif
 
     if s:is_multi_buffers
       let bufs = map(ctrlp#buffers(), 'bufnr(v:val)')
@@ -413,6 +433,7 @@ let s:errmsg = ''
 let s:custom_hl_list = {}
 
 let s:is_multi_buffers = get(g:, 'ctrlp_funky_multi_buffers', 0)
+let s:is_project = get(g:, 'ctrlp_funky_project_search', 1)
 
 let s:report_filter_error = get(g:, 'ctrlp_funky_report_filter_error', 0)
 let s:sort_by_mru = get(g:, 'ctrlp_funky_sort_by_mru', 0)
@@ -436,6 +457,7 @@ let s:use_cache = s:cache.is_enabled()
 
 call s:fu.debug('INFO: use_cache? ' . (s:use_cache ? 'TRUE' : 'FALSE'))
 call s:fu.debug('INFO: mutli_buffers? ' . (s:is_multi_buffers ? 'TRUE' : 'FALSE'))
+call s:fu.debug('INFO: project_search? ' . (s:is_project ? 'TRUE' : 'FALSE'))
 
 " The main variable for this extension.
 "
