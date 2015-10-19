@@ -71,11 +71,6 @@ endfunction
 " TODO: some functions should be defined under ctrlp#funky#utils namespace
 function! s:syntax(filetype)
   if !ctrlp#nosy()
-    for [k,v] in items(s:custom_hl_list)
-      call ctrlp#hicheck(k, v.to_group)
-      execute printf('syn match %s "%s"', k, v.pat)
-    endfor
-
     if s:syntax_highlight
       let &filetype = a:filetype
     endif
@@ -403,10 +398,6 @@ function! ctrlp#funky#id()
   return s:id
 endfunction
 
-function! ctrlp#funky#highlight(pat, from_group, to_group)
-  let s:custom_hl_list[a:from_group] = { 'pat': a:pat, 'to_group': a:to_group }
-endfunction
-
 function! ctrlp#funky#clear_cache(path)
   " FIXME: DRY!!
   if !s:cache.is_enabled()
@@ -430,7 +421,6 @@ endfunction
 let g:ctrlp#funky#is_debug = get(g:, 'ctrlp_funky_debug', 0)
 
 let s:errmsg = ''
-let s:custom_hl_list = {}
 
 let s:is_multi_buffers = get(g:, 'ctrlp_funky_multi_buffers', 0)
 let s:is_project = get(g:, 'ctrlp_funky_project_search', 1)

@@ -1,5 +1,5 @@
 *ctrlp-funky.txt* *ctrlp-funky*
-A ctrlp.vim extension - navigate and jump to function defs
+A ctrlp.vim extension - super simple function navigator
 Version: 0.10.1
 Author:  Takahiro Yoshihara <https://github.com/tacahiroy>
 
@@ -21,8 +21,9 @@ About				|ctrlp-funky-about|
 ==============================================================================
 INTRODUCTION					*ctrlp-funky-intro*
 
-|ctrlp-funky| is an extension of ctrlp.vim.
-This supports following file types:
+|ctrlp-funky| is an extension of ctrlp.vim. Please make sure you have
+installed ctrlp.vim plugin.
+Currently, |ctrlp-funky| supports following file types:
 
 * c / cpp (C++) / cs (C#)
 * cmm (TRACE32)
@@ -403,6 +404,9 @@ THANKS						*ctrlp-funky-thanks*
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+20 Oct 2015~
+  + Remove custom highlight option
 
 25 July 2015~
   + Add support for Perl Moose and Method::Signatures (#73) 
