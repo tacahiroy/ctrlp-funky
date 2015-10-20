@@ -220,11 +220,9 @@ function! ctrlp#funky#init(bufnr)
     let pos = getpos('.')
 
     " TODO: Need to fix priority for options
-    if s:is_project
+    if s:is_deep
       let bufs = s:project_files()
-    endif
-
-    if s:is_multi_buffers
+    elseif s:is_multi_buffers
       let bufs = map(ctrlp#buffers(), 'bufnr(v:val)')
     else
       let bufs = [a:bufnr]
@@ -269,12 +267,17 @@ function! ctrlp#funky#candidates(bufs)
   return candidates
 endfunction
 
-function! ctrlp#funky#funky(word)
+function! ctrlp#funky#funky(word, ...)
   try
     if !empty(a:word)
       let default_input_save = get(g:, 'ctrlp_default_input', '')
       let g:ctrlp_default_input = a:word
     endif
+
+    let opts = a:0 ? a:1 : {}
+
+    let s:is_deep = get(opts, 'deep', 0)
+    let s:is_multi_buffers = get(opts, 'multi_buffers', 0)
 
     let s:winnr = winnr()
     call ctrlp#init(ctrlp#funky#id())
@@ -423,7 +426,7 @@ let g:ctrlp#funky#is_debug = get(g:, 'ctrlp_funky_debug', 0)
 let s:errmsg = ''
 
 let s:is_multi_buffers = get(g:, 'ctrlp_funky_multi_buffers', 0)
-let s:is_project = get(g:, 'ctrlp_funky_project_search', 1)
+let s:is_deep = 0
 
 let s:report_filter_error = get(g:, 'ctrlp_funky_report_filter_error', 0)
 let s:sort_by_mru = get(g:, 'ctrlp_funky_sort_by_mru', 0)
@@ -446,8 +449,7 @@ let s:cache = ctrlp#funky#cache#new(cache_dir)
 let s:use_cache = s:cache.is_enabled()
 
 call s:fu.debug('INFO: use_cache? ' . (s:use_cache ? 'TRUE' : 'FALSE'))
-call s:fu.debug('INFO: mutli_buffers? ' . (s:is_multi_buffers ? 'TRUE' : 'FALSE'))
-call s:fu.debug('INFO: project_search? ' . (s:is_project ? 'TRUE' : 'FALSE'))
+" call s:fu.debug('INFO: mutli_buffers? ' . (s:is_multi_buffers ? 'TRUE' : 'FALSE'))
 
 " The main variable for this extension.
 "
