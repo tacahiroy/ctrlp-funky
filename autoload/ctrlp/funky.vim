@@ -256,7 +256,7 @@ function! ctrlp#funky#candidates(bufs)
         let candidates += ctrlp#funky#extract(bufnr, filters)
         call s:fu.debug('Extract: ' . len(candidates) . ' lines in ' . reltimestr(reltime(st)))
         if s:has_post_extract_hook(ft)
-          call ctrlp#funky#ft#{ft}#post_extract_hook(candidates)
+          let candidates = ctrlp#funky#ft#{ft}#post_extract_hook(candidates)
         endif
       elseif s:report_filter_error
         echoerr printf('%s: filters not exist', ft)
