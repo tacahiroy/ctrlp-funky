@@ -32,6 +32,8 @@ let g:loaded_ctrlp_funky = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
+let s:li = ctrlp#funky#literals#new()
+
 " Object: s:mru {{{
 let s:mru = {}
 let s:mru.buffers = {}
@@ -312,8 +314,10 @@ function! ctrlp#funky#extract(bufnr, patterns)
           endif
         endfor
         let ca = prior + ca
-        call s:cache.save(a:bufnr, ca)
       endif
+
+      call s:cache.save(a:bufnr, ca)
+
       return ca
     endif
 
@@ -333,9 +337,9 @@ function! ctrlp#funky#extract(bufnr, patterns)
         execute 'silent! global/' . c.pattern . '/echo printf("%s \t#%s:%d:%d", getline(line(".") + offset), "", a:bufnr, line(".") + offset)'
       redir END
 
-      if ilist =~# '\s\t#:\d\+:\d\+$'
+      if ilist =~# s:li.pat_meta()
         for l in split(ilist, '\n')
-          let [left, right] = split(l, '\ze \t#:\d\+:\d\+')
+          let [left, right] = split(l, s:li.pat_meta_for_split())
           let formatter = c.formatter
           let [pat, str, flags] = [get(formatter, 0, ''), get(formatter, 1, ''), get(formatter, 2, '')]
           let filtered = substitute(left, pat, str, flags) . right

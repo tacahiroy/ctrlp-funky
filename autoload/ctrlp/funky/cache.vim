@@ -29,6 +29,7 @@ let g:loaded_ctrlp_funky_cache = 1
 let s:saved_cpo = &cpo
 set cpo&vim
 
+let s:li = ctrlp#funky#literals#new()
 let s:fu = ctrlp#funky#utils#new()
 " private: {{{
 function! s:ftime(bufnr)
@@ -45,6 +46,14 @@ endfunction
 
 function! s:convsp(name)
   return substitute(a:name, '[\/:]', '%', 'g')
+endfunction
+
+function! s:replace_bufnr_in_cache(cache, bufnr)
+  let lines = []
+  for l in a:cache
+    call add(lines, substitute(l, s:li.pat_meta_for_bufnr(), a:bufnr, ''))
+  endfor
+  return lines
 endfunction
 " }}}
 
@@ -86,7 +95,7 @@ endfunction
 function! s:cache.load(bufnr)
   call self.read(a:bufnr)
   " first line is hash value
-  return self.list[s:fu.fname(a:bufnr)][1:-1]
+  return s:replace_bufnr_in_cache(self.list[s:fu.fname(a:bufnr)][1:-1], a:bufnr)
 endfunction
 
 function! s:cache.read(bufnr)
