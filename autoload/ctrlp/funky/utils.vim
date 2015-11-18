@@ -29,6 +29,8 @@ let g:loaded_ctrlp_funky_utils = 1
 let s:saved_cpo = &cpo
 set cpo&vim
 
+let s:li = ctrlp#funky#literals#new()
+
 function! s:is_windows()
   return has('win32') || has('win64')
 endfunction
@@ -75,6 +77,10 @@ function! s:fu.debug(...)
   if !g:ctrlp#funky#is_debug | return | endif
   if a:0 == 0 | return | endif
   echomsg '[DEBUG]' . join(a:000, '')
+endfunction
+
+function! s:fu.split_line(line)
+  return split(a:line, s:li.pat_meta_for_split())
 endfunction
 
 let &cpo = s:saved_cpo

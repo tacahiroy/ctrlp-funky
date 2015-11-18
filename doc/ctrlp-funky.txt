@@ -1,6 +1,6 @@
 *ctrlp-funky.txt* *ctrlp-funky*
 A ctrlp.vim extension - super simple function navigator
-Version: 0.10.1
+Version: 0.11.0
 Author:  Takahiro Yoshihara <https://github.com/tacahiroy>
 
 
@@ -187,7 +187,16 @@ not scrollable = limit mode.
 (value: 0 or 1)
 >
 	let g:ctrlp_funky_nolim = 1
+<
+
+					*'g:ctrlp_funky_nudists'*
+Some filetypes support nudist mode that allows you to find quickly a function you want.
+If the filetype is contained in this variable you may see just function name in ctrlp window.
+(default: undef)
+(value: List)
 >
+	let g:ctrlp_funky_nudists = [ 'php' ]
+<
 
 ==============================================================================
 FILETYPE SETTINGS			*ctrlp-funky-filetype-settings*
