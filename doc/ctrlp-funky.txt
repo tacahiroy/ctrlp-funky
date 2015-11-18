@@ -1,6 +1,6 @@
 *ctrlp-funky.txt* *ctrlp-funky*
 A ctrlp.vim extension - super simple function navigator
-Version: 0.10.1
+Version: 0.10.2
 Author:  Takahiro Yoshihara <https://github.com/tacahiroy>
 
 
@@ -364,46 +364,49 @@ List	formatter~
 ==============================================================================
 THANKS						*ctrlp-funky-thanks*
 
-  * *kien* <https://github.com/kien> - the author of ctrlp.vim
+  * *kien* <github.com/kien> - the author of ctrlp.vim
 
-  * *pydave*          <https://github.com/pydave>
-  * *curist*          <https://github.com/curist>
-  * *Benoit*          <https://github.com/saalaa>
-  * *tokorom*         <https://github.com/tokorom>
-  * *robmiller*       <https://github.com/robmiller>
-  * *unc0*            <https://github.com/unc0>
-  * *hlissner*        <https://github.com/hlissner>
-  * *mephux*          <https://github.com/mephux>
-  * *dusans*          <https://github.com/dusans>
-  * *kirstein*        <https://github.com/kirstein>
-  * *mmazer*          <https://github.com/mmazer>
-  * *vitalk*          <https://github.com/vitalk>
-  * *dingmingxin*     <https://github.com/dingmingxin>
-  * *dictav*          <https://github.com/dictav>
-  * *axehead*         <https://github.com/axehead>
-  * *walkingsparrow*  <https://github.com/walkingsparrow>
-  * *huaihuaiVV*      <https://github.com/huaihuaiVV>
-  * *rendon*          <https://github.com/rendon>
-  * *kshenoy*         <https://github.com/kshenoy>
-  * *mattiaslundberg* <https://github.com/mattiaslundberg>
-  * *prabirshrestha*  <https://github.com/prabirshrestha>
-  * *siadat*          <https://github.com/siadat>
-  * *jean*            <https://github.com/jean>
-  * *Komnomnomnom*    <https://github.com/Komnomnomnom>
-  * *timfeirg*        <https://github.com/timfeirg>
-  * *h14i*            <https://github.com/h14i>
-  * *ggVGc*           <https://github.com/ggVGc>
-  * *senft*           <https://github.com/senft>
-  * *bmenant*         <https://github.com/bmenant>
-  * *fufler*          <https://github.com/fufler>
-  * *metainfa*        <https://github.com/metainfa>
-  * *svenwin*         <https://github.com/svenwin>
-  * *anstosa*         <https://github.com/anstosa>
-  * *imran-uk*        <https://github.com/imran-uk>
+  * *pydave*          <github.com/pydave>
+  * *curist*          <github.com/curist>
+  * *Benoit*          <github.com/saalaa>
+  * *tokorom*         <github.com/tokorom>
+  * *robmiller*       <github.com/robmiller>
+  * *unc0*            <github.com/unc0>
+  * *hlissner*        <github.com/hlissner>
+  * *mephux*          <github.com/mephux>
+  * *dusans*          <github.com/dusans>
+  * *kirstein*        <github.com/kirstein>
+  * *mmazer*          <github.com/mmazer>
+  * *vitalk*          <github.com/vitalk>
+  * *dingmingxin*     <github.com/dingmingxin>
+  * *dictav*          <github.com/dictav>
+  * *axehead*         <github.com/axehead>
+  * *walkingsparrow*  <github.com/walkingsparrow>
+  * *huaihuaiVV*      <github.com/huaihuaiVV>
+  * *rendon*          <github.com/rendon>
+  * *kshenoy*         <github.com/kshenoy>
+  * *mattiaslundberg* <github.com/mattiaslundberg>
+  * *prabirshrestha*  <github.com/prabirshrestha>
+  * *siadat*          <github.com/siadat>
+  * *jean*            <github.com/jean>
+  * *Komnomnomnom*    <github.com/Komnomnomnom>
+  * *timfeirg*        <github.com/timfeirg>
+  * *h14i*            <github.com/h14i>
+  * *ggVGc*           <github.com/ggVGc>
+  * *senft*           <github.com/senft>
+  * *bmenant*         <github.com/bmenant>
+  * *fufler*          <github.com/fufler>
+  * *metainfa*        <github.com/metainfa>
+  * *svenwin*         <github.com/svenwin>
+  * *anstosa*         <github.com/anstosa>
+  * *imran-uk*        <github.com/imran-uk>
 
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+19 Nov 2015~
+  + 0.10.2: Fix invalid bufnr for cached buffers
 
 20 Oct 2015~
   + Remove custom highlight option
@@ -662,4 +665,4 @@ The latest version is available on GitHub:
 https://github.com/tacahiroy/ctrlp-funky
 
 
-vim:fen:tw=78:et:ts=8:ft=help:norl:
+vim:fen:fdm=marker:tw=78:et:ts=8:ft=help:norl:
