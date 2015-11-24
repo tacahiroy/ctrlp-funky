@@ -414,6 +414,9 @@ THANKS						*ctrlp-funky-thanks*
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
 
+24 Nov 2015~
+  + 0.11: Add function name only (nudist) mode (#78)
+
 19 Nov 2015~
   + 0.10.2: Fix invalid bufnr for cached buffers
 
@@ -506,7 +509,7 @@ CHANGELOG 					*ctrlp-funky-changelog*
   + Add very basic Scala support
 
 24 June 2014~
-  + 0.9.0: Add cache feature ideated by |dusans| (#27)
+  + 0.9.0: Add cache feature ideas by |dusans| (#27)
 
 30 May 2014~
   + 0.8.5: php - Add support for extra keywords, final, static etc.
