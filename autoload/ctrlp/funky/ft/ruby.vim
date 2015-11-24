@@ -1,10 +1,15 @@
 " Language: Ruby (ruby)
-" Author: Takahiro Yoshihara
+" Author: Takahiro Yoshihara <tacahiroy@gmail.com>
 " License: The MIT License
 
+let s:fu = ctrlp#funky#getutils()
+let s:pat = {}
+
 function! ctrlp#funky#ft#ruby#filters()
+  let s:pat.method = '\m\C^[\t ]*def[\t ]\+\(\w\+\)'
+
   let filters = [
-        \ { 'pattern': '\m\C^[\t ]*def[\t ]\+\S\+',
+        \ { 'pattern': s:pat.method,
         \   'formatter': []}
   \ ]
 
@@ -55,4 +60,9 @@ function! ctrlp#funky#ft#ruby#filters()
   endif
 
   return filters
+endfunction
+
+" Tells how to strip clothes
+function! ctrlp#funky#ft#ruby#strippers()
+  return [ {'pattern': s:pat.method, 'position': 1 } ]
 endfunction
