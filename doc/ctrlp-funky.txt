@@ -1,5 +1,5 @@
 *ctrlp-funky.txt* *ctrlp-funky*
-A ctrlp.vim extension - super simple function navigator
+A super simple function navigator for ctrlp.vim
 Version: 0.11.0
 Author:  Takahiro Yoshihara <https://github.com/tacahiroy>
 
@@ -328,8 +328,9 @@ Nowadays, '/bin/sh' is usually an alias (symlink) of another shell such as
 bash, ksh, etc. You can specify Funky's internal filetype for 'sh'.
 If this is set to 'dash', Funky treats 'sh' as 'dash'.
 (default: 'bash')
+(value: 'bash', 'dash', 'sh', 'zsh')
 >
-	let g:ctrlp_funky_sh_type = 'ksh'
+	let g:ctrlp_funky_sh_type = 'zsh'
 <
 
 FILTER IMPLEMENTATION GUIDE			*ctrlp-funky-filter-guide*

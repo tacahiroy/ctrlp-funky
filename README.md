@@ -1,6 +1,6 @@
 ctrlp-funky
 ============
-Super simple function navigator for ctrlp.vim.  
+A super simple function navigator for ctrlp.vim.  
 For lazy people who cannot wait until ctags finishes.
 
 SYNOPSIS
