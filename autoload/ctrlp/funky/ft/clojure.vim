@@ -5,7 +5,7 @@
 function! ctrlp#funky#ft#clojure#filters()
   " matches (def) and (defn)
   let filters = [
-        \ { 'pattern': '^(defn\?[\t ]\+\D.*',
+        \ { 'pattern': '^(def\(n-\?\)\?[\t ]\+\D.*',
         \   'formatter': [] }
   \ ]
   return filters
