@@ -26,6 +26,7 @@ installed ctrlp.vim plugin.
 Currently, |ctrlp-funky| supports following file types:
 
 * c / cpp (C++) / cs (C#)
+* clojure
 * cmm (TRACE32)
 * coffee-script
 * css (css, scss)
@@ -415,8 +416,11 @@ THANKS						*ctrlp-funky-thanks*
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
 
+21 Jan 2016~
+  + Add basic clojure support (#79) by |curist|
+
 24 Nov 2015~
-  + 0.11: Add function name only (nudist) mode (#78)
+  + 0.11.0: Add function name only (nudist) mode (#78)
 
 19 Nov 2015~
   + 0.10.2: Fix invalid bufnr for cached buffers
@@ -649,7 +653,7 @@ LICENSE						*ctrlp-funky-license*
 
 |ctrlp-funky| is distributed under the MIT License.
 
-Copyright (c) 2012-2015 Takahiro Yoshihara
+Copyright (c) 2012-2016 Takahiro Yoshihara
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
