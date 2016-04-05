@@ -17,3 +17,8 @@ function! ctrlp#funky#ft#javascript#filters()
   \ ]
   return filters
 endfunction
+
+function! ctrlp#funky#ft#javascript#post_extract_hook(list)
+  " wtf??
+  return filter(copy(a:list), "v:val !~# '^[\\t ]*\\(\\(else\\)\\?[\\t ]*if\\|switch[\\t ]*\\)'")
+endfunction
