@@ -24,17 +24,20 @@ Otherwise, you need to install ctrlp.vim before start using this plugin.
 
 INSTALLATION
 ----------
-### [Vundle](https://github.com/VundleVim/Vundle.Vim)
-1. Run `:PluginInstall tacahiroy/ctrlp-funky`
-2. Add `Plugin 'tacahiroy/ctrlp-funky'` to _.vimrc_
+### Vundle
+`Plugin 'tacahiroy/ctrlp-funky'`
 
-### [vim-plug](https://github.com/junegunn/vim-plug)
-1. Add `Plug 'tacahiroy/ctrlp-funky'` to _.vimrc_
-2. Run `:PlugInstall`
+### NeoBundle
+`NeoBundle 'tacahiroy/ctrlp-funky'`
 
-### [pathogen.vim](https://github.com/tpope/vim-pathogen)
-1. `cd ~/.vim/bundle`
-2. `git clone git://github.com/tacahiroy/ctrlp-funky.git`
+### vim-plug
+`Plug 'tacahiroy/ctrlp-funky'`
+
+### pathogen.vim
+```
+% cd ~/.vim/bundle
+% git clone https://github.com/tacahiroy/ctrlp-funky.git
+```
 
 ### Manually
 If you don't use either plugin management systems, copy _autoload_ and _plugin_ directories to _.vim_ directory.
