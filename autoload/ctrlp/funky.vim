@@ -436,7 +436,7 @@ function! ctrlp#funky#clear_cache_all()
 endfunction
 
 function! s:is_nudist(ft)
-  return index(s:nudists, a:ft) >= 0
+  return get(g:, 'ctrlp_funky_nudist_mode', 0) || index(s:nudists, a:ft) >= 0
 endfunction
 
 function! s:be_naked(lines, strippers)
