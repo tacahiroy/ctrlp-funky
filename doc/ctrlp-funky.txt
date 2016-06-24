@@ -191,12 +191,20 @@ not scrollable = limit mode.
 <
 
 					*'g:ctrlp_funky_nudists'*
+					*'g:ctrlp_funky_nudist_mode'*
 Some filetypes support nudist mode that allows you to find quickly a function you want.
 If the filetype is contained in this variable you may see just function name in ctrlp window.
 (default: undef)
 (value: List)
 >
 	let g:ctrlp_funky_nudists = [ 'php' ]
+<
+
+You can also setup nudist mode for all avaliable filetypes by using the
+following variable
+(default: 0)
+>
+	let g:ctrlp_funky_nudist_mode = 1
 <
 
 ==============================================================================
