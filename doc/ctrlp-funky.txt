@@ -45,6 +45,7 @@ Currently, |ctrlp-funky| supports following file types:
 * objc (Objective-C)
 * perl
 * php
+* proto (Protocol Buffers)
 * python
 * ruby (ruby, rake, rspec and chef recipe)
 * scala
@@ -411,10 +412,14 @@ THANKS						*ctrlp-funky-thanks*
   * *svenwin*         <github.com/svenwin>
   * *anstosa*         <github.com/anstosa>
   * *imran-uk*        <github.com/imran-uk>
+  * *timfeirg*        <github.com/timfeirg>
 
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+1 Jul 2016~
+  + Add proto (Protocol Buffers) support (#82) by |timfeirg|
 
 21 Jan 2016~
   + Add basic clojure support (#79) by |curist|
