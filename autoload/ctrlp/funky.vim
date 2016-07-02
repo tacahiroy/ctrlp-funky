@@ -436,7 +436,14 @@ function! ctrlp#funky#clear_cache_all()
 endfunction
 
 function! s:is_nudist(ft)
-  return get(g:, 'ctrlp_funky_nudist_mode', 0) || index(s:nudists, a:ft) >= 0
+  let type = type(s:nudists)
+  if type == 0 "Number
+    return s:nudists == 1
+  elseif type == 3 "List
+    return index(s:nudists, a:ft) >= 0
+  else
+    return 0 "False
+  endif
 endfunction
 
 function! s:be_naked(lines, strippers)
