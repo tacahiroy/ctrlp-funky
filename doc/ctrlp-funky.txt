@@ -25,7 +25,9 @@ INTRODUCTION					*ctrlp-funky-intro*
 installed ctrlp.vim plugin.
 Currently, |ctrlp-funky| supports following file types:
 
-* c / cpp (C++) / cs (C#)
+* c
+* cpp (C++)
+* cs (C#)
 * clojure
 * cmm (TRACE32)
 * coffee-script
@@ -45,11 +47,13 @@ Currently, |ctrlp-funky| supports following file types:
 * objc (Objective-C)
 * perl
 * php
+* plsql (PL/SQL)
 * proto (Protocol Buffers)
 * python
 * ruby (ruby, rake, rspec and chef recipe)
 * scala
 * sh (bash, dash and zsh)
+* sql
 * tex (LaTeX)
 * typescript
 * yaml
@@ -412,10 +416,16 @@ THANKS						*ctrlp-funky-thanks*
   * *svenwin*         <github.com/svenwin>
   * *anstosa*         <github.com/anstosa>
   * *imran-uk*        <github.com/imran-uk>
+  * *francescarpi*    <github.com/francescarpi>
+  * *somini*          <github.com/somini>
 
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+10 Jul 2016~
+  + Fix help tag duplication (#88) by |francescarpi|
+  + Add plsql support (#86) by |somini|
 
 1 Jul 2016~
   + Add proto (Protocol Buffers) support (#82) by |timfeirg|
