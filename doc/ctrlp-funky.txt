@@ -412,7 +412,6 @@ THANKS						*ctrlp-funky-thanks*
   * *svenwin*         <github.com/svenwin>
   * *anstosa*         <github.com/anstosa>
   * *imran-uk*        <github.com/imran-uk>
-  * *timfeirg*        <github.com/timfeirg>
 
 
 ==============================================================================
