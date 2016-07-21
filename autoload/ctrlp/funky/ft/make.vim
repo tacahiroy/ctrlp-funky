@@ -14,16 +14,18 @@ function! ctrlp#funky#ft#make#filters()
 endfunction
 
 function! ctrlp#funky#ft#make#post_extract_hook(list)
-      let index = 0
-      for i in a:list
-            let i = substitute(i, '\m:=\@!.*$', '', 'g')
-            let L = substitute(i, '[^(]', '', 'g')
-            let R = substitute(i, '[^)]', '', 'g')
-            if len(L) != len(R)
-                  call remove(a:list, index)
-            else
-                  let index += 1
-            endif
-      endfor
-      return a:list
+  let index = 0
+  for i in a:list
+    let i = substitute(i, '\m:=\@!.*$', '', 'g')
+    let L = substitute(i, '[^(]', '', 'g')
+    let R = substitute(i, '[^)]', '', 'g')
+
+
+    if len(L) != len(R) || i =~# '^\.PHONY'
+      call remove(a:list, index)
+    else
+      let index += 1
+    endif
+  endfor
+  return a:list
 endfunction
