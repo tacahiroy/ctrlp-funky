@@ -2,7 +2,7 @@
 " Author: somini
 " License: The MIT License
 
-let s:pattern = '\V\c\<function\>\s\+\(\k\|\.\)\+\((\_.\{-})\)\?'
+let s:pattern = '\V\c\<function\>\s\+\(\k\|.\)\+\((\_.\{-})\)\?'
 let s:function_name = '\V\cfunction\s\+\(\(\k\|\.\)\+\)'
 
 function! ctrlp#funky#ft#sql#filters()
