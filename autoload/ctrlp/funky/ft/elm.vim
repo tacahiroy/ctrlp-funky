@@ -5,7 +5,7 @@
 let s:pat = {}
 
 function! ctrlp#funky#ft#elm#filters()
-  let s:pat.func = '\v^([a-zA-Z0-9\(][^\s]+)\s*:'
+  let s:pat.func = '\v^([a-zA-Z0-9\(].*)\s*:'
 
   let filters = [
         \ { 'pattern': s:pat.func,
