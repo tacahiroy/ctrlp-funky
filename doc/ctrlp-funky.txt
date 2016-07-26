@@ -35,6 +35,7 @@ Currently, |ctrlp-funky| supports following file types:
 * dart
 * elixir
 * go (golang)
+* haskell
 * html/xhtml
 * java
 * javascript
@@ -418,10 +419,14 @@ THANKS						*ctrlp-funky-thanks*
   * *imran-uk*        <github.com/imran-uk>
   * *francescarpi*    <github.com/francescarpi>
   * *somini*          <github.com/somini>
+  * *zaynetro*        <github.com/zaynetro>
 
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+26 Jul 2016~
+  + Add haskell support (#91) by |zaynetro|
 
 10 Jul 2016~
   + Fix help tag duplication (#88) by |francescarpi|
