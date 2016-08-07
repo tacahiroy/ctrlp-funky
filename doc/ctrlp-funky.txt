@@ -34,6 +34,7 @@ Currently, |ctrlp-funky| supports following file types:
 * css (css, scss)
 * dart
 * elixir
+* elm
 * go (golang)
 * haskell
 * html/xhtml
@@ -420,10 +421,14 @@ THANKS						*ctrlp-funky-thanks*
   * *francescarpi*    <github.com/francescarpi>
   * *somini*          <github.com/somini>
   * *zaynetro*        <github.com/zaynetro>
+  * *lorenzo*         <github.com/lorenzo>
 
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+7 Aug 2016~
+  + Add elm support (#90) by |lorenzo|
 
 26 Jul 2016~
   + Add haskell support (#91) by |zaynetro|
