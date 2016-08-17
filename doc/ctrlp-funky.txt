@@ -53,6 +53,7 @@ Currently, |ctrlp-funky| supports following file types:
 * proto (Protocol Buffers)
 * python
 * ruby (ruby, rake, rspec and chef recipe)
+* rust
 * scala
 * sh (bash, dash and zsh)
 * sql
