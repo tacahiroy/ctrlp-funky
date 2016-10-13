@@ -5,6 +5,8 @@
 function! ctrlp#funky#ft#elixir#filters()
   let filters = [
         \ { 'pattern': '\m\C^[\t ]*def[\t ]\+\S\+.*do[\t ]*$',
+        \   'formatter': []},
+        \ { 'pattern': '\m\C^[\t ]*defp[\t ]\+\S\+.*do[\t ]*$',
         \   'formatter': []}
   \ ]
   return filters
