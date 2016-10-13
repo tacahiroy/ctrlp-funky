@@ -423,10 +423,14 @@ THANKS						*ctrlp-funky-thanks*
   * *somini*          <github.com/somini>
   * *zaynetro*        <github.com/zaynetro>
   * *lorenzo*         <github.com/lorenzo>
+  * *minhajuddin*     <github.com/minhajuddin>
 
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+13 Sep 2016~
+  + Add private method and macro patterns for Elixir (#96) by |minhajuddin|
 
 7 Aug 2016~
   + Add elm support (#90) by |lorenzo|
