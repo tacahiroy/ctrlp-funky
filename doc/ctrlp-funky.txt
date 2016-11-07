@@ -424,10 +424,14 @@ THANKS						*ctrlp-funky-thanks*
   * *zaynetro*        <github.com/zaynetro>
   * *lorenzo*         <github.com/lorenzo>
   * *minhajuddin*     <github.com/minhajuddin>
+  * *mklinga*         <github.com/mklinga>
 
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+7 Nov 2016~
+  + Add support for anonymous functions for Javascript (#98) by |mklinga|
 
 13 Sep 2016~
   + Add private method and macro patterns for Elixir (#96) by |minhajuddin|
