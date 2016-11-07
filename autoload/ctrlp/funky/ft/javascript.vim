@@ -4,6 +4,8 @@
 
 function! ctrlp#funky#ft#javascript#filters()
   let filters = [
+        \ { 'pattern': '\v\S+\s+\=\s+(\(?\S+.*\)?|\(\))\s+\=\>',
+        \   'formatter': ['\v(^\s*(const|let|var)\s*)|(\s*\{.*\ze \t#)', '', 'g'] },
         \ { 'pattern': '\v\w+\s*\(.*\)\s*\{',
         \   'formatter': ['\v(^\s*)|(\s*\{.*\ze \t#)', '', 'g'] },
         \ { 'pattern': '\v\s*function\s+\w+\s*\(',
