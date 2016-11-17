@@ -431,6 +431,9 @@ THANKS						*ctrlp-funky-thanks*
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
 
+17 Nov 2016~
+  + Fix filter pattern for Elixir (#100) by |minhajuddin|
+
 8 Nov 2016~
   + Add support for ExUnit test for Elixir (#99) by |jagtesh|
 
