@@ -26,11 +26,11 @@ installed ctrlp.vim plugin.
 Currently, |ctrlp-funky| supports following file types:
 
 * c
-* cpp (C++)
-* cs (C#)
 * clojure
 * cmm (TRACE32)
 * coffee-script
+* cpp (C++)
+* cs (C#)
 * css (css, scss)
 * dart
 * elixir
@@ -52,6 +52,7 @@ Currently, |ctrlp-funky| supports following file types:
 * plsql (PL/SQL)
 * proto (Protocol Buffers)
 * python
+* r
 * ruby (ruby, rake, rspec and chef recipe)
 * rust
 * scala
@@ -59,9 +60,9 @@ Currently, |ctrlp-funky| supports following file types:
 * sql
 * tex (LaTeX)
 * typescript
-* yaml
 * vb (Visual Basic)
 * vim
+* yaml
 
 
 ==============================================================================
@@ -430,6 +431,9 @@ THANKS						*ctrlp-funky-thanks*
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+21 Nov 2016~
+  + Add super basic support for R
 
 17 Nov 2016~
   + Fix filter pattern for Elixir (#100) by |minhajuddin|
