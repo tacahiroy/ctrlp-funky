@@ -59,6 +59,7 @@ Currently, |ctrlp-funky| supports following file types:
 * sh (bash, dash and zsh)
 * sql
 * tex (LaTeX)
+* thrift
 * typescript
 * vb (Visual Basic)
 * vim
