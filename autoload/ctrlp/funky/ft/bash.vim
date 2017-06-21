@@ -4,7 +4,7 @@
 
 function! ctrlp#funky#ft#bash#filters()
   let filters = [
-        \ { 'pattern': '\m\C^[\t ]*\(function[\t ]\+\)\?[_a-zA-Z][_a-zA-Z0-9]\+[\t ]*\(([\t ]*)\)\?[\t ]*\n*{',
+        \ { 'pattern': '\m\C^[\t ]*\(function[\t ]\+\)\?[_a-zA-Z][_a-zA-Z0-9-]\+[\t ]*\(([\t ]*)\)\?[\t ]*\n*{',
         \   'formatter': [] }
   \ ]
   return filters
