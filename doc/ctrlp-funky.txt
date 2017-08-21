@@ -35,7 +35,8 @@ Currently, |ctrlp-funky| supports following file types:
 * dart
 * elixir
 * elm
-* go (golang)
+* go (Golang)
+* groovy
 * haskell
 * html/xhtml
 * java
@@ -432,6 +433,9 @@ THANKS						*ctrlp-funky-thanks*
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+21 Aug 2017~
+  + Add basic Groovy support
 
 21 Nov 2016~
   + Add super basic support for R
