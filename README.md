@@ -26,11 +26,11 @@ INSTALLATION
 ----------
 
 ### Plugin managers
-It is recommened using plugin manager such as vim-plug, pathogen, Vundle etc.
+It is recommended to install the plugin using plugin managers such as vim-plug, pathogen, Vundle, Dein.vim etc.
 You can copy/paste a line below if you use vim-plug:
 `Plug 'tacahiroy/ctrlp-funky'`
 
-### Manually
+### Manual installation
 If you use neither of the plugin management systems, copy _autoload_ and _plugin_ directories to _.vim_ directory.
 On Windows, basically, _vimfiles_ directory is used instead of _.vim_ directory.
 
