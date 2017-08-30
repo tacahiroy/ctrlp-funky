@@ -3,8 +3,15 @@
 " License: The MIT License
 
 function! ctrlp#funky#ft#groovy#filters()
+  let p = '\m\C^[\t ]*'
+  let p .= '\('
+  let p .= 'def[\t ]\+\w\+([^)]*)[\t ]*\n*{'
+  let p .= '\|'
+  let p .= 'stage[\t ]*([^)]*)'
+  let p .= '\)'
+
   let filters = [
-        \ { 'pattern': '\m\C^[\t ]*def[\t ]\+\w\+([^)]*)[\t ]*\n*{',
+        \ { 'pattern': p,
         \   'formatter': ['^[\t ]*', '', ''] }
   \ ]
   return filters
