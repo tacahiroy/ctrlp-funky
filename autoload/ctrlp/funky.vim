@@ -92,8 +92,16 @@ function! s:load_buffer_by_name(bufnr)
   execute 'keepalt buffer ' . bufname(a:bufnr)
 endfunction
 
-function! s:load_buffer_by_number(bufnr)
-  execute 'keepalt buffer ' . a:bufnr
+function! s:load_buffer_by_number(bufnr, mode)
+  if a:mode == 'e'
+    execute 'keepalt buffer' . a:bufnr
+  elseif a:mode == 't'
+    execute 'keepalt tabedit +buffer' . a:bufnr
+  elseif a:mode == 'v'
+    execute 'keepalt vsplit +buffer' . a:bufnr
+  elseif a:mode == 'h'
+    execute 'keepalt split +buffer' . a:bufnr
+  endif
 endfunction
 
 function! s:filetype(bufnr)
@@ -399,7 +407,7 @@ function! ctrlp#funky#accept(mode, str)
   " should be current window = former window
   let lnum = matchstr(a:str, '\d\+$')
   execute 'noautocmd ' . get(s:, 'winnr', 1) . 'wincmd w'
-  call s:load_buffer_by_number(bufnr)
+  call s:load_buffer_by_number(bufnr, a:mode)
   call cursor(lnum, 1)
 
   call s:after_jump()
