@@ -78,7 +78,7 @@ function! s:syntax(filetype)
     endif
 
     call ctrlp#hicheck('CtrlPTabExtra', 'Comment')
-    syn match CtrlPTabExtra '\t#.*:\d\+:\d\+$'
+    syn match CtrlPTabExtra '\t\zs#.*:\d\+:\d\+$'
   endif
 endfunction
 
