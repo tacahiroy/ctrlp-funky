@@ -434,6 +434,9 @@ THANKS						*ctrlp-funky-thanks*
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
 
+30 Apr 2018~
+  + Improve filters for Golang
+
 21 Aug 2017~
   + Add basic Groovy support
 
