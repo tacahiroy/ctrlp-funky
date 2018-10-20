@@ -430,10 +430,18 @@ THANKS						*ctrlp-funky-thanks*
   * *minhajuddin*     <github.com/minhajuddin>
   * *mklinga*         <github.com/mklinga>
   * *jagtesh*         <github.com/jagtesh>
+  * *haifengkao*      <github.com/haifengkao>
+  * *feiyuw*          <github.com/feiyuw>
 
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+20 Oct 2018~
+  + Add async def support for Python (#120) by |feiyuw|
+
+28 Jul 2018~
+  + Add support for objc lightweight generic (#118) by |haifengkao|
 
 2 May 2018~
   + Add support for GraphQL (#114) by |timfeirg|
