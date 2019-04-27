@@ -30,6 +30,7 @@ Currently, |ctrlp-funky| supports following file types:
 * clojure
 * cmm (TRACE32)
 * coffee-script
+* coldfusion
 * cpp (C++)
 * cs (C#)
 * css (css, scss)
