@@ -29,6 +29,7 @@ Currently, |ctrlp-funky| supports following file types:
 * clojure
 * cmm (TRACE32)
 * coffee-script
+* coldfusion
 * cpp (C++)
 * cs (C#)
 * css (css, scss)
@@ -433,10 +434,14 @@ THANKS						*ctrlp-funky-thanks*
   * *haifengkao*      <https://github.com/haifengkao>
   * *feiyuw*          <https://github.com/feiyuw>
   * *holybreath*      <https://github.com/holybreath>
+  * *arashm*          <https://github.com/arashm>
 
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+30 Jan 2019~
+  + Add ColdFusion support (#121) by |arashm|
 
 22 Nov 2018~
   + Fix javascript support to avoid showing up `for`(#83) reported by |holybreath|
