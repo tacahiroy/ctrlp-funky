@@ -4,7 +4,7 @@
 
 function! ctrlp#funky#ft#ansible#filters()
   return [
-    \ { 'pattern': '\m\C^- \S\+:',
+    \ { 'pattern': '\m\C^[\t ]*- \S\+:',
     \   'formatter': [] }
     \ ]
 endfunction
