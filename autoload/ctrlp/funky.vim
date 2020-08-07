@@ -257,13 +257,18 @@ function! ctrlp#funky#init(bufnr)
   endtry
 endfunction
 
-function! ctrlp#funky#candidates(bufs)
+function! s:get_filters(bufnr) abort
+  let filetype = s:filetype(a:bufnr)
+  return get(s:filconvs, filetype, filetype)
+endfunction
+
+function! ctrlp#funky#candidates(bufs) abort
   let candidates = []
 
   for bufnr in a:bufs
     call s:load_buffer_by_name(bufnr)
 
-    let filetype = s:filetype(bufnr)
+    let filetype = s:get_filters(bufnr)
 
     for ft in split(filetype, '\.')
       if s:has_filter(ft)
@@ -495,6 +500,7 @@ if index(['line', 'path', 'tabs', 'tabe'], s:matchtype) < 0
 endif
 
 let s:nudists = get(g:, 'ctrlp_funky_nudists', [])
+let s:filconvs = get(g:, 'ctrlp_funky_filter_conversions', {})
 
 let s:fu = ctrlp#funky#getutils()
 let s:li = ctrlp#funky#getliterals()
