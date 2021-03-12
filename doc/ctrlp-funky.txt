@@ -446,6 +446,9 @@ THANKS						*ctrlp-funky-thanks*
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
 
+12 Mar 2021~
+  + Add very basic Vim9 script support (#127)
+
 08 Feb 2021~
   + Support Elixir function definition spanning into multiple line (#126) by |phongnh|
 
