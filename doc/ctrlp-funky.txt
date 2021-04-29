@@ -1,6 +1,6 @@
 *ctrlp-funky.txt* *ctrlp-funky*
 A super simple function navigator for ctrlp.vim
-Version: 0.12.0
+Version: 0.12.2
 Author:  Takahiro Yoshihara <https://github.com/tacahiroy>
 
 
@@ -64,6 +64,7 @@ Currently, |ctrlp-funky| supports following file types:
 * sh (bash, dash and zsh)
 * sql
 * tex (LaTeX)
+* tf (terraform)
 * thrift
 * typescript
 * vb (Visual Basic)
@@ -446,6 +447,9 @@ THANKS						*ctrlp-funky-thanks*
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
 
+30 Apr 2021~
+  + Add support for Terraform Language (tf)
+
 12 Mar 2021~
   + Add very basic Vim9 script support (#127)
 
@@ -747,7 +751,7 @@ LICENSE						*ctrlp-funky-license*
 
 |ctrlp-funky| is distributed under the MIT License.
 
-Copyright (c) 2012-2019 Takahiro Yoshihara
+Copyright (c) 2012-2021 Takahiro Yoshihara
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
