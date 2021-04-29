@@ -15,7 +15,7 @@ One of advantages of this plugin is that no configuration is required in most ca
 
 ### Supported filetypes:
 
-See [ctrlp-funky.txt](https://github.com/tacahiroy/ctrlp-funky/blob/8a856c83/doc/ctrlp-funky.txt#L22)
+See [ctrlp-funky.txt](https://github.com/tacahiroy/ctrlp-funky/blob/master/doc/ctrlp-funky.txt#L22)
 
 
 PREMISE
