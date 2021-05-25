@@ -216,6 +216,11 @@ If the filetype is contained in this variable you may see just function name in 
 	let g:ctrlp_funky_nudists = [ 'php' ]
 <
 
+Alternatively, you can also setup nudist mode for all available filetypes by setting the value of the variable to 1.
+>
+	let g:ctrlp_funky_nudists = 1
+<
+
 ==============================================================================
 FILETYPE SETTINGS			*ctrlp-funky-filetype-settings*
 This section describes |ctrlp-funky| configuration for each filetype.
