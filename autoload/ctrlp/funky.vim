@@ -385,6 +385,9 @@ function! ctrlp#funky#extract(bufnr, patterns)
     endfor
 
     let sorted = sort(candidates, function('s:sort_candidates'))
+    if s:sort_reverse
+        let sorted = reverse(sorted)
+    endif
     let prior = map(sort(mru, function('s:sort_mru')), 'v:val[0]')
     let results = s:uniq(prior + sorted)
 
@@ -488,6 +491,7 @@ let s:is_multi_buffers = get(g:, 'ctrlp_funky_multi_buffers', 0)
 let s:is_deep = 0
 
 let s:sort_by_mru = get(g:, 'ctrlp_funky_sort_by_mru', 0)
+let s:sort_reverse = get(g:, 'ctrlp_funky_sort_reverse', 0)
 " after jump action
 let s:after_jump = get(g:, 'ctrlp_funky_after_jump', 'zxzz')
 " 1: set the same filetype as source buffer
