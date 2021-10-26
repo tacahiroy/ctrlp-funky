@@ -5,7 +5,7 @@
 function! ctrlp#funky#ft#Jenkinsfile#filters()
   let pat = '\m\C^[\t ]*'
   let pat .= '\('
-  let pat .= 'agent\|parameters\|environment\|post\|stage[\t ]*([^)]*)'
+  let pat .= 'agent\|parameters[\t ]*{\|environment\|post\|stage[\t ]*([^)]*)'
   let pat .= '\)'
 
   let filters = [
