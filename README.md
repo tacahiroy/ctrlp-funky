@@ -57,6 +57,7 @@ One of advantages of this plugin is that no configuration is required in most ca
 * tex (LaTeX)
 * tf (terraform)
 * thrift
+* toml
 * typescript
 * vb (Visual Basic)
 * vim
@@ -159,7 +160,7 @@ LINK
 LICENSE
 -------
 
-Copyright (C) 2012-2021 Takahiro Yoshihara. Distributed under the MIT License.
+Copyright (C) 2012-2020 Takahiro Yoshihara. Distributed under the MIT License.
 
 [1]: http://i.imgur.com/yO4PWAF.png
 [2]: http://i.imgur.com/CnKui5H.png

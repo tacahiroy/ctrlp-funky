@@ -67,6 +67,7 @@ Currently, |ctrlp-funky| supports following file types:
 * tex (LaTeX)
 * tf (terraform)
 * thrift
+* toml
 * typescript
 * vb (Visual Basic)
 * vim
@@ -448,6 +449,9 @@ THANKS						*ctrlp-funky-thanks*
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
 
+15 Jun 2022~
+  + Add support for TOML (toml)
+
 26 Oct 2021~
   + Add support for Jenkinsfile (jenkinsfile)
 
@@ -530,7 +534,7 @@ CHANGELOG 					*ctrlp-funky-changelog*
 20 Oct 2015~
   + Remove custom highlight option
 
-25 July 2015~
+25 Jul 2015~
   + Add support for Perl Moose and Method::Signatures (#73)
     requested by |imran-uk|
 
@@ -609,13 +613,13 @@ CHANGELOG 					*ctrlp-funky-changelog*
 12 Aug 2014~
   + Add basic Elixir support
 
-27 July 2014~
+27 Jul 2014~
   + Improve Scala support reported by |walkingsparrow| (#40)
 
-12 July 2014~
+12 Jul 2014~
   + Add very basic Scala support
 
-24 June 2014~
+24 Jun 2014~
   + 0.9.0: Add cache feature ideas by |dusans| (#27)
 
 30 May 2014~
