@@ -73,6 +73,7 @@ Currently, |ctrlp-funky| supports following file types:
 * vim
 * vue (Vue.js)
 * yaml
+* zig
 
 
 ==============================================================================
@@ -448,6 +449,9 @@ THANKS						*ctrlp-funky-thanks*
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+26 Jul 2022~
+  + Add support for Zig (zig)
 
 15 Jun 2022~
   + Add support for TOML (toml)
