@@ -26,6 +26,7 @@ installed ctrlp.vim plugin.
 Currently, |ctrlp-funky| supports following file types:
 
 * c
+* carbon
 * cf (ColdFusion)
 * clojure
 * cmm (TRACE32)
@@ -452,6 +453,7 @@ CHANGELOG 					*ctrlp-funky-changelog*
 
 26 Jul 2022~
   + Add support for Zig (zig)
+  + Add support for Carbon (carbon)
 
 15 Jun 2022~
   + Add support for TOML (toml)
