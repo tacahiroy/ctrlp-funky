@@ -16,6 +16,7 @@ One of advantages of this plugin is that no configuration is required in most ca
 ### Supported file types:
 
 * c
+* carbon
 * cf (ColdFusion)
 * clojure
 * cmm (TRACE32)
@@ -63,6 +64,7 @@ One of advantages of this plugin is that no configuration is required in most ca
 * vim
 * vue (Vue.js)
 * yaml
+* zig
 
 
 PREMISE
