@@ -53,7 +53,7 @@ One of advantages of this plugin is that no configuration is required in most ca
 * ruby (ruby, rake, rspec and chef recipe)
 * rust
 * scala
-* sh (bash, dash and zsh)
+* sh (bash, dash, fish and zsh)
 * sql
 * tex (LaTeX)
 * tf (terraform)
