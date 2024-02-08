@@ -1,10 +1,10 @@
 " Language: Apache Groovy
-" Author: Tacahiroy <tacahiroy@gmail.com>
+" Author: Takahiro YOSHIHARA <tacahiroy@gmail.com>
 " License: The MIT License
 
 function! ctrlp#funky#ft#groovy#filters()
   let p = '\m\C^[\t ]*'
-  let p .= '\(def\)[\t ]\+\w\+([^)]*)[\t ]*\n*{'
+  let p .= '\(def\|task\)[\t ]\+\w\+([^)]*)[\t ]*\n*{'
 
   let filters = [
         \ { 'pattern': p,
