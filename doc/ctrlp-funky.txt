@@ -38,6 +38,7 @@ Currently, |ctrlp-funky| supports following file types:
 * dart
 * elixir
 * elm
+* fish (fish-shell)
 * go (Golang)
 * graphql
 * groovy
@@ -446,10 +447,15 @@ THANKS						*ctrlp-funky-thanks*
   * *cenksoykan*      <https://github.com/cenksoykan>
   * *nkakouros*       <https://github.com/nkakouros>
   * *phongnh*         <https://github.com/phongnh>
+  * *melhakim*        <https://github.com/melhakim>
 
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
+
+
+26 Jan 2024~
+  + Add support for fish-shell (fish)
 
 26 Jul 2022~
   + Add support for Zig (zig)

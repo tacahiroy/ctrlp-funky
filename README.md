@@ -28,6 +28,7 @@ One of advantages of this plugin is that no configuration is required in most ca
 * dart
 * elixir
 * elm
+* fish (fish-shell)
 * go (Golang)
 * graphql
 * groovy
