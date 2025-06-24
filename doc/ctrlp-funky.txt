@@ -1,7 +1,7 @@
 *ctrlp-funky.txt* *ctrlp-funky*
 A super simple function navigator for ctrlp.vim
 Version: 0.12.2
-Author:  Takahiro Yoshihara <https://github.com/tacahiroy>
+Author:  Takahiro YOSHIHARA <https://github.com/tacahiroy>
 
 
 ==============================================================================
@@ -66,6 +66,7 @@ Currently, |ctrlp-funky| supports following file types:
 * scala
 * sh (bash, dash and zsh)
 * sql
+* systemverilog
 * tex (LaTeX)
 * tf (terraform)
 * thrift
@@ -448,11 +449,15 @@ THANKS						*ctrlp-funky-thanks*
   * *nkakouros*       <https://github.com/nkakouros>
   * *phongnh*         <https://github.com/phongnh>
   * *melhakim*        <https://github.com/melhakim>
+  * *sqlmap3*         <https://github.com/sqlmap3>
 
 
 ==============================================================================
 CHANGELOG 					*ctrlp-funky-changelog*
 
+
+11 Feb 2025~
+  + Add support for SystemVerilog
 
 26 Jan 2024~
   + Add support for fish-shell (fish)

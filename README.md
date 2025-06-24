@@ -56,6 +56,7 @@ One of advantages of this plugin is that no configuration is required in most ca
 * scala
 * sh (bash, dash, fish and zsh)
 * sql
+* systemverilog
 * tex (LaTeX)
 * tf (terraform)
 * thrift
