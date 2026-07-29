@@ -149,7 +149,7 @@ let g:ctrlp_funky_syntax_highlight = 1
 
 Note that this feature doesn't work perfectly, because ctrlp-funky just sets
 the filetype to the funky buffer.
-CtrlP's indicator `>` which appears at the begining of each line in the funky
+CtrlP's indicator `>` which appears at the beginning of each line in the funky
 buffer has special meaning for some filetypes such as HTML, XML, etc., so it
 breaks syntax highlighting.
 
