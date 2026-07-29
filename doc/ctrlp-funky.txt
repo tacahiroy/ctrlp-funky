@@ -521,7 +521,7 @@ CHANGELOG 					*ctrlp-funky-changelog*
   + Add support for ExUnit test for Elixir (#99) by |jagtesh|
 
 7 Nov 2016~
-  + Add support for anonymous functions for Javascript (#98) by |mklinga|
+  + Add support for anonymous functions for JavaScript (#98) by |mklinga|
 
 13 Sep 2016~
   + Add private method and macro patterns for Elixir (#96) by |minhajuddin|
